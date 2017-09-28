@@ -13,7 +13,7 @@ int main(){
     double y2;
     std::cin >> y2;
     double s;
-    s = sqrt( ( x1-x2 ) * ( x1-x2 ) +( y1-y2 ) * ( y1-y2 ) );
+    s = sqrt((x1-x2) * (x1-x2) +(y1-y2) * (y1-y2));
     std::cout << s << std::endl;
     return 0;
 }
