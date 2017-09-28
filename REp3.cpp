@@ -11,7 +11,8 @@ int main(){
     std::cin >> littleBase;
     double height;
     std::cin >> height;
-    double perimeter = bigBase + littleBase + 2 * sqrt(height * height + (bigBase - littleBase) * (bigBase - littleBase) / 4);
+    double sum = sqrt(height * height + (bigBase - littleBase) * (bigBase - littleBase) / 4);
+    double perimeter = bigBase + littleBase + 2 * sum;
     std::cout << perimeter << std::endl;
     return 0;
 }
