@@ -31,5 +31,21 @@ int main(){
     double y = 3 * x * x * x + 4 * x * x - 11 * x + 1;
     std::cout << x << std::endl;
     std::cout << y << std::endl;
+    // Определение плотности по объему и массе :
+    std::cout << "Введите объем и массу" << std::endl;
+    double volume;
+    std::cin >> volume;
+    double weight;
+    std::cin >> weight;
+    double dentisy = weight / volume;
+    std::cout << dentisy << std::endl;
+// Решение функции :
+    std::cout << "Введите число а,b" << std::endl;
+    double a1;
+    std::cin >> a1;
+    double b;
+    std::cin >> b;
+    double x0 = -b / a1;
+    std::cout << x0 << std::endl;
     return 0;
 }
