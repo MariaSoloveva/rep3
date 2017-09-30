@@ -102,7 +102,7 @@ int main(){
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
     	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
             k = k + 1;
-        }y1 = y1 + 1;
+        } y1 = y1 + 1;
     }
     if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
         std::cout << "The queen from the bishop" << std::endl;
