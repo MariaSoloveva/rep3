@@ -71,7 +71,7 @@ int main(){
     std::cin >> c;
     int d = 0;
     std::cin >> d;
-    if ((p1.first == p2.first) || (p1.second == p2.second)){
+    if ((p1.first == c) || (p1.second == d)){
         std::cout << "The threat from the rook" << std::endl;
     } else {
         std::cout << "There is no threat from the rook" << std::endl;
@@ -80,8 +80,7 @@ int main(){
     unsigned int y1 = 1;
     int k = 0;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if (((p.first + x1 == c) && (p.second + y1== d))
-            || ((p.first - x1 == c) && (p.second - y1== d))){
+    	if (((a + x1 == c) && (b + y1== d)) || ((a - x1 == c) && (b - y1== d))){
             k = k + 1;
     	} y1 = y1 + 1;
     }
