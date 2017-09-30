@@ -91,7 +91,7 @@ int main(){
     } else {
         std::cout << "There is no threat from the bishop" << std::endl;
     }
-// На поле (a, b) расположен король. 
+//На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
     if (((p.first + 1 == c ) && (p.second == d)) ||
     	((p.first - 1 == c) && (p.second == d)) ||
