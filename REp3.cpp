@@ -91,7 +91,7 @@ int main(){
     }
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
-    if (((p.first + 1 == c ) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d)) || ((p.second == d - 1) && (p.first == c)) || ((p.first == c) && (p.second == d + 1)) || (p.first + 1 == c) && (p.second == d) || (p.first - 1 == c) && (p.second - 1 == d)){
+    if (((p.first + 1 == c) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d)) || ((p.second == d - 1) && (p.first == c)) || ((p.first == c) && (p.second == d + 1)) || (p.first + 1 == c) && (p.second == d) || (p.first - 1 == c) && (p.second - 1 == d)){
         std::cout << "Danger" << std::endl;
     } else {
         std::cout << "Out Of Danger" << std::endl;
@@ -100,7 +100,7 @@ int main(){
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
     	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
             ++k;
-    	}
+        }
     	++y1;
     }
     if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
