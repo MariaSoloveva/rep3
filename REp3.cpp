@@ -92,20 +92,16 @@ int main(){
     }
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
-    if (((p.first + 1 == c) && (p.second == d))
-        || ((p.first - 1 == c) && (p.second == d))
-        || ((p.second == d - 1) && (p.first == c))
-        || ((p.first == c) && (p.second == d + 1))
-        || ((p.first + 1 == c) && (p.second == d))
-        || (p.first - 1 == c) && (p.second - 1 == d)){
+    if (((p.first + 1 == c) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d))
+        || ((p.second == d - 1) && (p.first == c)) || ((p.first == c) && (p.second == d + 1))
+        || ((p.first + 1 == c) && (p.second == d)) || (p.first - 1 == c) && (p.second - 1 == d)){
         std::cout << "Danger" << std::endl;
     } else {
         std::cout << "Out Of Danger" << std::endl;
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if (((p.first + x1 == c) && (p.second + y1== d))
-            || ((p.first - x1 == c) && (p.second - y1== d))){
+    	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
             k = k + 1;
         }y1 = y1 + 1;
     }
