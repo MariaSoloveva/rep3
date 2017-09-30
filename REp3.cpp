@@ -91,7 +91,12 @@ int main(){
     }
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
-    if (((p.first + 1 == c) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d)) || ((p.second == d - 1) && (p.first == c)) || ((p.first == c) && (p.second == d + 1)) || (p.first + 1 == c) && (p.second == d) || (p.first - 1 == c) && (p.second - 1 == d)){
+    if (((p.first + 1 == c) && (p.second == d))
+        || ((p.first - 1 == c) && (p.second == d))
+        || ((p.second == d - 1) && (p.first == c))
+        || ((p.first == c) && (p.second == d + 1))
+        || ((p.first + 1 == c) && (p.second == d))
+        || (p.first - 1 == c) && (p.second - 1 == d)){
         std::cout << "Danger" << std::endl;
     } else {
         std::cout << "Out Of Danger" << std::endl;
