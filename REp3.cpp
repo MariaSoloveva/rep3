@@ -14,7 +14,7 @@ int main(){
     } else {
         std::cout << x << " odd number" << std::endl;
     }
-    if (fmod(y,2) ==0){
+    if (fmod(y, 2) ==0){
         std::cout << y << " even number" << std::endl;
     } else {
         std::cout << y << " odd number"  << std::endl;
@@ -40,13 +40,13 @@ int main(){
         std::cout << "The condition "a negative number" is not performed" << std::endl;
     }
 //только одно число кратно 5
-    if ((fmod(x,5) == 0) && (fmod(y,5) != 0) && (fmod(z,5) != 0)){
+    if ((fmod(x, 5) == 0) && (fmod(y, 5) != 0) && (fmod(z, 5) != 0)){
         std::cout << "only one number is a multiple of 5" << std::endl;
     } else {
-        if ((fmod(y,5) == 0) && (fmod(z,5) != 0) && (fmod(x,5) != 0)){
+        if ((fmod(y, 5) == 0) && (fmod(z, 5) != 0) && (fmod(x, 5) != 0)){
             std::cout << "only one number is a multiple of 5" << std::endl;
         } else {
-            if ((fmod(z,5) == 0) && (fmod(y,5) != 0) && (fmod(x,5) != 0)){
+            if ((fmod(z, 5) == 0) && (fmod(y, 5) != 0) && (fmod(x, 5) != 0)){
                 std::cout << "only one number is a multiple of 5" << std::endl;
             } else {
                 std::cout << "The condition "only one number is a multiple of 5" is not executed" << std::endl;
@@ -91,10 +91,10 @@ int main(){
         std::cout << "There is no threat from the bishop" << std::endl;
     }
  // На поле (a, b) расположен король. Записать условие, при котором он может одним ходом попасть на поле (c, d).
-    if(((p.first + 1 == c ) && (p.second == d)) ||
-    	((p.first - 1 == c ) && (p.second == d)) ||
-    	((p.second == d - 1) && (p.first == c )) ||
-    	((p.first == c ) && (p.second == d + 1)) ||
+    if (((p.first + 1 == c ) && (p.second == d)) ||
+    	((p.first - 1 == c) && (p.second == d)) ||
+    	((p.second == d - 1) && (p.first == c)) ||
+    	((p.first == c) && (p.second == d + 1)) ||
     	(p.first + 1 == c) && (p.second == d) ||
     	(p.first - 1 == c) && (p.second - 1 == d)){
         std::cout << "Danger" << std::endl;
@@ -104,23 +104,23 @@ int main(){
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
     	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
-            ++k;     
+            ++k;
     	}
     	++y1;
     }
-    if((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
+    if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
         std::cout << "The queen from the bishop" << std::endl;
     } else {
         std::cout << "There is no threat from the queen" << std::endl;
     }
 // На поле (a, b) расположена белая пешка. Записать условие, при котором она может одним ходом попасть на поле (c, d):при обычном ходе;
-    if(p.second == d + 1){
+    if (p.second == d + 1){
         std::cout << "Danger" << std::endl;
     } else {
         std::cout << "Out Of Danger" << std::endl;
     }
 // На поле (a, b) расположена белая пешка. Записать условие, при котором она может одним ходом попасть на поле (c, d):когда она "бьет" фигуру или пешку соперника.
-    if((p.first + 1 == c) && (p.second + 1 == d) || ((p.first - 1 = c) && (p.second + 1 == d)){
+    if ((p.first + 1 == c) && (p.second + 1 == d) || ((p.first - 1 = c) && (p.second + 1 == d)){
         std::cout << "Danger of the pawn" << std::endl;
     } else {
         std::cout << "Out Of Danger of the pawn" << std::endl;
@@ -133,7 +133,7 @@ int main(){
     for (unsigned int u = 8; u <= 15; ++u){
         for (unsigned int i = 8; i <= 15; ++i){
             std::cout << i << "*" << u << "=" << i * u << std::endl;
-        } 
+        }
     }
     //произведение всех целых чисел от a до 20 (значение a вводится с клавиатуры; 1 < a < 20)
     std::cout << "Введите число" << std::endl;
