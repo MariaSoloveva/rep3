@@ -49,7 +49,7 @@ int main(){
             if ((fmod(z, 5) == 0) && (fmod(y, 5) != 0) && (fmod(x, 5) != 0)){
                 std::cout << "only one number is a multiple of 5" << std::endl;
             } else {
-                std::cout << "The condition "only one number is a multiple of 5" is not executed" << std::endl;
+                std::cout << "The condition  is not executed" << std::endl;
             }
         }
     }
@@ -57,7 +57,7 @@ int main(){
     if ((x >= 100) || (y >= 0) || (z >= 100)){
         std::cout << "at least one of the numbers is greater than 100" << std::endl;
     } else {
-        std::cout << "The condition "at least one of the numbers is greater than 100" not executed" << std::endl;
+        std::cout << "The condition not executed" << std::endl;
         }
 //На поле (a, b) расположена ладья. Записать условие, при котором она угрожает полю (c, d).
     std::pair<int, int> p1;
@@ -71,21 +71,22 @@ int main(){
     std::cin >> c;
     int d = 0;
     std::cin >> d;
-    if((p1.first == p2.first) || (p1.second == p2.second)){
+    if ((p1.first == p2.first) || (p1.second == p2.second)){
         std::cout << "The threat from the rook" << std::endl;
     } else {
         std::cout << "There is no threat from the rook" << std::endl;
     }
- //На поле (a, b) расположен слон. Записать условие, при котором он угрожает полю (c, d).
+//На поле (a, b) расположен слон. Записать условие, при котором он угрожает полю (c, d).
     unsigned int y1 = 1;
     int k = 0;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
-            ++k;     
+    	if (((p.first + x1 == c) && (p.second + y1== d)) ||
+            ((p.first - x1 == c) && (p.second - y1== d))){
+            ++k;
     	}
     	++y1;
     }
-    if(k > 0){
+    if (k > 0){
         std::cout << "The threat from the bishop" << std::endl;
     } else {
         std::cout << "There is no threat from the bishop" << std::endl;
@@ -103,7 +104,8 @@ int main(){
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
+    	if (((p.first + x1 == c) && (p.second + y1== d)) ||
+            ((p.first - x1 == c) && (p.second - y1== d))){
             ++k;
     	}
     	++y1;
@@ -113,13 +115,15 @@ int main(){
     } else {
         std::cout << "There is no threat from the queen" << std::endl;
     }
-// На поле (a, b) расположена белая пешка. Записать условие, при котором она может одним ходом попасть на поле (c, d):при обычном ходе;
+// На поле (a, b) расположена белая пешка. Записать условие, при котором она может одним ходом попасть на поле (c, d):
+    //при обычном ходе;
     if (p.second == d + 1){
         std::cout << "Danger" << std::endl;
     } else {
         std::cout << "Out Of Danger" << std::endl;
     }
-// На поле (a, b) расположена белая пешка. Записать условие, при котором она может одним ходом попасть на поле (c, d):когда она "бьет" фигуру или пешку соперника.
+// На поле (a, b) расположена белая пешка. Записать условие, при котором она может одним ходом попасть на поле (c, d):
+    //когда она "бьет" фигуру или пешку соперника.
     if ((p.first + 1 == c) && (p.second + 1 == d) || ((p.first - 1 = c) && (p.second + 1 == d)){
         std::cout << "Danger of the pawn" << std::endl;
     } else {
