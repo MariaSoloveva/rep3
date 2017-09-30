@@ -80,7 +80,8 @@ int main(){
     unsigned int y1 = 1;
     int k = 0;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
+    	if (((p.first + x1 == c) && (p.second + y1== d))
+            || ((p.first - x1 == c) && (p.second - y1== d))){
             ++k;
     	} ++y1;
     }
@@ -103,7 +104,8 @@ int main(){
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
+    	if (((p.first + x1 == c) && (p.second + y1== d))
+            || ((p.first - x1 == c) && (p.second - y1== d))){
             k = k + 1;
         }
     	y1 = y1 + 1;
