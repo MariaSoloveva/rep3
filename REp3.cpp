@@ -29,7 +29,7 @@ int main(){
     if ((x == 0) || (y == 0)){
         std::cout << "At least 1 of the numbers is 0" << std::endl;
     } else {
-        std::cout << "The condition "at least 1 of the numbers is 0" is not executed" << std::endl;
+        std::cout << "The condition is not executed" << std::endl;
     }
 //Каждое число отрицатально
     int z = 0;
@@ -132,21 +132,32 @@ int main(){
     for (unsigned int i = 1; i <= 9; ++i){
         std::cout << i << "*" << "7" << "=" << i * 7 << std::endl;
     }
-    //произведение всех целых чисел от 8 до 15
+//произведение всех целых чисел от 8 до 15
     for (unsigned int u = 8; u <= 15; ++u){
         for (unsigned int i = 8; i <= 15; ++i){
             std::cout << i << "*" << u << "=" << i * u << std::endl;
         }
+// или
+    int composition = 1;
+    for (u = 8;; u <= 15; ++u){
+        composition = composition * u;
     }
-    //произведение всех целых чисел от a до 20 (значение a вводится с клавиатуры; 1 < a < 20)
+//произведение всех целых чисел от a до 20 (значение a вводится с клавиатуры; 1 < a < 20)
     std::cout << "Введите число" << std::endl;
     int a = 0;
     std::cin >> a;
-    for (unsigned int u = a; u <= 20; ++u){
+    for (unsigned int u = a; u < 20; ++u){
         for (unsigned int i = a; u <= 20; ++i){
             std::cout << i << "*" << u << "=" << i * u << std::endl;
         }
     }
+    std::cout << "Composition =" << composition << std::endl;
+// или
+    int composition = 1;
+    for (u = a ; u < 20; ++u){
+        composition = composition * u;
+    }
+    std::cout << "Composition =" << composition << std::endl;
 //произведение всех целых чисел от 1 до b (значение b вводится с клавиатуры; 1 < b < 20)
     std::cout << "Введите число" << std::endl;
     int b = 0;
@@ -156,11 +167,23 @@ int main(){
             std::cout << i << "*" << u << "=" << i * u << std::endl;
         }
     }
+// или
+    composition = 1;
+    for (u = 1 ; u < b; ++u){
+        composition = composition * u;
+    }
+    std::cout << "Composition =" << composition << std::endl;
 //произведение всех целых чисел от a до b (значения a и b вводятся с клавиатуры; b >= a)
     for (unsigned int u = a; u < b; ++u){
         for (unsigned int i = a; i < b; ++i){
             std::cout << i << "*" << u << "=" << i * u << std::endl;
         }
     }
+// или
+    composition = 1;
+    for (u = a ; u < b; ++u){
+        composition = composition * u;
+    }
+    std::cout << "Composition =" << composition << std::endl;
     return 0;
 }
