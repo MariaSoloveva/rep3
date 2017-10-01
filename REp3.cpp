@@ -83,7 +83,7 @@ int main(){
     unsigned int y1 = 1;
     int k = 0;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if (((p1.first + x1 == p2.first) && (p1.second + y1== p2.second)){
+    	if ( (p1.first + x1 == p2.first) && (p1.second + y1== p2.second) ){
             k = k + 1;
         } else {
             if ((p1.first - x1 == p2.first) && (p1.second - y1== p2.second)){
@@ -101,7 +101,7 @@ int main(){
     if (((p.first + 1 == c) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d)){
         std::cout << "Danger" << std::endl;
     } else {
-        if ((p.second == d - 1) && (p.first == c)) || ((p.first == c) && (p.second == d + 1)){
+        if ( (p.second == d - 1) && (p.first == c) ) || ( (p.first == c) && (p.second == d + 1) ){
             std::cout << "Danger" << std::endl;
         } else {
             if ((p.first + 1 == c) && (p.second == d)) || (p.first - 1 == c) && (p.second - 1 == d)){
