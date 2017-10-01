@@ -83,9 +83,12 @@ int main(){
     unsigned int y1 = 1;
     int k = 0;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if (((p1.first + x1 == p2.first) && (p1.second + y1== p2.second)) 
-            || (( p1.first - x1 == p2.first) && (p1.second - y1== p2.second))){
+    	if (((p1.first + x1 == p2.first) && (p1.second + y1== p2.second)){
             ++k;
+        } else {
+            if ((p1.first - x1 == p2.first) && (p1.second - y1== p2.second)){
+                ++k;
+            }
     	} ++y1;
     }
     if (k > 0){
@@ -101,17 +104,17 @@ int main(){
         if ((p.second == d - 1) && (p.first == c)) || ((p.first == c) && (p.second == d + 1)){
             std::cout << "Danger" << std::endl;
         } else {
-        if ((p.first + 1 == c) && (p.second == d)) || (p.first - 1 == c) && (p.second - 1 == d)){
-            std::cout << "Danger" << std::endl;
-        } else {
-        std::cout << "Out Of Danger" << std::endl;
-        }
+            if ((p.first + 1 == c) && (p.second == d)) || (p.first - 1 == c) && (p.second - 1 == d)){
+                std::cout << "Danger" << std::endl;
+            } else {
+                std::cout << "Out Of Danger" << std::endl;
+            }
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
     	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
-            k = k + 1;
-        } y1 = y1 + 1;
+            ++k;
+        } ++y1;
     }
     if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
         std::cout << "The queen from the bishop" << std::endl;
