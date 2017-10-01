@@ -109,11 +109,10 @@ int main(){
         }
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
-    for (unsigned int x1 = 1; x1 <= 8; ++x1){
+    for (unsigned int x1 = 1; x1 <= 8; ++x1; ++y1){
         condition1 = (p.first + x1 == c) && (p.second + y1== d);
         condition2 = (p.first - x1 == c) && (p.second - y1== d);
-    	if (condition1 || condition2){ k++;
-        } y1++;}
+    	if (condition1 || condition2){ k++;}
     if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
         std::cout << "The queen from the bishop" << std::endl;
     } else {
