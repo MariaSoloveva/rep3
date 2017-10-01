@@ -85,7 +85,7 @@ int main(){
     bool condition1 = false;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
         condition1 = (p1.first + x1 == p2.first) && (p1.second + y1== p2.second);
-        if (condition == true){ k = k + 1;
+        if (condition == true){ ++k;
         } else {
             if ((p1.first - x1 == p2.first) && (p1.second - y1== p2.second)){ k++;
             }} y1++;}
@@ -104,15 +104,16 @@ int main(){
     bool condition6 = (p1.first - 1 == p2.first) && (p1.second - 1 == p2.second);
     if (condition1 || condition2 || condition3 || condition4 || condition5 || condition6){
         std::cout << "Danger" << std::endl;
-        } else {
+    } else {
             std::cout << "Out Of Danger" << std::endl;
         }
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
-    for (unsigned int x1 = 1; x1 <= 8; ++x1; ++y1){
+    for (unsigned int x1 = 1; x1 <= 8; ++x1;){
         condition1 = (p.first + x1 == c) && (p.second + y1== d);
         condition2 = (p.first - x1 == c) && (p.second - y1== d);
-    	if (condition1 || condition2){ k++;}
+    	if (condition1 || condition2){ ++k;
+        } ++y1}
     }
     if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
         std::cout << "The queen from the bishop" << std::endl;
@@ -128,7 +129,7 @@ int main(){
     }
 // На поле (a, b) расположена белая пешка. Записать условие, при котором она может
     //одним ходом попасть на поле (c, d):когда она "бьет" фигуру или пешку соперника.
-    if ((p.first + 1 == c) && (p.second + 1 == d) || ((p.first - 1 = c) && (p.second + 1 == d)){
+    if (((p.first + 1 == c) && (p.second + 1 == d)) || ((p.first - 1 = c) && (p.second + 1 == d))){
         std::cout << "Danger of the pawn" << std::endl;
     } else {
         std::cout << "Out Of Danger of the pawn" << std::endl;
