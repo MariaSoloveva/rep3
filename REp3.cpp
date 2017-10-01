@@ -85,14 +85,11 @@ int main(){
     bool condition1 = false;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
         condition1 = (p1.first + x1 == p2.first) && (p1.second + y1== p2.second);
-    	if (condition = true){
-            k = k + 1;
+        if (condition == true){ k = k + 1;
         } else {
-            if ((p1.first - x1 == p2.first) && (p1.second - y1== p2.second)){
-                k++;
+            if ((p1.first - x1 == p2.first) && (p1.second - y1== p2.second)){ k++;
             }
-    	} y1++;
-    }
+    	} y1++;}
     if (k > 0){
         std::cout << "The threat from the bishop" << std::endl;
     } else {
