@@ -108,28 +108,6 @@ int main(){
             std::cout << "Out Of Danger" << std::endl;
         }
     }
-// На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
-    if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){  //ферзь = ладья + слон
-        std::cout << "The queen from the bishop" << std::endl;
-    } else {
-        std::cout << "There is no threat from the queen" << std::endl;
-    }
-// На поле (a, b) расположена белая пешка. Записать условие,
-    //при котором она может одним ходом попасть на поле (c, d):при обычном ходе;
-    if (p1.second == p2.second + 1){
-        std::cout << "Danger" << std::endl;
-    } else {
-        std::cout << "Out Of Danger" << std::endl;
-    }
-// На поле (a, b) расположена белая пешка. Записать условие, при котором она может
-    //одним ходом попасть на поле (c, d):когда она "бьет" фигуру или пешку соперника.
-    condition1 = (p1.first + 1 == p2.first) && (p1.second + 1 == p2.second);
-    condition2 = (p1.first - 1 = p2.first) && (p1.second + 1 == p2.second);
-    if (condition1 || condition2){
-        std::cout << "Danger of the pawn" << std::endl;
-    } else {
-        std::cout << "Out Of Danger of the pawn" << std::endl;
-    }
 //Напечатать таблицу умножения на 7:
     for (unsigned int i = 1; i <= 9; ++i){
         std::cout << i << "*" << "7" << "=" << i * 7 << std::endl;
