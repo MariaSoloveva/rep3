@@ -82,8 +82,10 @@ int main(){
 //На поле (a, b) расположен слон. Записать условие, при котором он угрожает полю (c, d).
     unsigned int y1 = 1;
     int k = 0;
+    bool condition1 = false;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if ( (p1.first + x1 == p2.first) && (p1.second + y1== p2.second) ){
+        condition1 = (p1.first + x1 == p2.first) && (p1.second + y1== p2.second);
+    	if (condition = true){
             k = k + 1;
         } else {
             if ((p1.first - x1 == p2.first) && (p1.second - y1== p2.second)){
@@ -98,7 +100,7 @@ int main(){
     }
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
-    bool condition1 = ((p.first + 1 == c) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d));
+    condition1 = ((p.first + 1 == c) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d));
     bool condition2 = ((p.second == d - 1) && (p.first == c)) || ((p.first == c) && (p.second == d + 1));
     bool condition3 = ((p.first + 1 == c) && (p.second == d)) || (p.first - 1 == c) && (p.second - 1 == d));
     if (condition1 || condition2 || condition3){
