@@ -109,11 +109,11 @@ int main(){
         }
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
-    y1 = 1;
-    k = 0;
-    for (x1 = 1; x1 <= 8; ++x1){
-        condition1 = (p1.first + x1 == p2.first) && (p1.second + y2== p2.second);
-        condition2 = (p1.first - x1 == p2.first) && (p1.second - y2== p2.second);
+    int y2 = 0;
+    int k = 0;
+    for (unsigned int w = 1; w <= 8; ++w){
+        condition1 = (p1.first + w == p2.first) && (p1.second + y2== p2.second);
+        condition2 = (p1.first - 2 == p2.first) && (p1.second - y2== p2.second);
         ++y2;
         if (condition1 || condition2){ ++k;
         }
