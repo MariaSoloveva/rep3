@@ -113,6 +113,7 @@ int main(){
         condition1 = (p.first + x1 == c) && (p.second + y1== d);
         condition2 = (p.first - x1 == c) && (p.second - y1== d);
     	if (condition1 || condition2){ k++;}
+    }
     if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
         std::cout << "The queen from the bishop" << std::endl;
     } else {
