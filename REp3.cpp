@@ -98,17 +98,14 @@ int main(){
     }
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
-    if (((p.first + 1 == c) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d)){
+    bool condition1 = ((p.first + 1 == c) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d));
+    bool condition2 = ((p.second == d - 1) && (p.first == c)) || ((p.first == c) && (p.second == d + 1));
+    bool condition3 = ((p.first + 1 == c) && (p.second == d)) || (p.first - 1 == c) && (p.second - 1 == d));
+    if (condition1 || condition2 || condition3){
         std::cout << "Danger" << std::endl;
-    } else {
-        if ( (p.second == d - 1) && (p.first == c) ) || ( (p.first == c) && (p.second == d + 1) ){
-            std::cout << "Danger" << std::endl;
         } else {
-            if ((p.first + 1 == c) && (p.second == d)) || (p.first - 1 == c) && (p.second - 1 == d)){
-                std::cout << "Danger" << std::endl;
-            } else {
-                std::cout << "Out Of Danger" << std::endl;
-            }
+            std::cout << "Out Of Danger" << std::endl;
+        }
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
