@@ -80,7 +80,7 @@ int main(){
         std::cout << "There is no threat from the rook" << std::endl;
     }
 //На поле (a, b) расположен слон. Записать условие, при котором он угрожает полю (c, d).
-    unsigned int y1 = 1;
+    int y1 = 1;
     int k = 0;
     bool condition1 = false;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
@@ -109,10 +109,11 @@ int main(){
         }
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
-    unsigned int y2 = 1;
+    y1 = 1;
+    k = 0;
     for (x1 = 1; x1 <= 8; ++x1){
-        condition1 = (p.first + x1 == p2.first) && (p.second + y2== p2.second);
-        condition2 = (p.first - x1 == p2.first) && (p.second - y2== p2.second);
+        condition1 = (p1.first + x1 == p2.first) && (p1.second + y2== p2.second);
+        condition2 = (p1.first - x1 == p2.first) && (p1.second - y2== p2.second);
         ++y2;
         if (condition1 || condition2){ ++k;
         }
@@ -124,14 +125,16 @@ int main(){
     }
 // На поле (a, b) расположена белая пешка. Записать условие,
     //при котором она может одним ходом попасть на поле (c, d):при обычном ходе;
-    if (p.second == d + 1){
+    if (p1.second == p2.second + 1){
         std::cout << "Danger" << std::endl;
     } else {
         std::cout << "Out Of Danger" << std::endl;
     }
 // На поле (a, b) расположена белая пешка. Записать условие, при котором она может
     //одним ходом попасть на поле (c, d):когда она "бьет" фигуру или пешку соперника.
-    if (((p.first + 1 == c) && (p.second + 1 == d)) || ((p.first - 1 = c) && (p.second + 1 == d))){
+    condition1 = (p1.first + 1 == p2.first) && (p1.second + 1 == p2.second);
+    condition2 = (p1.first - 1 = p2.first) && (p1.second + 1 == p2.second);
+    if (condition1 || condition2){
         std::cout << "Danger of the pawn" << std::endl;
     } else {
         std::cout << "Out Of Danger of the pawn" << std::endl;
