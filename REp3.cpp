@@ -87,9 +87,9 @@ int main(){
             k = k + 1;
         } else {
             if ((p1.first - x1 == p2.first) && (p1.second - y1== p2.second)){
-                k = k + 1;
+                k++;
             }
-    	} ++y1;
+    	} y1++;
     }
     if (k > 0){
         std::cout << "The threat from the bishop" << std::endl;
@@ -113,8 +113,8 @@ int main(){
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
     	if (((p.first + x1 == c) && (p.second + y1== d)) || ((p.first - x1 == c) && (p.second - y1== d))){
-            k = k + 1;
-        } ++y1;
+            k++;
+        } y1++;
     }
     if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
         std::cout << "The queen from the bishop" << std::endl;
