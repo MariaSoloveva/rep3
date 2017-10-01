@@ -37,7 +37,7 @@ int main(){
     if ((x < 0) && (y < 0) && (z < 0)){
         std::cout << "Each number is negative" << std::endl;
     } else {
-        std::cout << "The condition "a negative number" is not performed" << std::endl;
+        std::cout << "The condition  is not performed" << std::endl;
     }
 //только одно число кратно 5
     if ((fmod(x, 5) == 0) && (fmod(y, 5) != 0) && (fmod(z, 5) != 0)){
@@ -85,7 +85,7 @@ int main(){
     bool condition1 = false;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
         condition1 = (p1.first + x1 == p2.first) && (p1.second + y1== p2.second);
-        if (condition == true){ ++k;
+        if (condition1 == true){ ++k;
         } else {
             if ((p1.first - x1 == p2.first) && (p1.second - y1== p2.second)){ k++;
             }} y1++;}
@@ -96,7 +96,7 @@ int main(){
     }
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
-    condition1 = ((p1.first + 1 == p2.first) && (p2.second == p2.second);
+    condition1 = (p1.first + 1 == p2.first) && (p2.second == p2.second);
     bool condition2 = (p1.first - 1 == p2.first) && (p1.second == p2.second);
     bool condition3 = (p1.second == p2.second - 1) && (p1.first == p2.first);
     bool condition4 = (p1.first == p2.first) && (p1.second == p2.second + 1);
@@ -109,7 +109,7 @@ int main(){
         }
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
-    y1 = 1;
+   unsigned int y1 = 1;
     for (unsigned int x1 = 1; x1 <= 8; ++x1;){
         condition1 = (p.first + x1 == p2.first) && (p.second + y1== p2.second);
         condition2 = (p.first - x1 == p2.first) && (p.second - y1== p2.second);
