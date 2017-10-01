@@ -96,10 +96,13 @@ int main(){
     }
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
-    condition1 = ((p.first + 1 == c) && (p.second == d)) || ((p.first - 1 == c) && (p.second == d));
-    bool condition2 = ((p.second == d - 1) && (p.first == c)) || ((p.first == c) && (p.second == d + 1));
-    bool condition3 = ((p.first + 1 == c) && (p.second == d)) || (p.first - 1 == c) && (p.second - 1 == d));
-    if (condition1 || condition2 || condition3){
+    condition1 = ((p1.first + 1 == p2.first) && (p2.second == p2.second);
+    bool condition2 = (p1.first - 1 == p2.first) && (p1.second == p2.second);
+    bool condition3 = (p1.second == p2.second - 1) && (p1.first == p2.first);
+    bool condition4 = (p1.first == p2.first) && (p1.second == p2.second + 1);
+    bool condition5 = (p1.first + 1 == p2.first) && (p1.second == p2.second);
+    bool condition6 = (p1.first - 1 == p2.first) && (p1.second - 1 == p2.second);
+    if (condition1 || condition2 || condition3 || condition4 || condition5 || condition6){
         std::cout << "Danger" << std::endl;
         } else {
             std::cout << "Out Of Danger" << std::endl;
