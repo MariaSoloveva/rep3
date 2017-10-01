@@ -109,16 +109,7 @@ int main(){
         }
     }
 // На поле (a, b) расположен ферзь. Записать условие, при котором он угрожает полю (c, d).
-    int y2 = 0;
-    int k = 0;
-    for (unsigned int w = 1; w <= 8; ++w){
-        condition1 = (p1.first + w == p2.first) && (p1.second + y2== p2.second);
-        condition2 = (p1.first - 2 == p2.first) && (p1.second - y2== p2.second);
-        ++y2;
-        if (condition1 || condition2){ ++k;
-        }
-    }
-    if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){
+    if ((k > 0) || (p1.first == p2.first) || (p1.second == p2.second)){  //ферзь = ладья + слон
         std::cout << "The queen from the bishop" << std::endl;
     } else {
         std::cout << "There is no threat from the queen" << std::endl;
