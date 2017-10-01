@@ -83,8 +83,7 @@ int main(){
     unsigned int y1 = 1;
     int k = 0;
     for (unsigned int x1 = 1; x1 <= 8; ++x1){
-    	if (((p1.first + x1 == p2.first) && (p1.second + y1== p2.second)){
-            ++k;
+    	if (((p1.first + x1 == p2.first) && (p1.second + y1== p2.second)){ ++k;
         } else {
             if ((p1.first - x1 == p2.first) && (p1.second - y1== p2.second)){
                 ++k;
