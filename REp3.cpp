@@ -9,7 +9,7 @@ int main(){
     std::cin >> x;
     int y = 0;
     std::cin >> y;
-    if (fmod(x, 2) !=0) && (fmod(y, 2) !=0){
+    if ((fmod(x, 2) !=0) && (fmod(y, 2) !=0)){
         std::cout <<" odd numbers" << std::endl;
     } else {
         std::cout <<" The condition is not executed " << std::endl;
@@ -75,7 +75,7 @@ int main(){
         std::cout << "There is no threat from the rook" << std::endl;
     }
 //На поле (a, b) расположен слон. Записать условие, при котором он угрожает полю (c, d).
-    if (std::abs(p1.first - p2.first) == std::abs(p1.second - p2.second)){
+    if (abs(p1.first - p2.first) == abs(p1.second - p2.second)){
         std::cout << "The threat from the bishop" << std::endl;
     } else {
         std::cout << "There is no threat from the bishop" << std::endl;
@@ -83,8 +83,7 @@ int main(){
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
     int k = 0;
-    if (std::abs(p1.first - p2.first) == 1 || (std::abs(p1.second - p2.second) == 1){
-    	++k;
+    if (((abs(p1.first - p2.first) == 1) || (abs(p1.second - p2.second) == 1)){ ++k;
         std::cout << "The threat from the king" << std::endl;
     } else {
             std::cout << "Out Of Danger" << std::endl;
@@ -117,7 +116,7 @@ int main(){
     }
 //произведение всех целых чисел от 8 до 15
     int composition = 1;
-    for (int u = 8;; u <= 15; ++u){
+    for (int u = 8;; u <= 15; ++u;){
         composition = composition * u;
     }
     std::cout << "Composition =" << composition << std::endl;
@@ -125,7 +124,7 @@ int main(){
     std::cout << "Введите число" << std::endl;
     int a = 0;
     std::cin >> a;
-    int composition = 1;
+    composition = 1;
     for (int w = a ; w < 20; ++w){
         composition = composition * w;
     }
