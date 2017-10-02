@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <math.h>
+#include <cmath>
 
 int main(){
 //Каждое из чисел X,Y  нечетное
@@ -75,7 +75,7 @@ int main(){
         std::cout << "There is no threat from the rook" << std::endl;
     }
 //На поле (a, b) расположен слон. Записать условие, при котором он угрожает полю (c, d).
-    if (abs(p1.first - p2.first) == abs(p1.second - p2.second)){
+    if (std::abs(p1.first - p2.first) == std::abs(p1.second - p2.second)){
         std::cout << "The threat from the bishop" << std::endl;
     } else {
         std::cout << "There is no threat from the bishop" << std::endl;
@@ -83,7 +83,7 @@ int main(){
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
     int k = 0;
-    if (((abs(p1.first - p2.first) == 1) || (abs(p1.second - p2.second) == 1))){ ++k;
+    if (((std::abs(p1.first - p2.first) == 1) || (std::abs(p1.second - p2.second) == 1))){ ++k;
         std::cout << "The threat from the king" << std::endl;
     } else {
             std::cout << "Out Of Danger" << std::endl;
@@ -103,7 +103,7 @@ int main(){
     }
 // На поле (a, b) расположена белая пешка. Записать условие, при котором она может
     //одним ходом попасть на поле (c, d):когда она "бьет" фигуру или пешку соперника.
-    condition1 = (p1.first - p2.first == -1) && (p1.second + 1 == p2.second);
+    bool condition1 = (p1.first - p2.first == -1) && (p1.second + 1 == p2.second);
     bool condition2 = (p1.first - p2.first == 1) && (p1.second + 1 == p2.second);
     if (condition1 || condition2){
         std::cout << "Danger of the pawn" << std::endl;
@@ -116,7 +116,7 @@ int main(){
     }
 //произведение всех целых чисел от 8 до 15
     int composition = 1;
-    for (int u = 8; u <= 15; ++u;){
+    for (int u = 8; u <= 15; ++u){
         composition = composition * u;
     }
     std::cout << "Composition =" << composition << std::endl;
