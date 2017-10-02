@@ -83,7 +83,7 @@ int main(){
 //На поле (a, b) расположен король.
     //Записать условие, при котором он может одним ходом попасть на поле (c, d).
     int k = 0;
-    if (((abs(p1.first - p2.first) == 1) || (abs(p1.second - p2.second) == 1)){ ++k;
+    if (((abs(p1.first - p2.first) == 1) || (abs(p1.second - p2.second) == 1))){ ++k;
         std::cout << "The threat from the king" << std::endl;
     } else {
             std::cout << "Out Of Danger" << std::endl;
@@ -116,13 +116,13 @@ int main(){
     }
 //произведение всех целых чисел от 8 до 15
     int composition = 1;
-    for (int u = 8;; u <= 15; ++u;){
+    for (int u = 8; u <= 15; ++u;){
         composition = composition * u;
     }
     std::cout << "Composition =" << composition << std::endl;
 //произведение всех целых чисел от a до 20 (значение a вводится с клавиатуры; 1 < a < 20)
     std::cout << "Введите число" << std::endl;
-    int a = 0;
+    a = 0;
     std::cin >> a;
     composition = 1;
     for (int w = a ; w < 20; ++w){
@@ -131,7 +131,7 @@ int main(){
     std::cout << "Composition =" << composition << std::endl;
 //произведение всех целых чисел от 1 до b (значение b вводится с клавиатуры; 1 < b < 20)
     std::cout << "Введите число" << std::endl;
-    int b = 0;
+    b = 0;
     std::cin >> b;
     composition = 1;
     for (int q = 1 ; q < b; ++q){
