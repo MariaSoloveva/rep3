@@ -62,7 +62,11 @@ int main() {
       if (((p1.first == p2.first) || (p1.second == p2.second)) &&
           ((p3.first != p1.first) && (p3.second != p1.second)) &&
               (((p1.first >= p2.first) || (p1.second >= p2.second)) ||
-                  ((p1.first <= p2.first) || (p1.second <= p2.second))))
+                  ((p1.first <= p2.first) || (p1.second <= p2.second)))) &&
+                     ((((std::abs(p1.first - p2.first) == std::abs(p1.second - p2.second)) &&
+                         ((p3.first != p1.first) || (p3.second != p1.second)) &&
+                             (((p2.first - p1.first > 0) || (p2.second - p1.second >0)) ||
+                                ((p2.first - p1.first < 0) || (p2.second - p1.second < 0))))
       {
           std::cout << " True " << std::endl;
       }
