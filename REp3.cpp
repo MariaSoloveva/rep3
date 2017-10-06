@@ -9,7 +9,7 @@ int main() {
   p1.first = 'e';
   p1.second = 4;
   std::cout << " What chess piece? " << std::endl;
-  char a = '';
+  char a = 0;
   std::cin >> a;
   std::cout << " Initial coordinate? " << std::endl;
   std::pair<char, int> p2;
