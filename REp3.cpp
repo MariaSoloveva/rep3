@@ -39,10 +39,6 @@ int main() {
            std::cout << " False " << std::endl;
        }
   }
-  if (a = 'N')
-  {
-    
-  }
   if (a = 'B')
   {
       if (((std::abs(p1.first - p2.first) == std::abs(p1.second - p2.second)) &&
