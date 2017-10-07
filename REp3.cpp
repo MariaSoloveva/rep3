@@ -24,7 +24,7 @@ int main() {
     } else {
     	std::cout << surname2 << " is longer" << std::endl;
     }
- //Даны названия трех городов. Вывести на экран самое длинное и самое короткое название.
+//Даны названия трех городов. Вывести на экран самое длинное и самое короткое название.
     std::cout << "Enter surnames" << std::endl;
     getline(std::cin, surname1);
     getline(std::cin, surname2);
