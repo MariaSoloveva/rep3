@@ -17,7 +17,7 @@ int main() {
     std::cout << "Enter first and second surname" << std::endl;
     std::string surname1;
     getline(std::cin, surname1);
-    td::string surname2;
+    std::string surname2;
     getline(std::cin, surname2);
     if (surname1.size() > surname2.size()) {
         std::cout << surname1 << " is longer" << std::endl;
@@ -28,7 +28,7 @@ int main() {
     std::cout << "Enter surnames" << std::endl;
     getline(std::cin, surname1);
     getline(std::cin, surname2);
-    std::string surname3 = '';
+    std::string surname3;
     getline(std::cin, surname3);
     if ((surname1.size() > surname2.size()) && (surname2.size() > surname3.size())) {
     	std::cout << "The longest is " << surname1 << " and the shortest is " << surname3 << std::endl;
@@ -83,7 +83,7 @@ int main() {
     while (proposition.find('a') > 0) {
         proposition.erase(0, proposition.find('a'));
         ++n;
-   }
+    }
     double percentage = (a / proposition.size()) * 100;
     std::cout << percentage << " %" << std::endl;
 // Дано предложение "Can you can a can as a canner can can a can?".
