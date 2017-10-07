@@ -4,8 +4,7 @@
 
 int main() {
 //Дано название города. Определить, четно или нет количество символов в нем.
-
-	  std::cout << "Enter the name of the city" << std::endl;
+    std::cout << "Enter the name of the city" << std::endl;
     std::string nameOfTheCity = '';
     std::cout << "Enter Name of the City" << std::endl;
     getline(std::cin, nameOfTheCity);
@@ -16,9 +15,7 @@ int main() {
     {
     	std::cout << "the number of digits is odd" << std:endl;
     }
-
 //Даны две фамилии. Определить, какая из них длиннее
-
     std::cout << "Enter first and second surname" << std::endl;
     std::string surname1 = '';
     getline(std::cin, surname1);
@@ -31,9 +28,7 @@ int main() {
     {
     	std::cout << surname2 << " is longer" << std::endl;
     }
-
  //Даны названия трех городов. Вывести на экран самое длинное и самое короткое название.
-
     std::cout << "Enter surnames" << std::endl;
     getline(std::cin, surname1);
     getline(std::cin, surname2);
@@ -70,9 +65,7 @@ int main() {
     		}
     	}
     }
-
 // Дано слово. Получить его часть, образованную идущими подряд буквами, начиная с m-й и кончая n-й.
-
     std::cout << "Enter a word" << std::endl;
     std::string word = '';
     std::cin >> word;
@@ -83,9 +76,7 @@ int main() {
     std::cin >> m;
     std:string part = word.copy(word, n - m + 1, m);
     std::cout << part << std::endl;
-
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
-
     std::cout << "Enter a word" << std::endl;
     std::cin >> word;
     for (insigned int i = 1, i <= word.size(), ++i)
@@ -94,9 +85,7 @@ int main() {
     	word.push_back('*');
     }
     std::cout << word << std::endl;
-
 // Дано предложение. Определить долю (в %) букв 'a' в нем.
-
    std::cout << "Enter a proposition" << std::endl;
    std::string proposition = '';
    n = 0;
@@ -108,9 +97,7 @@ int main() {
    }
    double percentage = (a / proposition.size()) * 100;
    std::cout << percentage << " %" << std::endl;
-
 // Дано предложение "Can you can a can as a canner can can a can?". Заменить все слова can на слово newWord
-
     std::string str = 'Can you can a can as a canner can can a can?';
     std::cout << "Enter a word" << std::endl;
     std::string newWord = '';
