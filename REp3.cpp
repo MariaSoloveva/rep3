@@ -5,7 +5,7 @@
 int main() {
 //Дано название города. Определить, четно или нет количество символов в нем.
     std::cout << "Enter the name of the city" << std::endl;
-    std::string nameOfTheCity = '';
+    std::string nameOfTheCity;
     std::cout << "Enter Name of the City" << std::endl;
     getline(std::cin, nameOfTheCity);
     if (nameOfTheCity.size() % 2 = 0) {
@@ -15,9 +15,9 @@ int main() {
     }
 //Даны две фамилии. Определить, какая из них длиннее
     std::cout << "Enter first and second surname" << std::endl;
-    std::string surname1 = '';
+    std::string surname1;
     getline(std::cin, surname1);
-    td::string surname2 = '';
+    td::string surname2;
     getline(std::cin, surname2);
     if (surname1.size() > surname2.size()) {
         std::cout << surname1 << " is longer" << std::endl;
@@ -58,7 +58,7 @@ int main() {
     }
 // Дано слово. Получить его часть, образованную идущими подряд буквами, начиная с m-й и кончая n-й.
     std::cout << "Enter a word" << std::endl;
-    std::string word = '';
+    std::string word;
     std::cin >> word;
     std:cout << "Enter the first character of the copy and past" << std::endl;
     int n = 0;
@@ -77,7 +77,7 @@ int main() {
     std::cout << word << std::endl;
 // Дано предложение. Определить долю (в %) букв 'a' в нем.
     std::cout << "Enter a proposition" << std::endl;
-    std::string proposition = '';
+    std::string proposition;
     n = 0;
     getline(std::cin, proposition);
     while (proposition.find('a') > 0) {
@@ -90,7 +90,7 @@ int main() {
     //Заменить все слова can на слово newWord
     std::string str = 'Can you can a can as a canner can can a can?';
     std::cout << "Enter a word" << std::endl;
-    std::string newWord = '';
+    std::string newWord;
     while (str.find('can') >= 0) {
         std::cin >> newWord;
         str.replace(str.find('can'), str.find('can') + 3, newWord);
