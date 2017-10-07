@@ -70,7 +70,7 @@ int main() {
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
     std::cout << "Enter a word" << std::endl;
     std::cin >> word;
-    for (insigned int i = 1, i <= word.size(), ++i) {
+    for (unsigned int i = 1, i <= word.size(), ++i) {
         word.insert(0, '*');
         word.push_back('*');
     }
@@ -84,7 +84,7 @@ int main() {
         proposition.erase(0, proposition.find('a'));
         ++n;
     }
-    double percentage = (a / proposition.size()) * 100;
+    double percentage = (n / proposition.size()) * 100;
     std::cout << percentage << " %" << std::endl;
 // Дано предложение "Can you can a can as a canner can can a can?".
     //Заменить все слова can на слово newWord
