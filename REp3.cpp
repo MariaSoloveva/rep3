@@ -76,16 +76,16 @@ int main() {
     }
     std::cout << word << std::endl;
 // Дано предложение. Определить долю (в %) букв 'a' в нем.
-   std::cout << "Enter a proposition" << std::endl;
-   std::string proposition = '';
-   n = 0;
-   getline(std::cin, proposition);
-   while (proposition.find('a') > 0) {
+    std::cout << "Enter a proposition" << std::endl;
+    std::string proposition = '';
+    n = 0;
+    getline(std::cin, proposition);
+    while (proposition.find('a') > 0) {
         proposition.erase(0, proposition.find('a'));
         ++n;
    }
-   double percentage = (a / proposition.size()) * 100;
-   std::cout << percentage << " %" << std::endl;
+    double percentage = (a / proposition.size()) * 100;
+    std::cout << percentage << " %" << std::endl;
 // Дано предложение "Can you can a can as a canner can can a can?".
     //Заменить все слова can на слово newWord
     std::string str = 'Can you can a can as a canner can can a can?';
