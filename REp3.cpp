@@ -31,13 +31,14 @@ int main() {
     std::string surname3;
     getline(std::cin, surname3);
     if ((surname1.size() > surname2.size()) && (surname2.size() > surname3.size())) {
-        std::cout << "The longest is " << surname1 << " and the shortest is " << surname3 << std::endl;
+        std::cout << "The longest is " << surname1 << std::endl;
+        std::cout << "The shortest is " << surname3 << std::endl;
     } else {
         if ((surname1.size() > surname3.size()) && (surname3.size() > surname2.size())) {
             std::cout << "The longest is " << surname1 << std::endl;
             std::cout << " and the shortest is " << surname2 << std::endl;
         } else {
-    	    if ((surname2.size() > surname1.size()) && (surname1.size() > surname3.size())) {
+            if ((surname2.size() > surname1.size()) && (surname1.size() > surname3.size())) {
                 std::cout << "The longest is " << surname2 <<std::endl;
                 std::cout << "The shortest is " << surname3 << std::endl;
     	    } else {
