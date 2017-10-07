@@ -8,8 +8,8 @@ int main() {
     std::string nameOfTheCity;
     std::cout << "Enter Name of the City" << std::endl;
     getline(std::cin, nameOfTheCity);
-    if (nameOfTheCity.size() % 2 = 0) {
-    	std::cout << "the number of digits is even" << std::endl;
+    if (nameOfTheCity.size() % 2 == 0) {
+        std::cout << "the number of digits is even" << std::endl;
     } else {
     	std::cout << "the number of digits is odd" << std:endl;
     }
