@@ -11,7 +11,7 @@ int main() {
     if (nameOfTheCity.size() % 2 == 0) {
         std::cout << "the number of digits is even" << std::endl;
     } else {
-        std::cout << "the number of digits is odd" << std:endl;
+        std::cout << "the number of digits is odd" << std::endl;
     }
 //Даны две фамилии. Определить, какая из них длиннее
     std::cout << "Enter first and second surname" << std::endl;
@@ -60,12 +60,12 @@ int main() {
     std::cout << "Enter a word" << std::endl;
     std::string word;
     std::cin >> word;
-    std:cout << "Enter the first character of the copy and past" << std::endl;
+    std::cout << "Enter the first character of the copy and past" << std::endl;
     int n = 0;
     std::cin >> n;
     int m = 0;
     std::cin >> m;
-    std:string part = word.copy(word, n - m + 1, m);
+    std::string part = word.copy(word, n - m + 1, m);
     std::cout << part << std::endl;
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
     std::cout << "Enter a word" << std::endl;
