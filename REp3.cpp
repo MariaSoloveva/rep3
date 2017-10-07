@@ -22,7 +22,7 @@ int main() {
     if (surname1.size() > surname2.size()) {
         std::cout << surname1 << " is longer" << std::endl;
     } else {
-    	std::cout << surname2 << " is longer" << std::endl;
+        std::cout << surname2 << " is longer" << std::endl;
     }
 //Даны названия трех городов. Вывести на экран самое длинное и самое короткое название.
     std::cout << "Enter surnames" << std::endl;
@@ -31,30 +31,30 @@ int main() {
     std::string surname3;
     getline(std::cin, surname3);
     if ((surname1.size() > surname2.size()) && (surname2.size() > surname3.size())) {
-    	std::cout << "The longest is " << surname1 << " and the shortest is " << surname3 << std::endl;
+        std::cout << "The longest is " << surname1 << " and the shortest is " << surname3 << std::endl;
     } else {
-    	if ((surname1.size() > surname3.size()) && (surname3.size() > surname2.size())) {
+        if ((surname1.size() > surname3.size()) && (surname3.size() > surname2.size())) {
             std::cout << "The longest is " << surname1 << std::endl;
             std::cout << " and the shortest is " << surname2 << std::endl;
-    	} else {
-    		if ((surname2.size() > surname1.size()) && (surname1.size() > surname3.size())) {
+        } else {
+    	    if ((surname2.size() > surname1.size()) && (surname1.size() > surname3.size())) {
                 std::cout << "The longest is " << surname2 <<std::endl;
                 std::cout << "The shortest is " << surname3 << std::endl;
-    		} else {
-    			if ((surname2.size() > surname3.size()) && (surname3.size() > surname1.size())) {
-    				std::cout << "The longest is " << surname2 << std::endl;
+    	    } else {
+    		    if ((surname2.size() > surname3.size()) && (surname3.size() > surname1.size())) {
+    			    std::cout << "The longest is " << surname2 << std::endl;
                     std::cout << " The shortest is " << surname1 << std::endl;
-    			} else {
-    				if ((surname3.size() > surname1.size()) && (surname1.size() > surname2.size())) {
+    		    } else {
+    			    if ((surname3.size() > surname1.size()) && (surname1.size() > surname2.size())) {
                         std::cout << "The longest is " << surname3 << std::endl;
                         std::cout << " and the shortest is " << surname2 << std::endl;
-    				}else {
+    			    }else {
                         std::cout << "The longest is " << surname3 << std::endl;
                         std::cout << " The shortest is " << surname1 << std::endl;
-    				}
-    			}
-    		}
-    	}
+    			    }
+    		    }
+    	    }
+        }
     }
 // Дано слово. Получить его часть, образованную идущими подряд буквами, начиная с m-й и кончая n-й.
     std::cout << "Enter a word" << std::endl;
@@ -71,8 +71,8 @@ int main() {
     std::cout << "Enter a word" << std::endl;
     std::cin >> word;
     for (insigned int i = 1, i <= word.size(), ++i) {
-    	word.insert(0, '*');
-    	word.push_back('*');
+        word.insert(0, '*');
+        word.push_back('*');
     }
     std::cout << word << std::endl;
 // Дано предложение. Определить долю (в %) букв 'a' в нем.
@@ -91,7 +91,7 @@ int main() {
     std::string str = 'Can you can a can as a canner can can a can?';
     std::cout << "Enter a word" << std::endl;
     std::string newWord;
-    while (str.find('can') >= 0) {
+    while ((str.find('can')) >= 0) {
         std::cin >> newWord;
         str.replace(str.find('can'), str.find('can') + 3, newWord);
     }
