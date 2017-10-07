@@ -11,7 +11,7 @@ int main() {
     if (nameOfTheCity.size() % 2 == 0) {
         std::cout << "the number of digits is even" << std::endl;
     } else {
-    	std::cout << "the number of digits is odd" << std:endl;
+        std::cout << "the number of digits is odd" << std:endl;
     }
 //Даны две фамилии. Определить, какая из них длиннее
     std::cout << "Enter first and second surname" << std::endl;
