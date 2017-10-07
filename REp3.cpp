@@ -34,18 +34,23 @@ int main() {
     	std::cout << "The longest is " << surname1 << " and the shortest is " << surname3 << std::endl;
     } else {
     	if ((surname1.size() > surname3.size()) && (surname3.size() > surname2.size())) {
-            std::cout << "The longest is " << surname1 << " and the shortest is " << surname2 << std::endl;
+            std::cout << "The longest is " << surname1 << std::endl;
+            std::cout << " and the shortest is " << surname2 << std::endl;
     	} else {
     		if ((surname2.size() > surname1.size()) && (surname1.size() > surname3.size())) {
-                std::cout << "The longest is " << surname2 << " and the shortest is " << surname3 << std::endl;
+                std::cout << "The longest is " << surname2 <<std::endl;
+                std::cout << "The shortest is " << surname3 << std::endl;
     		} else {
     			if ((surname2.size() > surname3.size()) && (surname3.size() > surname1.size())) {
-    				std::cout << "The longest is " << surname2 << " and the shortest is " << surname1 << std::endl;
+    				std::cout << "The longest is " << surname2 << std::endl;
+                    std::cout << " The shortest is " << surname1 << std::endl;
     			} else {
     				if ((surname3.size() > surname1.size()) && (surname1.size() > surname2.size())) {
-                        std::cout << "The longest is " << surname3 << " and the shortest is " << surname2 << std::endl;
+                        std::cout << "The longest is " << surname3 << std::endl;
+                        std::cout << " and the shortest is " << surname2 << std::endl;
     				}else {
-                        std::cout << "The longest is " << surname3 << " and the shortest is " << surname1 << std::endl;
+                        std::cout << "The longest is " << surname3 << std::endl;
+                        std::cout << " The shortest is " << surname1 << std::endl;
     				}
     			}
     		}
