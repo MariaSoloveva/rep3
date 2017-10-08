@@ -74,7 +74,7 @@ int main() {
     std::cin >> word;
     for (unsigned int i = 1; i <= word.size(); ++i) {
         word.insert(0, "*");
-        word.push_back('*');
+        word.push_back("*");
     }
     std::cout << word << std::endl;
 // Дано предложение. Определить долю (в %) букв 'a' в нем.
@@ -82,8 +82,8 @@ int main() {
     std::string proposition;
     n = 0;
     getline(std::cin, proposition);
-    while (proposition.find('a') > 0) {
-        proposition.erase(0, proposition.find('a'));
+    while (proposition.find("a") > 0) {
+        proposition.erase(0, proposition.find("a"));
         ++n;
     }
     double percentage = (n / proposition.size()) * 100;
@@ -93,10 +93,9 @@ int main() {
     std::string str = 'Can you can a can as a canner can can a can?';
     std::cout << "Enter a word" << std::endl;
     std::string newWord;
-    std::size_t found = str.find('can');
-    while (found >= 0) {
+    while (str.find("can") >= 0) {
         std::cin >> newWord;
-        str.replace(found, found + 3, newWord);
+        str.replace(str.find("can"), str.find("can") + 3, newWord);
     }
     return 0;
 }
