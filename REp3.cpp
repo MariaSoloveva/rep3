@@ -72,8 +72,8 @@ int main() {
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
     std::cout << "Enter a word" << std::endl;
     std::cin >> word;
-    for (unsigned int i = 1, i <= word.size(), ++i) {
-        word.insert(0, '*');
+    for (unsigned int i = 1; i <= word.size(); ++i) {
+        word.insert(0, "*");
         word.push_back('*');
     }
     std::cout << word << std::endl;
