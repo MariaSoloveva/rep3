@@ -6,12 +6,17 @@ int main() {
 //Дано название города. Определить, четно или нет количество символов в нем.
     std::cout << "Enter the name of the city" << std::endl;
     std::string nameOfTheCity;
-    std::cout << "Enter Name of the City" << std::endl;
-    getline(std::cin, nameOfTheCity);
-    if (nameOfTheCity.size() % 2 == 0) {
+    std::cin >> nameOfTheCity;
+    if (nameOfTheCity.find(" ") > 0 ) {
+        if ((nameOfTheCity.size() - 1) % 2 == 0) {
         std::cout << "the number of digits is even" << std::endl;
-    } else {
+        } else {
         std::cout << "the number of digits is odd" << std::endl;
+    } else {
+        if (nameOfTheCity.size() % 2 == 0) {
+            std::cout << "the number of digits is even" << std::endl;
+        } else {
+            std::cout << "the number of digits is odd" << std::endl;
     }
 //Даны две фамилии. Определить, какая из них длиннее
     std::cout << "Enter first and second surname" << std::endl;
