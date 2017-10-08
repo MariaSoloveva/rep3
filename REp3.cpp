@@ -93,7 +93,8 @@ int main() {
     std::string str = 'Can you can a can as a canner can can a can?';
     std::cout << "Enter a word" << std::endl;
     std::string newWord;
-    while ((str.find('can')) >= 0) {
+    m = str.find('can');
+    while (m >= 0) {
         std::cin >> newWord;
         str.replace(str.find('can'), str.find('can') + 3, newWord);
     }
