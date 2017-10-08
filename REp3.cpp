@@ -67,7 +67,8 @@ int main() {
     std::cin >> n;
     int m = 0;
     std::cin >> m;
-    std::string part = word.copy(n - m + 1, m);
+    std::string part;
+    word.copy(part, n - m + 1, m);
 // word.copy(part, n - m + 1, 6);
     std::cout << part << std::endl;
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
