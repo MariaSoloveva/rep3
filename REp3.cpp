@@ -33,7 +33,7 @@ int main() {
         v[i] = v[i] - a;
         std::cout << v[i] << " ";
     }
-    a = v[0]
+    a = v[0];
     for (int i = 0; i < 10; ++i) {
         v[i] = v[i] / a;
         std::cout << v[i] << " ";
