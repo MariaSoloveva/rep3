@@ -95,14 +95,15 @@ int main() {
     }
     double percentage = (n / proposition.size()) * 100;
     std::cout << percentage << " %" << std::endl;
-// Дано предложение "Can you can a can as a canner can can a can?".
-    //Заменить все слова can на слово newWord
+/* Дано предложение "Can you can a can as a canner can can a can?".
+    Заменить все слова can на слово newWord */
     std::string str = "Can you can a can as a canner can can a can?";
     std::cout << "Enter a word" << std::endl;
     std::string newWord;
+    std::cin >> newWord;
     while (str.find("can") >= 0) {
-        std::cin >> newWord;
         str.replace(str.find("can"), str.find("can") + 3, newWord);
     }
+    std::cout << str << std::endl;
     return 0;
 }
