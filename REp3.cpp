@@ -30,12 +30,12 @@ int main() {
         std::cout << v[i] << " ";
     }
     for (int i = 0; i < 10; ++i) {
-    	v[i] = v[i] - a;
+        v[i] = v[i] - a;
         std::cout << v[i] << " ";
     }
     a = v[0]
     for (int i = 0; i < 10; ++i) {
-    	v[i] = v[i] / a;
+        v[i] = v[i] / a;
         std::cout << v[i] << " ";
     }
 
@@ -60,16 +60,16 @@ int main() {
     std::cin >> s2;
     int sums1Tos2 = 0;
     for (int i = 0;i < v1.size(); ++i) {
-    	sumAll = sumAll + v[i];
+        sumAll = sumAll + v[i];
         sumSquare = sumSquare + v[i] * v[i];
         if (i <= 6) {
-        	sumFirstSix = sumFirstSix + v1[i];
+            sumFirstSix = sumFirstSix + v1[i];
         }
         if ((i >= k1) && (k2 >= i)) {
-            sumK1ToK2 = sumK1ToK2 + v1[i];          
+            sumK1ToK2 = sumK1ToK2 + v1[i];      
         }
         if ((i >= s1) && (s2 >= i)) {
-            sums1Tos2 = sums1Tos2 + v1[i];          
+            sums1Tos2 = sums1Tos2 + v1[i];
         }
     }
     double average = sumAll / v1.size();
@@ -77,25 +77,26 @@ int main() {
     std::cout << "Summ of all elements is " << sumAll << std::endl;
     std::cout << "Summ of square elements is " << sumSquare << std::endl;
     std::cout << "Summ of first six elements is " << sumFirstSix << std::endl;
-    std::cout << "Summ of elements from k1 to k2 is (including them)" << sumK1ToK2 << std::endl;
+    std::cout << "Summ of elements from k1 to k2 is " << sumK1ToK2 << std::endl;
     std::cout << "Average of all elements is " << average << std::endl;
-    std::cout << "Average of elements from s1 to s2 (including them) is " <<averages1Tos2 << std::endl;
-//Дан одномерный массив из 20 элементов. Переставить первые три и последние три элемента, сохранив порядок их следования.
+    std::cout << "Average of elements from s1 to s2 is " <<averages1Tos2 << std::endl;
+/*Дан одномерный массив из 20 элементов. Переставить первые три и последние три элемента,
+    сохранив порядок их следования. */
     std::vector<int> v2 = generate_random_vector<int>(20, -10, 10);
     std::cout << "" << std::endl;
-    for (int i = 0; i < ) {
+    for (int i = 0; i < v2.size(); ++i) {
         std::cout << v[i] << " ";
-    } 
+    }
     k2 = 0;
     for (int i = 3: i > 0; --i){
         k1 = v2[k2];
         v2[k2] = v2[v2.size() - i];
-        v2[v2.size() - i] = k1;         
+        v2[v2.size() - i] = k1;
         k2 += 1;
     }
     for (int i = 0; i < ) {
         std::cout << v[i] << " ";
-    }  
+    }
 // Удалить первый отрицательный элемент (если отрицательные элементы в массиве есть);
 // Удалить последний четный элемент (если четные элементы в массиве есть).
 //Дано название города. Определить, четно или нет количество символов в нем.
