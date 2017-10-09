@@ -113,7 +113,7 @@ int main() {
     n = 0;
     m = v3.size();
     while (n = 0) {
-        if (v[m] % 2 = 0) {
+        if (v[m] % 2 == 0) {
             n += 1;
         }
         m -= 1;
@@ -195,6 +195,7 @@ int main() {
     std::cout << buffer << '\n';
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
     std::cout << "Enter a word" << std::endl;
+    std::string str;
     std::cin >> str;
     unsigned int len1 =  str.size();
     for (unsigned int i =0; i < len1; ++i) {
