@@ -185,9 +185,9 @@ int main() {
     std::string word;
     std::cin >> word;
     std::cout << "Enter the first character of the copy and past" << std::endl;
-    int n = 0;
+    n = 0;
     std::cin >> n;
-    int m = 0;
+    m = 0;
     std::cin >> m;
     char buffer[20];
     std::size_t length = word.copy(buffer, m - n + 1, n);
@@ -222,7 +222,7 @@ int main() {
     std::string newWord;
     std::cin >> newWord;
     str.insert(str.size() - 1, " ");
-    int n = str.find(" can ");
+    n = str.find(" can ");
     while (n >= 0) {
         str.replace(n + 1, 3, newWord);
         n = str.find(" can ");
