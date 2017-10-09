@@ -102,24 +102,22 @@ int main() {
 //Дано название города. Определить, четно или нет количество символов в нем.
     std::cout << "Enter the name of the city" << std::endl;
     std::string nameOfTheCity;
-    std::cin >> nameOfTheCity;
+    getline(std::cin, nameOfTheCity);
+    int len = nameOfTheCity.size();
     if (nameOfTheCity.find(" ") > 0) {
-        if ((nameOfTheCity.size() - 1) % 2 == 0) {
+        len = len - 1;
+    }    
+    if (len % 2 == 0) {
         std::cout << "the number of digits is even" << std::endl;
-        } else {
-        std::cout << "the number of digits is odd" << std::endl;
     } else {
-        if (nameOfTheCity.size() % 2 == 0) {
-            std::cout << "the number of digits is even" << std::endl;
-        } else {
             std::cout << "the number of digits is odd" << std::endl;
-    }
+    }  
 //Даны две фамилии. Определить, какая из них длиннее
     std::cout << "Enter first and second surname" << std::endl;
     std::string surname1;
-    getline(std::cin, surname1);
+    std::cin >> surname1;
     std::string surname2;
-    getline(std::cin, surname2);
+    std::cin >> surname2;
     if (surname1.size() > surname2.size()) {
         std::cout << surname1 << " is longer" << std::endl;
     } else {
@@ -169,8 +167,7 @@ int main() {
     int m = 0;
     std::cin >> m;
     std::string part;
-    word.copy(part, n - m + 1, m);
-// word.copy(part, n - m + 1, 6);
+    word.copy(n, m, part);
     std::cout << part << std::endl;
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
     std::cout << "Enter a word" << std::endl;
