@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include <random>
 #include <string>
 #include <vector>
@@ -38,7 +38,6 @@ int main() {
         v[i] = v[i] / a;
         std::cout << v[i] << " ";
     }
-
 /* Определить сумму всех элементов массива;сумму квадратов всех элементов массива;
     сумму шести первых элементов массива;сумму элементов массива с k1-го по k2й (значения k1 и k2 вводятся с клавиатуры; k2 > k1);
         среднее арифметическое всех элементов массива;
@@ -83,7 +82,6 @@ int main() {
 /*Дан одномерный массив из 20 элементов. Переставить первые три и последние три элемента,
     сохранив порядок их следования. */
     std::vector<int> v2 = generate_random_vector<int>(20, -10, 10);
-    std::cout << "" << std::endl;
     for (int i = 0; i < v2.size(); ++i) {
         std::cout << v[i] << " ";
     }
@@ -98,7 +96,32 @@ int main() {
         std::cout << v[i] << " ";
     }
 // Удалить первый отрицательный элемент (если отрицательные элементы в массиве есть);
+    std::vector<int> v3 = generate_random_vector<int>(20, -10, 10);
+    n = 0;
+    m = 0;
+    while (n = 0) {
+        if (v [m] < 0) {
+            n += 1;
+        }
+        m += 1;
+    }
+    for (int i = m; i < (v3.size() - 1); ++i){
+       v3[i] = v3[i + 1]; 
+    }
+    v3.erase(v3.size());
 // Удалить последний четный элемент (если четные элементы в массиве есть).
+    n = 0;
+    m = v3.size();
+    while (n = 0) {
+        if (v[m] % 2 = 0) {
+            n += 1;
+        }
+        m -= 1;
+    }
+    for (int i = m; i < (v3.size() - 1); ++i){
+       v3[i] = v3[i + 1]; 
+    }
+    v3.erase(v3.size());
 //Дано название города. Определить, четно или нет количество символов в нем.
     std::cout << "Enter the name of the city" << std::endl;
     std::string nameOfTheCity;
