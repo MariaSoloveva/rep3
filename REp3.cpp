@@ -59,14 +59,14 @@ int main() {
     int s2 = 0;
     std::cin >> s2;
     int sums1Tos2 = 0;
-    for (int i = 0;i < v1.size(); ++i) {
+    for (int i = 0; i < v1.size(); ++i) {
         sumAll = sumAll + v[i];
         sumSquare = sumSquare + v[i] * v[i];
         if (i <= 6) {
             sumFirstSix = sumFirstSix + v1[i];
         }
         if ((i >= k1) && (k2 >= i)) {
-            sumK1ToK2 = sumK1ToK2 + v1[i];      
+            sumK1ToK2 = sumK1ToK2 + v1[i];
         }
         if ((i >= s1) && (s2 >= i)) {
             sums1Tos2 = sums1Tos2 + v1[i];
@@ -88,14 +88,14 @@ int main() {
         std::cout << v[i] << " ";
     }
     k2 = 0;
-    for (int i = 3: i > 0; --i){
+    for (int i = 3; i > 0; --i){
         k1 = v2[k2];
         v2[k2] = v2[v2.size() - i];
         v2[v2.size() - i] = k1;
         k2 += 1;
     }
-    for (int i = 0; i < ) {
-        std::cout << v[i] << " ";
+    for (int i = 0; i < v2.size; ++i ) {
+        std::cout << v2[i] << " ";
     }
 // Удалить первый отрицательный элемент (если отрицательные элементы в массиве есть);
 // Удалить последний четный элемент (если четные элементы в массиве есть).
@@ -103,7 +103,7 @@ int main() {
     std::cout << "Enter the name of the city" << std::endl;
     std::string nameOfTheCity;
     std::cin >> nameOfTheCity;
-    if (nameOfTheCity.find(" ") > 0 ) {
+    if (nameOfTheCity.find(" ") > 0) {
         if ((nameOfTheCity.size() - 1) % 2 == 0) {
         std::cout << "the number of digits is even" << std::endl;
         } else {
