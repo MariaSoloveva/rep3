@@ -166,25 +166,30 @@ int main() {
     std::cin >> n;
     int m = 0;
     std::cin >> m;
-    std::string part;
-    word.copy(n, m, part);
-    std::cout << part << std::endl;
+    char buffer[20];
+    std::size_t length = word.copy(buffer,m - n + 1,n);
+    buffer[length]='\0';
+    std::cout << buffer << '\n';
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
     std::cout << "Enter a word" << std::endl;
-    std::cin >> word;
-    for (unsigned int i = 1; i <= word.size(); ++i) {
-        word.insert(0, "*");
-        word.push_back('*');
-    }
-    std::cout << word << std::endl;
+    std::string str;
+    std::cin >> str;
+    unsigned int len1 =  str.size();
+    for (unsigned int i =0; i < len1; ++i) {
+      str.insert(0, "*");
+      str.push_back('*');
+    }  
+    std::cout << str << std::endl;
 // Дано предложение. Определить долю (в %) букв 'a' в нем.
     std::cout << "Enter a proposition" << std::endl;
     std::string proposition;
     n = 0;
     getline(std::cin, proposition);
-    while (proposition.find("a") > 0) {
-        proposition.erase(0, proposition.find("a"));
+    m = proposition.find("a");
+    while (m > 0) {
+        proposition.erase(0, m);
         ++n;
+        m = proposition.find("a");
     }
     double percentage = (n / proposition.size()) * 100;
     std::cout << percentage << " %" << std::endl;
@@ -194,9 +199,13 @@ int main() {
     std::cout << "Enter a word" << std::endl;
     std::string newWord;
     std::cin >> newWord;
-    while (str.find("can") >= 0) {
-        str.replace(str.find("can"), str.find("can") + 3, newWord);
+    str.insert(str.size() - 1, " ");
+    int n = str.find(" can ");
+    while (n >= 0) {
+        str.replace(n + 1, 3, newWord);
+        n = str.find(" can ");
     }
+    str.erase(str.size() - 2, 1);
     std::cout << str << std::endl;
     return 0;
 }
