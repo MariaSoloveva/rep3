@@ -97,8 +97,8 @@ int main() {
     }
 // Удалить первый отрицательный элемент (если отрицательные элементы в массиве есть);
     std::vector<int> v3 = generate_random_vector<int>(20, -10, 10);
-    n = 0;
-    m = 0;
+    int n = 0;
+    int m = 0;
     while (n = 0) {
         if (v [m] < 0) {
             n += 1;
@@ -106,9 +106,9 @@ int main() {
         m += 1;
     }
     for (int i = m; i < (v3.size() - 1); ++i){
-       v3[i] = v3[i + 1]; 
+       v3[i] = v3[i + 1];
     }
-    v3.erase(v3.size());
+    v3.erase(v3.end());
 // Удалить последний четный элемент (если четные элементы в массиве есть).
     n = 0;
     m = v3.size();
@@ -119,9 +119,9 @@ int main() {
         m -= 1;
     }
     for (int i = m; i < (v3.size() - 1); ++i){
-       v3[i] = v3[i + 1]; 
+       v3[i] = v3[i + 1];
     }
-    v3.erase(v3.size());
+    v3.erase(v3.end());
 //Дано название города. Определить, четно или нет количество символов в нем.
     std::cout << "Enter the name of the city" << std::endl;
     std::string nameOfTheCity;
@@ -129,12 +129,12 @@ int main() {
     int len = nameOfTheCity.size();
     if (nameOfTheCity.find(" ") > 0) {
         len = len - 1;
-    }    
+    }
     if (len % 2 == 0) {
         std::cout << "the number of digits is even" << std::endl;
     } else {
             std::cout << "the number of digits is odd" << std::endl;
-    }  
+    }
 //Даны две фамилии. Определить, какая из них длиннее
     std::cout << "Enter first and second surname" << std::endl;
     std::string surname1;
@@ -190,18 +190,17 @@ int main() {
     int m = 0;
     std::cin >> m;
     char buffer[20];
-    std::size_t length = word.copy(buffer,m - n + 1,n);
+    std::size_t length = word.copy(buffer, m - n + 1, n);
     buffer[length]='\0';
     std::cout << buffer << '\n';
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
     std::cout << "Enter a word" << std::endl;
-    std::string str;
     std::cin >> str;
     unsigned int len1 =  str.size();
     for (unsigned int i =0; i < len1; ++i) {
       str.insert(0, "*");
       str.push_back('*');
-    }  
+    }
     std::cout << str << std::endl;
 // Дано предложение. Определить долю (в %) букв 'a' в нем.
     std::cout << "Enter a proposition" << std::endl;
