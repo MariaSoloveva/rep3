@@ -195,14 +195,14 @@ int main() {
     std::cout << buffer << '\n';
 // Дано слово. Добавить к нему в начале и конце столько звездочек, сколько букв в этом слове.
     std::cout << "Enter a word" << std::endl;
-    std::string str;
-    std::cin >> str;
+    std::string str1;
+    std::cin >> str1;
     unsigned int len1 =  str.size();
     for (unsigned int i =0; i < len1; ++i) {
-      str.insert(0, "*");
-      str.push_back('*');
+      str1.insert(0, "*");
+      str1.push_back('*');
     }
-    std::cout << str << std::endl;
+    std::cout << str1 << std::endl;
 // Дано предложение. Определить долю (в %) букв 'a' в нем.
     std::cout << "Enter a proposition" << std::endl;
     std::string proposition;
