@@ -100,7 +100,7 @@ int main() {
     int n = 0;
     int m = 0;
     while (n = 0) {
-        if (v [m] < 0) {
+        if (v3[m] < 0) {
             n += 1;
         }
         m += 1;
@@ -113,7 +113,7 @@ int main() {
     n = 0;
     m = v3.size();
     while (n = 0) {
-        if (v[m] % 2 == 0) {
+        if (v3[m] % 2 == 0) {
             n += 1;
         }
         m -= 1;
@@ -197,7 +197,7 @@ int main() {
     std::cout << "Enter a word" << std::endl;
     std::string str1;
     std::cin >> str1;
-    unsigned int len1 =  str.size();
+    unsigned int len1 =  str1.size();
     for (unsigned int i =0; i < len1; ++i) {
       str1.insert(0, "*");
       str1.push_back('*');
