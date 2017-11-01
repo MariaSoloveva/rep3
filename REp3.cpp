@@ -41,6 +41,7 @@ int argmax(const std::vector<float>& vec)
       if ( vec[i] > max )
          {
              number = i;
+             max = vec[i];
          }
   }
   return number;
@@ -66,8 +67,8 @@ int erase(std::vector<float>& vec)
     {
         if (vec[i] < 0)
         {
-            vec.erase(vec.begin() + i);
-            remember = vec[vec.begin() + i];
+            remember = vec[i];
+            vec.erase(i);
             break;
         }
     }
