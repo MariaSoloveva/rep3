@@ -9,7 +9,7 @@ float mean(const std::vector<float>& vec)
     double sum = 0;
     for (unsigned int i = 0; i < vec.size; ++i)
     {
-	sum += vec[i];
+        sum += vec[i];
     }
     return (sum / (vec.size));
 }
