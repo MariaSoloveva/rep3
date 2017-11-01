@@ -100,7 +100,7 @@ int main()
     sort(vectorOne);
     erase(vectorOne);
     std::string str;
-    std::getline(cin,str);
+    std::getline(cin, str);
     str::string old;
     str::string newstr;
     str = replace(str, old, newstr);
