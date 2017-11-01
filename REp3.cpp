@@ -30,7 +30,7 @@ std::pair<float, float> minMax(const std::vector<float>& vec)
            }
          }
     }
-    return (minMax.first, minMax.second);
+    return (minMax);
 }
 int argmax(const std::vector<float>& vec)
 {
