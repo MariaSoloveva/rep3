@@ -6,7 +6,7 @@
 float mean(const std::vector<float>& vec)
 {
     double sum = 0;
-    for (float f : vec)
+    for (size_t i = 1; i < vec.size(); ++i)
     {
         sum += vec[i];
     }
@@ -16,7 +16,7 @@ std::pair<float, float> minMax(const std::vector<float>& vec)
 {
     minMax.first = vec[0];
     minMax.second = vec[0];
-    for (int i = 1; i < n; ++i)
+    for (size_t i = 1; i < vec.size(); ++i)
     {
          if (vec[i] > minMax.second)
          {
@@ -36,7 +36,7 @@ int argmax(const std::vector<float>& vec)
 {
   int number = 0;
   float max = vec[0];
-  for (int i = 1; i < n; ++i)
+  for (size_t i = 1; i < vec.size; ++i)
   {
       if ( v[i] > Max )
          {
@@ -48,7 +48,7 @@ int argmax(const std::vector<float>& vec)
 void sort(std::vector<float>& vec)
 {
     int remember = 0;
-    for (int i = 0; i < vec.size() - 1; ++i)
+    for (size_t i = 0; i < vec.size() - 1; ++i)
     {
         for (int j = i + 1; j < vec.size(); ++j)
         {
@@ -61,9 +61,8 @@ void sort(std::vector<float>& vec)
 }
 int erase(std::vector<int>& vec)
 {
-    int m = 0;
     float remember = 0;
-    for (int i = m; i < vec.size(); ++i)
+    for (size_t i = 0; i < vec.size(); ++i)
     {
         if (vec[i] < 0)
         {
@@ -74,12 +73,12 @@ int erase(std::vector<int>& vec)
     }
   return remember;
 }
-std::string replace(const std::string& str, const std::string& old, const std::string& new)
+std::string replace(const std::string& str, const std::string& old, const std::string& newstr)
 {
     while (old.find(str) != std::string::npos)
     {
         size_t n = old.find(str);
-        old.replace(n + 1, str.length(), new);
+        old.replace(n + 1, str.length(), newstr);
     }
     return str;
 }
@@ -88,7 +87,7 @@ int main()
     int n = 0;
     std::cin >> n;
     std::vector<float> vectorOne(n);
-    for (int i = 0; i < n; ++i)
+    for (size_t i = 0; i < vectorOne.size(); ++i)
     {
         vectorOne.push_back(rand());
         std::cout << vectorOne[i] << " ";
