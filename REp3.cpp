@@ -31,7 +31,7 @@ std::pair<float, float> minMax(const std::vector<float>& vec)
            }
          }
     }
-    return (minMax.first,minMax.second);
+    return (minMax.first, minMax.second);
 }
 int argmax(const std::vector<float>& vec)
 {
@@ -55,7 +55,7 @@ void sort(std::vector<float>& vec)
         {
             if (vec[i] > vec[j])
             {
-                std::swap(vec[i],vec[j]);
+                std::swap(vec[i], vec[j]);
             }
         }
     }
@@ -86,16 +86,16 @@ std::string replace(const std::string& str, const std::string& old, const std::s
 }
 int main()
 {
-	int n = 0;
-	std::cin >> n;
-	std::vector<float> vectorOne(n);
-	for (int i = 0; i < n; ++i)
-	{
-		vectorOne.push_back(rand());
+    int n = 0;
+    std::cin >> n;
+    std::vector<float> vectorOne(n);
+    for (int i = 0; i < n; ++i)
+    {
+        vectorOne.push_back(rand());
         std::cout << vectorOne[i] << " ";
-	}
-	std::cout << std::endl;
-	std::cout << mean(vectorOne) << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << mean(vectorOne) << std::endl;
     std::pair<float, float> couple = minMax(vectorOne);
     std::cout << "Номер максимального элемента" << argmax(vectorOne) << std::endl;
     sort(vectorOne);
@@ -103,7 +103,7 @@ int main()
     std::string str;
     std::getline(cin,str);
     str::string old;
-    str::string new;
-    str = replace(str,old,new);
-	return 0;
+    str::string newstr;
+    str = replace(str, old, newstr);
+    return 0;
 }
