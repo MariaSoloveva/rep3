@@ -1,4 +1,3 @@
-#include "lab05.hpp"
 #include <cstdlib>
 #include <iostream>
 #include <string>
