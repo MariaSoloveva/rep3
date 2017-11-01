@@ -36,9 +36,9 @@ int argmax(const std::vector<float>& vec)
 {
   int number = 0;
   float max = vec[0];
-  for (size_t i = 1; i < vec.size; ++i)
+  for (size_t i = 1; i < vec.size(); ++i)
   {
-      if ( v[i] > Max )
+      if ( vec[i] > max )
          {
              number = i;
          }
@@ -59,7 +59,7 @@ void sort(std::vector<float>& vec)
         }
     }
 }
-int erase(std::vector<int>& vec)
+int erase(std::vector<float>& vec)
 {
     float remember = 0;
     for (size_t i = 0; i < vec.size(); ++i)
@@ -102,10 +102,10 @@ int main()
     std::string str;
     std::getline(std::cin, str);
     std::cout << "enter the phrase you want to edit" << std::endl;
-    str::string old;
+    std::string old;
     std::getline(std::cin, old);
     std::cout << "Enter the phrase you would like to see instead of the old" << std::endl;
-    str::string newstr;
+    std::string newstr;
     std::getline(std::cin, newstr);
     std::cout << "Old string : " << str << std::endl;
     str = replace(str, old, newstr);
