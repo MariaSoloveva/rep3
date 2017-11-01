@@ -96,13 +96,20 @@ int main()
     std::cout << std::endl;
     std::cout << mean(vectorOne) << std::endl;
     std::pair<float, float> couple = minMax(vectorOne);
-    std::cout << "Номер максимального элемента" << argmax(vectorOne) << std::endl;
+    std::cout << "The number of the max element" << argmax(vectorOne) << std::endl;
     sort(vectorOne);
     erase(vectorOne);
+    std::cout << "Enter the string" << std::endl;
     std::string str;
-    std::getline(cin, str);
+    std::getline(std::cin, str);
+    std::cout << "enter the phrase you want to edit" << std::endl;
     str::string old;
+    std::getline(std::cin, old);
+    std::cout << "Enter the phrase you would like to see instead of the old" << std::endl;
     str::string newstr;
+    std::getline(std::cin, newstr);
+    std::cout << "Old string : " << str << std::endl;
     str = replace(str, old, newstr);
+    std::cout << "New string : " << str << std::endl;
     return 0;
 }
