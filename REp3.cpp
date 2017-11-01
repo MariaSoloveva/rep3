@@ -46,7 +46,7 @@ int argmax(const std::vector<float>& vec)
   }
   return number;
 }
-void sort(std::vector<float>& vec);
+void sort(std::vector<float>& vec)
 {
     int remember = 0;
     for (int i = 0; i < vec.size() - 1; ++i)
@@ -60,7 +60,7 @@ void sort(std::vector<float>& vec);
         }
     }
 }
-int erase(std::vector<int>& vec);
+int erase(std::vector<int>& vec)
 {
     int m = 0;
     float remember = 0;
@@ -75,7 +75,7 @@ int erase(std::vector<int>& vec);
     }
   return remember;
 }
-std::string replace(const std::string& str, const std::string& old, const std::string& new);
+std::string replace(const std::string& str, const std::string& old, const std::string& new)
 {
     while (old.find(str) != std::string::npos)
     {
