@@ -69,7 +69,7 @@ int erase(std::vector<float>& vec)
         if (vec[i] < 0)
         {
             remember = vec[i];
-            vec.erase(i);
+            vec.erase(vec.begin() + i);
             break;
         }
     }
