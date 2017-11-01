@@ -14,23 +14,24 @@ float mean(const std::vector<float>& vec)
 }
 std::pair<float, float> minMax(const std::vector<float>& vec)
 {
-    float min = vec[0];
-    float max = vec[0];
+    std::pair<float, float> minMax1;
+    minMax1.first = vec[0];
+    minMax1.second = vec[0];
     for (size_t i = 1; i < vec.size(); ++i)
     {
-         if (vec[i] > max)
+         if (vec[i] > minMax1.second)
          {
-             max  = vec[i];
+             minMax1.second  = vec[i];
          }
          else
          {
-           if (min < vec[i])
+           if (minMax1.first < vec[i])
            {
-               min = vec[i];
+               minMax1.first = vec[i];
            }
          }
     }
-    return (min, max);
+    return (minMax1);
 }
 int argmax(const std::vector<float>& vec)
 {
