@@ -10,12 +10,12 @@ float mean(const std::vector<float>& vec)
     {
         sum += vec[i];
     }
-    return (sum / (vec.size));
+    return (sum / (vec.size()));
 }
 std::pair<float, float> minMax(const std::vector<float>& vec)
 {
-    minMax.first = vec[0];
-    minMax.second = vec[0];
+    float minMax.first = vec[0];
+    float minMax.second = vec[0];
     for (size_t i = 1; i < vec.size(); ++i)
     {
          if (vec[i] > minMax.second)
