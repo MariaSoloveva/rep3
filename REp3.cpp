@@ -6,22 +6,6 @@
 #include <string>
 #include <vector>
 
-std::string join(const std::vector<std::string>& vec, const std::string sep)
-{
-    std::string join;
-    for (int i = 0; i < vec.size(); ++i)
-    {
-        if (i == vec.size() -1)
-        {
-            join += vec[i];
-        }
-        else
-        {
-            join = join + vec[i] + sep;
-        }
-    }
-    return join;
-}
 float mean(const std::vector<float>& vec)
 {
     double sum = 0;
@@ -46,7 +30,7 @@ std::pair<float, float> minMax(const std::vector<float>& vec)
          {
            if (minMax1.first > f)
            {
-               minMax1.first = f66;
+               minMax1.first = f;
            }
          }
     }
@@ -96,13 +80,31 @@ int erase(std::vector<float>& vec)
 }
 std::string replacePhrase(const std::string& str, const std::string& old, const std::string& newstr)
 {
+    std::string strCopy = str;
+    std::string OldW = old;
+    size_t oldLen = OldW.length();
     while (str.find(old) != std::string::npos)
     {
-        std::string strCopy = str;
         size_t n = str.find(old);
-        strCopy.replace(n + 1, old.length(), newstr);
+        strCopy.replace(n, oldLen, newstr);
     }
     return strCopy;
+}
+std::string join(const std::vector<std::string>& vec, const std::string sep)
+{
+    std::string join;
+    for (int i = 0; i < vec.size(); ++i)
+    {
+        if (i == vec.size() -1)
+        {
+            join += vec[i];
+        }
+        else
+        {
+            join = join + vec[i] + sep;
+        }
+    }
+    return join;
 }
 std::vector<std::string> split(const std::string& str, char sep)
 {
@@ -126,30 +128,45 @@ int main()
 {
     int n = 0;
     std::cin >> n;
-    std::vector<float> vectorOne;
-    for (size_t i = 0; i < n; ++i)
+    std::vector<float> vectorOne[n];
+    for (float s : vectorOne)
     {
-        vectorOne.push_back((rand() % 10000) / 1000.0);
-        std::cout << vectorOne[i] << " ";
+        vectorOne.push_back((rand() % 100 )/100.);
+        std::cout << s  << " ";
     }
     std::cout << std::endl;
     std::cout << mean(vectorOne) << std::endl;
     std::pair<float, float> couple = minMax(vectorOne);
     std::cout << couple.first << " " << couple.second << std::endl;
-    std::cout << "The number of the max element" << argmax(vectorOne) << std::endl;
+    std::cout << "The number of the max element " << argmax(vectorOne) << std::endl;
     sort(vectorOne);
     std::cout << erase(vectorOne) << std::endl;
     std::cout << "Enter the string" << std::endl;
     std::string str;
     std::getline(std::cin, str);
+    std::cin.clear();
     std::cout << "enter the phrase you want to edit" << std::endl;
     std::string old;
     std::getline(std::cin, old);
+    std::cin.clear();
     std::cout << "Enter the phrase you would like to see instead of the old" << std::endl;
     std::string newstr;
     std::getline(std::cin, newstr);
+    std::cin.clear();
     std::cout << "Old string : " << str << std::endl;
     str = replacePhrase(str, old, newstr);
     std::cout << "New string : " << str << std::endl;
+    std::vector<std::string> vectorStr;
+    std::string strSecond;
+    std::cin >> strSecond;
+    std::string sep;
+    std::cin >> sep;
+    vectorStr = split(strSecond, sep);
+    for (f : vectorStr)
+    {
+        std::cout << f << " " ;
+    }
+    std::cout << std::endl;
+    strSecond = join(vectorStr);
     return 0;
 }
