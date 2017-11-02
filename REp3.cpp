@@ -13,7 +13,7 @@ float mean(const std::vector<float>& vec)
     {
         sum += f;
     }
-    return (sum / (vec.size()));
+    return sum / vec.size();
 }
 std::pair<float, float> minMax(const std::vector<float>& vec)
 {
@@ -22,7 +22,7 @@ std::pair<float, float> minMax(const std::vector<float>& vec)
     minMax1.second = vec[0];
     for (float f : vec)
     {
-         if (vec[i] > minMax1.second)
+         if (f > minMax1.second)
          {
              minMax1.second  = f;
          }
@@ -34,7 +34,7 @@ std::pair<float, float> minMax(const std::vector<float>& vec)
            }
          }
     }
-    return (minMax1);
+    return minMax1;
 }
 int argmax(const std::vector<float>& vec)
 {
@@ -92,36 +92,35 @@ std::string replacePhrase(const std::string& str, const std::string& old, const 
 }
 std::string join(const std::vector<std::string>& vec, const std::string sep)
 {
-    std::string join;
-    for (int i = 0; i < vec.size(); ++i)
+    std::string strMain;
+    for (const std::string& str : vec)
     {
-        if (i == vec.size() -1)
-        {
-            join += vec[i];
-        }
-        else
-        {
-            join = join + vec[i] + sep;
-        }
+        strMain = str + sep;
     }
     return join;
 }
-std::vector<std::string> split(const std::string& str, char sep)
+std::vector<std::string> split(const std::string& str, char& sep)
 {
     std::vector<std::string> vec;
-    std::string a;
-    for (size_t i = 0; i < str.length(); ++i)
+    std::string s;
+    int i = 0;
+    while (i < str.length())
     {
-        if (str[i] != ' ')
+        if (str[i] != sep)
         {
-            a.push_back(str[i]);
+            s.push_back(str[i]);
         }
-        else if (str[i] == ' ')
+        else
         {
-            a.push_back(sep);
+            vec.push_back(s);
+            s.erase(s.begin(), s.end());
         }
+        if ((str.length() - i) == 1)
+        {
+            vec.push_back(s);
+        }
+        ++i;
     }
-    vec.push_back(a);
     return vec;
 }
 int main()
@@ -161,11 +160,7 @@ int main()
     std::cin >> strSecond;
     std::string sep;
     std::cin >> sep;
-    vectorStr = split(strSecond, sep);
-    for (f : vectorStr)
-    {
-        std::cout << f << " " ;
-    }
+    vectorStr = split(strSecond, sep); 
     std::cout << std::endl;
     strSecond = join(vectorStr);
     return 0;
