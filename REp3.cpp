@@ -6,6 +6,22 @@
 #include <string>
 #include <vector>
 
+std::string join(const std::vector<std::string>& vec, const std::string sep)
+{
+    std::string join;
+    for (int i = 0; i < vec.size(); ++i)
+    {
+        if (i == vec.size() -1)
+        {
+            join += vec[i];
+        }
+        else
+        {
+            join = join + vec[i] + sep;
+        }
+    }
+    return join;
+}
 float mean(const std::vector<float>& vec)
 {
     double sum = 0;
