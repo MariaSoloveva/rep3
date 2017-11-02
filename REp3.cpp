@@ -1,14 +1,17 @@
+#include <algorithm>
 #include <cstdlib>
+#include <ctime>
 #include <iostream>
+#include <random>
 #include <string>
 #include <vector>
 
 float mean(const std::vector<float>& vec)
 {
     double sum = 0;
-    for (size_t i = 1; i < vec.size(); ++i)
+    for (float f : vec)
     {
-        sum += vec[i];
+        sum += f;
     }
     return (sum / (vec.size()));
 }
@@ -17,17 +20,17 @@ std::pair<float, float> minMax(const std::vector<float>& vec)
     std::pair<float, float> minMax1;
     minMax1.first = vec[0];
     minMax1.second = vec[0];
-    for (size_t i = 1; i < vec.size(); ++i)
+    for (float f : vec)
     {
          if (vec[i] > minMax1.second)
          {
-             minMax1.second  = vec[i];
+             minMax1.second  = f;
          }
          else
          {
-           if (minMax1.first < vec[i])
+           if (minMax1.first > f)
            {
-               minMax1.first = vec[i];
+               minMax1.first = f66;
            }
          }
     }
@@ -75,31 +78,51 @@ int erase(std::vector<float>& vec)
     }
   return remember;
 }
-std::string replace(const std::string& str, const std::string& old, const std::string& newstr)
+std::string replacePhrase(const std::string& str, const std::string& old, const std::string& newstr)
 {
-    while (old.find(str) != std::string::npos)
+    while (str.find(old) != std::string::npos)
     {
-        size_t n = old.find(str);
-        old.replace(n + 1, str.length(), newstr);
+        std::string strCopy = str;
+        size_t n = str.find(old);
+        strCopy.replace(n + 1, old.length(), newstr);
     }
-    return str;
+    return strCopy;
+}
+std::vector<std::string> split(const std::string& str, char sep)
+{
+    std::vector<std::string> vec;
+    std::string a;
+    for (size_t i = 0; i < str.length(); ++i)
+    {
+        if (str[i] != ' ')
+        {
+            a.push_back(str[i]);
+        }
+        else if (str[i] == ' ')
+        {
+            a.push_back(sep);
+        }
+    }
+    vec.push_back(a);
+    return vec;
 }
 int main()
 {
     int n = 0;
     std::cin >> n;
-    std::vector<float> vectorOne(n);
-    for (size_t i = 0; i < vectorOne.size(); ++i)
+    std::vector<float> vectorOne;
+    for (size_t i = 0; i < n; ++i)
     {
-        vectorOne.push_back(rand());
+        vectorOne.push_back((rand() % 10000) / 1000.0);
         std::cout << vectorOne[i] << " ";
     }
     std::cout << std::endl;
     std::cout << mean(vectorOne) << std::endl;
     std::pair<float, float> couple = minMax(vectorOne);
+    std::cout << couple.first << " " << couple.second << std::endl;
     std::cout << "The number of the max element" << argmax(vectorOne) << std::endl;
     sort(vectorOne);
-    erase(vectorOne);
+    std::cout << erase(vectorOne) << std::endl;
     std::cout << "Enter the string" << std::endl;
     std::string str;
     std::getline(std::cin, str);
@@ -110,7 +133,7 @@ int main()
     std::string newstr;
     std::getline(std::cin, newstr);
     std::cout << "Old string : " << str << std::endl;
-    str = replace(str, old, newstr);
+    str = replacePhrase(str, old, newstr);
     std::cout << "New string : " << str << std::endl;
     return 0;
 }
