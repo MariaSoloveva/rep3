@@ -148,10 +148,11 @@ int main()
     std::map<std::string,Score> RecordBook = {{"Math", Good}, {"English", Good}};
     std::vector<Student> student;
     {
-        Student Student1 = {
-                "Soloveva Maria",
-                1999,
-                RecordBook
+        Student Student1 = 
+        {
+            "Soloveva Maria",
+            1999,
+            RecordBook
         };
         student.push_back(Student1);
     }
