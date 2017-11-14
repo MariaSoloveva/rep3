@@ -6,8 +6,7 @@
 
 void vectorToFile(const std::string& filename, std::vector<std::string>& data)
 {
-    std::ofstream fl;
-    fl.open(filename);
+    std::ofstream fl(filename);
     for (int i = 0; i < data.size(); ++i)
     {
         fl << data[i];
