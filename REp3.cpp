@@ -14,7 +14,6 @@ void vectorToFile(const std::string& filename, std::vector<std::string>& data)
         if (i < data.size() - 1)
             fl << std::endl;
     }
-    fl.close();
 }
 void vectorFromFile(const std::string& filename, std::vector<std::string>& data)
 {
