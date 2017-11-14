@@ -66,8 +66,8 @@ int returnNumber(std::string& str)
     int number = 0;
     for (size_t j = 0; j < str.length(); ++j)
     {
-        int digit = (int)str[j] - (int)'0';
-        number = number * 10 + digit;
+        int digit1 = (int)str[j] - (int)'0';
+        number = number * 10 + digit1;
     }
     return number;
 }
@@ -99,7 +99,7 @@ struct Student
 {
     std::string Name;
     int Year;
-    std::map<std::string,Score> RecordBook;
+    std::map<std::string, Score> RecordBook;
 };
 using Groups = std::map<std::string, std::vector<Student>>;
 void saveToFileGroup(const std::string& filename, const Groups& groups)
@@ -134,17 +134,17 @@ int returnNumberForGroup(std::string& str)
     std::string strHelp = returnPartToStudent(str);
     return returnNumber(strHelp);
 }
-std::map<std::string,Score> returnRecordBook(std::string& str)
+std::map<std::string, Score> returnRecordBook(std::string& str)
 {
-    std::map<std::string,Score> mp;
-    while(str.size() > 0)
+    std::map<std::string, Score> mp;
+    while (str.size() > 0)
     {
         std::string strHelp = returnPartToStudent(str);
         mp.insert(std::pair<std::string, Score>(strHelp, Score(returnNumberForGroup(str))));
     }
     return mp;
 };
-void loadFromBook(const std::string& filename,Groups& groups)
+void loadFromBook(const std::string& filename, Groups& groups)
 {
     std::ifstream fl(filename);
     std::string str;
@@ -152,7 +152,7 @@ void loadFromBook(const std::string& filename,Groups& groups)
     {
         str.clear();
         std::getline(fl, str);
-        std::map<std::string,Score> RecordBook;
+        std::map<std::string, Score> RecordBook;
         std::string nameOfGroup = returnPartToStudent(str);
         std::vector<Student> vecOfStudents;
         {
@@ -164,7 +164,7 @@ void loadFromBook(const std::string& filename,Groups& groups)
             };
             vecOfStudents.push_back(Student1);
         }
-        groups.insert(std::pair<std::string,std::vector<Student>>(nameOfGroup,vecOfStudents));
+        groups.insert(std::pair<std::string, std::vector<Student>>(nameOfGroup, vecOfStudents));
     }
 }
 void printVector(const std::vector<Book> vec)
@@ -196,8 +196,8 @@ void printGroups(Groups& groups)
 }
 int main()
 {
-    std::vector<std::string> vec = {"ef","kje","fqeif","u",
-                                    "niwe","fiuwenf","ienf"};
+    std::vector<std::string> vec = {"ef", "kje", "fqeif", "u",
+                                    "niwe", "fiuwenf", "ienf"};
     vectorToFile("vec.txt", vec);
     std::vector<std::string> out;
     vectorFromFile("vec.txt", out);
@@ -212,7 +212,7 @@ int main()
     printVector(vecOfBook1);
     Groups groups1;
     std::string nameOfGroup = "iu8-11";
-    std::map<std::string,Score> RecordBook = {{"Math", Good}, {"English", Good}};
+    std::map<std::string, Score> RecordBook = {{"Math", Good}, {"English", Good}};
     std::vector<Student> student;
     {
         Student Student1 =
@@ -223,10 +223,10 @@ int main()
         };
         student.push_back(Student1);
     }
-    groups1.insert(std::pair<std::string,std::vector<Student>>(nameOfGroup,student));
+    groups1.insert(std::pair<std::string, std::vector<Student>>(nameOfGroup, student));
     saveToFileGroup("Group.txt", groups1);
     Groups groups2;
-    loadFromBook("Group.txt",groups2);
+    loadFromBook("Group.txt", groups2);
     saveToFileGroup("Group1.txt", groups2);
     printGroups(groups2);
     return 0;
