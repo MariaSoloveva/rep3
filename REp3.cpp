@@ -1,167 +1,162 @@
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
+#include <fstream>
 #include <iostream>
-#include <random>
 #include <string>
 #include <vector>
+#include <map>
 
-float mean(const std::vector<float>& vec)
+void vectorToFile(const std::string& filename, std::vector<std::string>& data)
 {
-    double sum = 0;
-    for (float f : vec)
+    std::ofstream fl;
+    fl.open(filename);
+    for (int i = 0; i < data.size(); ++i)
     {
-        sum += f;
+        fl << data[i];
+
+        if (i < data.size() - 1)
+            fl << std::endl;
     }
-    return sum / vec.size();
+    fl.close();
 }
-std::pair<float, float> minMax(const std::vector<float>& vec)
+void vectorFromFile(const std::string& filename, std::vector<std::string>& data)
 {
-    std::pair<float, float> minMax1;
-    minMax1.first = vec[0];
-    minMax1.second = vec[0];
-    for (float f : vec)
+    std::ifstream fl(filename);
+    while (!fl.eof())
     {
-         if (f > minMax1.second)
-         {
-             minMax1.second  = f;
-         }
-         else
-         {
-           if (minMax1.first > f)
-           {
-               minMax1.first = f;
-           }
-         }
+        std::string str;
+        fl >> str;
+        data.push_back(str);
     }
-    return minMax1;
 }
-int argmax(const std::vector<float>& vec)
+void printVector(std::vector<std::string>& vec)
 {
-  int number = 0;
-  float max = vec[0];
-  for (size_t i = 1; i < vec.size(); ++i)
-  {
-      if ( vec[i] > max )
-         {
-             number = i;
-             max = vec[i];
-         }
-  }
-  return number;
+    for (auto v : vec)
+        std::cout << v << " " ;
+    std::cout << std::endl;
 }
-void sort(std::vector<float>& vec)
+template<class K, class V>
+void printMap(const std::map<K, V>& m)
 {
-    int remember = 0;
-    for (size_t i = 0; i < vec.size() - 1; ++i)
+    for (const auto& e : m)
+        std::cout << e.first << ": " << e.second << std::endl;
+}
+struct Book
+{
+    std::string Author;
+    std::string Title;
+    int Year;
+};
+void saveToFileBook(const std::string& filename, const std::vector<Book>& data)
+{
+    std::fstream fl(filename, std::ios::out);
+    for (size_t i = 0; i < data.size() ; ++i)
     {
-        for (int j = i + 1; j < vec.size(); ++j)
+        fl << data[i].Author << "-";
+        fl << data[i].Title << "-";
+        fl << data[i].Year << std::endl;
+    }
+}
+std::string returnPart(std::string& str)
+{
+    char buf[str.length()];
+    std::size_t length = str.copy(buf, str.find("-"), 0);
+    str = str.substr(str.find("-") + 1);
+    buf[length] = '\0';
+    return buf;
+}
+void loadFromFile(const std::string& filename, std::vector<Book>& outData)
+{
+    std::ifstream fl(filename);
+    std::string str;
+    int i = 0;
+    while (!fl.eof())
+    {
+        str.clear();
+        std::getline(fl, str);
+        //outData[i].Author = buf;
+        std::cout << returnPart(str) << std::endl;
+        //outData[i].Title = str.copy(buf, 0, str.find("-"));
+        std::cout << returnPart(str) << std::endl;
+        std::cout << str << std::endl;
+        //outData[i].Year = std::stoi(str);
+        ++i;
+    }
+}
+enum Score
+{
+    Unsatisfactory = 2,
+    Satisfactory,
+    Good,
+    Excellent
+};
+struct Student
+{
+    std::string Name;
+    int Year;
+    std::map<std::string,Score> RecordBook;
+};
+using Groups = std::map<std::string, std::vector<Student>>;
+void saveToFileGroup(const std::string& filename, const Groups& groups)
+{
+    std::fstream fl(filename, std::ios::out);
+    for (const auto& e : groups)
+    {
+        fl << e.first << "/";
+        for (size_t i = 0; i < e.second.size(); ++i)
         {
-            if (vec[i] > vec[j])
+            fl << e.second[i].Name << "/";
+            fl << e.second[i].Year << "/";
+            for (const auto& a : e.second[i].RecordBook)
             {
-                std::swap(vec[i], vec[j]);
+                fl << a.first << "/";
+                fl << a.second << "/";
             }
         }
     }
 }
-int erase(std::vector<float>& vec)
+void loadFromBook(const std::string& filename,Groups& groups)
 {
-    float remember = 0;
+    std::ifstream fl(filename);
+    while (!fl.eof())
+    {
+
+    }
+}
+void printVector(const std::vector<Book> vec)
+{
     for (size_t i = 0; i < vec.size(); ++i)
     {
-        if (vec[i] < 0)
-        {
-            remember = vec[i];
-            vec.erase(vec.begin() + i);
-            break;
-        }
+        std::cout << vec[i].Author << std::endl;
+        std::cout << vec[i].Title << std::endl;
+        std::cout << vec[i].Year << std::endl;
     }
-  return remember;
-}
-std::string replacePhrase(const std::string& str, const std::string& old, const std::string& newstr)
-{
-    std::string strCopy = str;
-    std::string OldW = old;
-    size_t oldLen = OldW.length();
-    while (str.find(old) != std::string::npos)
-    {
-        size_t n = str.find(old);
-        strCopy.replace(n, oldLen, newstr);
-    }
-    return strCopy;
-}
-std::string join(const std::vector<std::string>& vec, const std::string sep)
-{
-    std::string strMain;
-    for (const std::string& str : vec)
-    {
-        strMain = str + sep;
-    }
-    return join;
-}
-std::vector<std::string> split(const std::string& str, char& sep)
-{
-    std::vector<std::string> vec;
-    std::string s;
-    int i = 0;
-    while (i < str.length())
-    {
-        if (str[i] != sep)
-        {
-            s.push_back(str[i]);
-        }
-        else
-        {
-            vec.push_back(s);
-            s.erase(s.begin(), s.end());
-        }
-        if ((str.length() - i) == 1)
-        {
-            vec.push_back(s);
-        }
-        ++i;
-    }
-    return vec;
 }
 int main()
 {
-    int n = 0;
-    std::cin >> n;
-    std::vector<float> vectorOne[n];
-    for (float s : vectorOne)
+    std::vector<std::string> vec = {"ef","kje","fqeif","u","niwe","fiuwenf","ienf"};
+    vectorToFile("vec.txt", vec);
+    std::vector<std::string> out;
+    vectorFromFile("vec.txt", out);
+    printVector(out);
+    std::vector<Book> vecOfBook = {{"Howard Phillips Lovecraft", "The Shadow Out of Time", 1934}, {"Edgar Allan Poe","The Fall of the House of Usher", 1839}};
+    saveToFileBook("structBook.txt", vecOfBook);
+    std::vector<Book> vecOfBook1;
+    saveToFileBook("structBook1.txt", vecOfBook);
+    loadFromFile("structBook1.txt", vecOfBook1);
+    printVector(vecOfBook1);
+    /*Groups groups1;
+    std::string nameOfGroup = "iu8-11";
+    std::map<std::string,Score> RecordBook = {{"Math", Good}, {"English", Good}};
+    std::vector<Student> student;
     {
-        vectorOne.push_back((rand() % 100 )/100.);
-        std::cout << s  << " ";
+        Student Student1 = {
+                "Soloveva Maria",
+                1999,
+                RecordBook
+        };
+        student.push_back(Student1);
     }
-    std::cout << std::endl;
-    std::cout << mean(vectorOne) << std::endl;
-    std::pair<float, float> couple = minMax(vectorOne);
-    std::cout << couple.first << " " << couple.second << std::endl;
-    std::cout << "The number of the max element " << argmax(vectorOne) << std::endl;
-    sort(vectorOne);
-    std::cout << erase(vectorOne) << std::endl;
-    std::cout << "Enter the string" << std::endl;
-    std::string str;
-    std::getline(std::cin, str);
-    std::cin.clear();
-    std::cout << "enter the phrase you want to edit" << std::endl;
-    std::string old;
-    std::getline(std::cin, old);
-    std::cin.clear();
-    std::cout << "Enter the phrase you would like to see instead of the old" << std::endl;
-    std::string newstr;
-    std::getline(std::cin, newstr);
-    std::cin.clear();
-    std::cout << "Old string : " << str << std::endl;
-    str = replacePhrase(str, old, newstr);
-    std::cout << "New string : " << str << std::endl;
-    std::vector<std::string> vectorStr;
-    std::string strSecond;
-    std::cin >> strSecond;
-    std::string sep;
-    std::cin >> sep;
-    vectorStr = split(strSecond, sep); 
-    std::cout << std::endl;
-    strSecond = join(vectorStr);
+    groups1.insert(std::pair<std::string,std::vector<Student>>(nameOfGroup,student));
+    saveToFileGroup("Group.txt", groups1);
+    loadFromBook("Group.txt",groups1);*/
     return 0;
 }
