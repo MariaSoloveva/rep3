@@ -3,13 +3,21 @@
 #include <algorithm>
 #include <vector>
 
-void saveToFile(const std::string& filename, std::vector<std::string>& data)
+void loadFromFile(const std::string& filename, std::vector<Book>& outData)
 {
-    std::ofstream fl(filename);
-    for (int i = 0; i < data.size(); ++i)
+
+    Book book1;
+    std::ifstream fl(filename);
+    std::string str;
+    while (!fl.eof())
     {
-        fl << data[i];
-        if (i < data.size() - 1)
-            fl << std::endl;
+        str.clear();
+        std::getline(fl, str);
+        book1.Author = str;
+        std::getline(fl, str);
+        book1.Title = str;
+        std::getline(fl, str);
+        book1.Year = atoi(str.c_str());
+        outData.push_back(book1);
     }
 }
