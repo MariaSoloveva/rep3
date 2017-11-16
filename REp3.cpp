@@ -3,13 +3,13 @@
 #include <algorithm>
 #include <vector>
 
-void loadFromFile(const std::string& filename, std::vector<std::string>& data)
+void saveToFile(const std::string& filename, std::vector<std::string>& data)
 {
-    std::ifstream fl(filename);
-    std::string str;
-    while (!fl.eof())
+    std::ofstream fl(filename);
+    for (int i = 0; i < data.size(); ++i)
     {
-        std::getline(fl, str);
-        data.push_back(str);
+        fl << data[i];
+        if (i < data.size() - 1)
+            fl << std::endl;
     }
 }
