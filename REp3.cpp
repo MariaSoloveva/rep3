@@ -27,6 +27,7 @@ using Groups = std::map<std::string, std::vector<Student>>;
 void saveToFile(const std::string& filename, const Groups& groups)
 {
     std::fstream fl(filename, std::ios::out);
+    fl << groups.size() << std::endl;
     for (const auto& e : groups)
     {
         fl << e.first << std::endl;
@@ -34,6 +35,7 @@ void saveToFile(const std::string& filename, const Groups& groups)
         {
             fl << e.second[i].Name << std::endl;
             fl << e.second[i].Year << std::endl;
+            fl << e.second[i].RecordBook.size() << std::endl;
             for (const auto& a : e.second[i].RecordBook)
             {
                 fl << a.first << std::endl;
