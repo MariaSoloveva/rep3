@@ -1,19 +1,30 @@
 #include"lab08.hpp"
 
-int countNegligentStudents(std::vector<Student>& group)
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+
+void saveToFile(const std::string& filename, const Groups& groups)
 {
-    int numberOfBadScores = 0;
-    int numberOfBadStudents = 0;
-    for (size_t i = 0; i < group.size(); ++i)
+    std::fstream fl(filename, std::ios::out);
+    fl << groups.size() << std::endl;
+    for (const auto& e : groups)
     {
-        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
+        fl << e.first << std::endl;
+        for (size_t i = 0; i < e.second.size(); ++i)
         {
-            if (group[i].RecordBook[j].Rating == Unsatisfactorily)
-                ++numberOfBadScores;
+            fl << e.second[i].Name << std::endl;
+            fl << e.second[i].Year << std::endl;
+            fl << e.second[i].RecordBook.size() << std::endl;
+            for (const auto& a : e.second[i].RecordBook)
+            {
+                fl << a.first << std::endl;
+                fl << a.second << std::endl;
+            }
         }
-        if (numberOfBadScores > 0)
-            ++numberOfBadStudents;
-        numberOfBadScores = 0;
+        std::cout << std::endl;
     }
-    return numberOfBadStudents;
 }
