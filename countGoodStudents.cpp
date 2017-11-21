@@ -1,19 +1,47 @@
 #include "lab08.hpp"
 
-int countGoodStudents(std::vector<Student>& group)
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+
+void loadFromFile(const std::string& filename, Groups& outGroups)
 {
-    int numberOfGoodScores = 0;
-    int numberOfGoodStudents = 0;
-    for (size_t i = 0; i < group.size(); ++i)
+    std::string nameOfGroup;
+    std::ifstream fl(filename);
+    while (!fl.eof())
     {
-        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
+        int numberOfGroups = 0;
+        fl >> numberOfGroups;
+        for (int i = 0; i < numberOfGroups; ++i)
         {
-            if (group[i].RecordBook[j].Rating == Excellent)
-                ++numberOfGoodScores;
+            std::vector<Student> vecStudent;
+            std::getline(fl, nameOfGroup);
+            int numberOfStudents = 0;
+            fl >> numberOfStudents;
+            for (int j = 0; j < numberOfStudents; ++j)
+            {
+                Student student;
+                std::getline(fl, student.Name);
+                std::string strYear;
+                std::getline(fl, strYear);
+                student.Year = atoi(strYear.c_str());
+                int scores = 0;
+                fl >> scores;
+                for (int k = 0; k < scores; ++k)
+                {
+                    std::string subjectName;
+                    std::getline(fl, subjectName);
+                    std::string grade;
+                    std::getline(fl, grade);
+                    student.RecordBook.insert(std::pair<std::string, Score>
+                                                      (subjectName, Score(atoi(grade.c_str()))));
+                }
+                vecStudent.push_back(student);
+            }
+            outGroups.insert(std::pair<std::string, std::vector<Student>>(nameOfGroup, vecStudent));
         }
-        if (numberOfGoodScores == group[i].RecordBook.size())
-            ++numberOfGoodStudents;
-        numberOfGoodScores = 0;
     }
-    return numberOfGoodStudents;
 }
