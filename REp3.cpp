@@ -5,7 +5,8 @@
 #include <string>
 #include <vector>
 
-void saveToFile(const std::string& filename, std::vector<std::string>& data)
+using Groups = std::map<std::string, std::vector<Student>>;
+void vectorToFile(const std::string& filename, std::vector<std::string>& data)
 {
     std::ofstream fl(filename);
     for (int i = 0; i < data.size(); ++i)
@@ -45,7 +46,7 @@ struct Book
     std::string Title;
     int Year;
 };
-void saveToFile(const std::string& filename, const std::vector<Book>& data)
+void saveToFileBook(const std::string& filename, const std::vector<Book>& data)
 {
     std::fstream fl(filename, std::ios::out);
     for (size_t i = 0; i < data.size() ; ++i)
@@ -56,7 +57,7 @@ void saveToFile(const std::string& filename, const std::vector<Book>& data)
     }
 }
 
-void loadFromFile(const std::string& filename, std::vector<Book>& outData)
+void loadFromFileBook(const std::string& filename, std::vector<Book>& outData)
 {
 
     Book book1;
@@ -88,7 +89,7 @@ struct Student
     std::map<std::string, Score> RecordBook;
 };
 using Groups = std::map<std::string, std::vector<Student>>;
-void saveToFile(const std::string& filename, const Groups& groups)
+void loadFromFileGroup(const std::string& filename, const Groups& groups)
 {
     std::fstream fl(filename, std::ios::out);
     fl << groups.size() << std::endl;
@@ -109,7 +110,7 @@ void saveToFile(const std::string& filename, const Groups& groups)
         std::cout << std::endl;
     }
 }
-void loadFromFile(const std::string& filename, Groups& outGroups)
+void loadFromFileGroup(const std::string& filename, Groups& outGroups)
 {
     std::string nameOfGroup;
     std::ifstream fl(filename);
@@ -184,10 +185,10 @@ int main()
     std::vector<Book> vecOfBook = {{"Howard Phillips Lovecraft",
                                            "The Shadow Out of Time", 1934}, {"Edgar Allan Poe",
                                            "The Fall of the House of Usher", 1839}};
-    saveToFile("structBook.txt", vecOfBook);
+    saveToFileBook("structBook.txt", vecOfBook);
     std::vector<Book> vecOfBook1;
-    saveToFile("structBook1.txt", vecOfBook);
-    loadFromFile("structBook1.txt", vecOfBook1);
+    saveToFileBook("structBook1.txt", vecOfBook);
+    loadFromFileBook("structBook1.txt", vecOfBook1);
     printVector(vecOfBook1);*/
     Groups groups1;
     std::string nameOfGroup = "iu8-11";
@@ -205,8 +206,8 @@ int main()
     groups1.insert(std::pair<std::string, std::vector<Student>>(nameOfGroup, student));
     saveToFile("Group.txt", groups1);
     Groups groups2;
-    loadFromFile("Group.txt", groups2);
-    saveToFile("Group1.txt", groups2);
+    loadFromFileGroup("Group.txt", groups2);
+    saveToFileGroup("Group1.txt", groups2);
     printGroups(groups2);
     return 0;
 }
