@@ -1,15 +1,7 @@
-#include <fstream>
+#include<algorithm>
 #include <iostream>
-#include <map>
-#include <string>
-#include <vector>
+#include<string>
 
-struct Book
-{
-    std::string Author;
-    std::string Title;
-    int Year;
-};
 enum Score
 {
     Unsatisfactorily = 2,
@@ -17,47 +9,161 @@ enum Score
     Good,
     Excellent
 };
+
+struct Course
+{
+    std::string Title;
+    Score Rating;
+};
+
 struct Student
 {
-    std::string Name;
-    int Year;
-    std::map<std::string, Score> RecordBook;
+    std::vector<Course> RecordBook;
 };
-using Groups = std::map<std::string, std::vector<Student>>;
-void loadFromFile(const std::string& filename, Groups& outGroups)
+int countNegligentStudents(std::vector<Student>& group)
 {
-    std::string nameOfGroup;
-    std::ifstream fl(filename);
-    while (!fl.eof()) {
-        int numberOfGroups = 0;
-        fl >> numberOfGroups;
-        for (int i = 0; i < numberOfGroups; ++i)
+    int numberOfBadScores = 0;
+    int numberOfBadStudents = 0;
+    for (size_t i = 0; i < group.size(); ++i)
+    {
+        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
         {
-            std::vector<Student> vecStudent;
-            std::getline(fl, nameOfGroup);
-            int numberOfStudents = 0;
-            fl >> numberOfStudents;
-            for (int j = 0; j < numberOfStudents; ++j)
-            {
-                Student student;
-                std::getline(fl, student.Name);
-                std::string strYear;
-                std::getline(fl, strYear);
-                student.Year = atoi(strYear.c_str());
-                int scores = 0;
-                fl >> scores;
-                for (int k = 0; k < scores; ++k)
-                {
-                    std::string subjectName;
-                    std::getline(fl, subjectName);
-                    std::string grade;
-                    std::getline(fl, grade);
-                    student.RecordBook.insert(std::pair<std::string, Score>
-                                                      (subjectName, Score(atoi(grade.c_str()))));
-                }
-                vecStudent.push_back(student);
-            }
-            outGroups.insert(std::pair<std::string, std::vector<Student>>(nameOfGroup, vecStudent));
+            if (group[i].RecordBook[j].Rating == Unsatisfactorily)
+                ++numberOfBadScores;
+        }
+        if (numberOfBadScores > 0)
+            ++numberOfBadStudents;
+        numberOfBadScores = 0;
+    }
+    return numberOfBadStudents;
+}
+int countGoodStudents(std::vector<Student>& group)
+{
+    int numberOfGoodScores = 0;
+    int numberOfGoodStudents = 0;
+    for (size_t i = 0; i < group.size(); ++i)
+    {
+        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
+        {
+            if (group[i].RecordBook[j].Rating == Excellent)
+                ++numberOfGoodScores;
+        }
+        if (numberOfGoodScores == group[i].RecordBook.size())
+            ++numberOfGoodStudents;
+        numberOfGoodScores = 0;
+    }
+    return numberOfGoodStudents;
+}
+std::vector<float> findAverageScores (std::vector<Student>& group)
+{
+    std::vector<float> averageScore;
+    int scores = 0;
+    for (size_t i = 0; i < group.size(); ++i)
+    {
+        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
+        {
+            scores += group[i].RecordBook[j].Rating;
+         }
+        averageScore.push_back(scores / group[i].RecordBook.size());
+        scores = 0;
+    }
+    return averageScore;
+}
+float findMaxOfScores(std::vector<float>& averageScores)
+{
+    float max = averageScores[0];
+    for(float f : averageScores)
+        if (max < f)
+            max = f;
+    return max;
+}
+void findStudentsgoodAtMath (std::vector<Student>& group)
+{
+    for (size_t i = 0; i < group.size(); ++i)
+    {
+        for (size_t j = 0; j < group[i].RecordBook.size(); ++j) {
+            if ((group[i].RecordBook[j].Title == "Math") && (group[i].RecordBook[j].Rating == Excellent))
+                std::cout << "Student number " << i + 1 << " is good at Math" << std::endl;
         }
     }
+}
+bool checkStudentFailedMl(std::vector<Student>& group)
+{
+    int numberOfBadStudents = 0;
+    for (size_t i = 0; i < group.size(); ++i)
+    {
+        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
+        {
+            if ((group[i].RecordBook[j].Title == "Ml") && (group[i].RecordBook[j].Rating == Unsatisfactorily))
+                ++numberOfBadStudents;
+        }
+    }
+    if (numberOfBadStudents == 0)
+        return false;
+    else
+        return true;
+}
+bool checkStudentPassedAl(std::vector<Student>& group)
+{
+    int numberOfGoodStudents = 0;
+    for (size_t i = 0; i < group.size(); ++i)
+    {
+        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
+        {
+            if ((group[i].RecordBook[j].Title == "Al") && (group[i].RecordBook[j].Rating == Excellent))
+                ++numberOfGoodStudents;
+        }
+    }
+    if (numberOfGoodStudents == group.size())
+        return false;
+    else
+        return true;
+}
+void printVector (std::vector<float>& vec)
+{
+    for (float f : vec)
+        std::cout << f << ' ';
+    std::cout << std::endl;
+}
+int main ()
+{
+    std::vector<Student> group;
+    std::vector<Course> RecordBook = {{"Math", Excellent}, {"Al", Excellent}, {"Ml", Excellent}};
+    {
+        Student Student1 =
+                {
+                        RecordBook
+                };
+        group.push_back(Student1);
+    }
+    std::vector<Course> RecordBook1 = {{"Math", Unsatisfactorily}, {"Al", Unsatisfactorily}, {"Ml", Unsatisfactorily}};
+    {
+        Student Student2 =
+                {
+                        RecordBook1
+                };
+        group.push_back(Student2);
+    }
+    for (size_t i = 0; i < group.size(); ++i)
+    {
+        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
+        {
+            std::cout << group[i].RecordBook[j].Title << std::endl;
+            std::cout << group[i].RecordBook[j].Rating << std::endl;
+        }
+    }
+    std::cout << "Number of negligent students " << countNegligentStudents(group) << std::endl;
+    std::cout << "Number of good students " << countGoodStudents(group) << std::endl;
+    findStudentsgoodAtMath(group);
+    std::vector<float> averageScores = findAverageScores(group);
+    printVector(averageScores);
+    std::cout << "Max average score : " << findMaxOfScores(averageScores) << std::endl;
+    if (checkStudentFailedMl(group) == false)
+        std::cout << "Is there students that failed Ml? - No" << std::endl;
+    else
+        std::cout << "Is there students that failed Ml? - Yes" << std::endl;
+    if (checkStudentPassedAl(group) == false)
+        std::cout << "Is there students that failed Al? - No" << std::endl;
+    else
+        std::cout << "Is there students that failed Ml? - Yes" << std::endl;
 }
