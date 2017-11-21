@@ -4,7 +4,10 @@ include_directories(SYSTEM
 ./ 
 ) 
 
-# enum your files 
+ADD_DEFINITIONS(
+    -std=c++11
+)
+
 add_executable(executable 
 REp3.cpp
 ) 
