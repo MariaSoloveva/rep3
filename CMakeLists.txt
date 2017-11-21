@@ -11,6 +11,13 @@ ADD_DEFINITIONS(
 # enum your files
 add_executable(executable
     REp3.cpp
+    checkStudentFailedMl.cpp
+    checkStudentPassedAl.cpp
+    countGoodStudents.cpp
+    countNegligentStudents.cpp
+    findAverageScores.cpp
+    findMaxOfScores.cpp
+    findStudentsgoodAtMath.cpp
 )
 
 target_link_libraries(executable)
