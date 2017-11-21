@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+
 using Groups = std::map<std::string, std::vector<Student>>;
 void vectorToFile(const std::string& filename, std::vector<std::string>& data)
 {
