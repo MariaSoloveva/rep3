@@ -4,30 +4,6 @@
 #include<vector>
 #include"lab08.hpp"
 
-enum Score
-{
-    Unsatisfactorily = 2,
-    Satisfactorily,
-    Good,
-    Excellent
-};
-
-struct Course
-{
-    std::string Title;
-    Score Rating;
-};
-
-struct Student
-{
-    std::vector<Course> RecordBook;
-};
-void printVector(std::vector<float>& vec)
-{
-    for (float f : vec)
-        std::cout << f << ' ';
-    std::cout << std::endl;
-}
 int main()
 {
     std::vector<Student> group;
