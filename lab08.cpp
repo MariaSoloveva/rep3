@@ -3,7 +3,6 @@
 #include<string>
 #include<vector>
 #include"lab08.hpp"
-
 int main()
 {
     std::vector<Student> group;
