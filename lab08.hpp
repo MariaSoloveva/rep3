@@ -3,24 +3,6 @@
 #include<string>
 #include<vector>
 
-enum Score
-{
-    Unsatisfactorily = 2,
-    Satisfactorily,
-    Good,
-    Excellent
-};
-
-struct Course
-{
-    std::string Title;
-    Score Rating;
-};
-
-struct Student
-{
-    std::vector<Course> RecordBook;
-};
 
 int countNegligentStudents(std::vector<Student>& group);
 int countGoodStudents(std::vector<Student>& group);
