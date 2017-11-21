@@ -3,6 +3,7 @@
 #include<string>
 #include<vector>
 #include"lab08.hpp"
+
 enum Score
 {
     Unsatisfactorily = 2,
