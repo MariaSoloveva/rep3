@@ -1,7 +1,7 @@
 #include<algorithm>
-#include <iostream>
+#include<iostream>
 #include<string>
-
+#include<vector>
 enum Score
 {
     Unsatisfactorily = 2,
@@ -54,7 +54,7 @@ int countGoodStudents(std::vector<Student>& group)
     }
     return numberOfGoodStudents;
 }
-std::vector<float> findAverageScores (std::vector<Student>& group)
+std::vector<float> findAverageScores(std::vector<Student>& group)
 {
     std::vector<float> averageScore;
     int scores = 0;
@@ -72,17 +72,18 @@ std::vector<float> findAverageScores (std::vector<Student>& group)
 float findMaxOfScores(std::vector<float>& averageScores)
 {
     float max = averageScores[0];
-    for(float f : averageScores)
+    for (float f : averageScores)
         if (max < f)
             max = f;
     return max;
 }
-void findStudentsgoodAtMath (std::vector<Student>& group)
+void findStudentsgoodAtMath(std::vector<Student>& group)
 {
     for (size_t i = 0; i < group.size(); ++i)
     {
         for (size_t j = 0; j < group[i].RecordBook.size(); ++j) {
-            if ((group[i].RecordBook[j].Title == "Math") && (group[i].RecordBook[j].Rating == Excellent))
+            if ((group[i].RecordBook[j].Title == "Math") &&
+                (group[i].RecordBook[j].Rating == Excellent))
                 std::cout << "Student number " << i + 1 << " is good at Math" << std::endl;
         }
     }
@@ -94,7 +95,8 @@ bool checkStudentFailedMl(std::vector<Student>& group)
     {
         for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
         {
-            if ((group[i].RecordBook[j].Title == "Ml") && (group[i].RecordBook[j].Rating == Unsatisfactorily))
+            if ((group[i].RecordBook[j].Title == "Ml") &&
+                (group[i].RecordBook[j].Rating == Unsatisfactorily))
                 ++numberOfBadStudents;
         }
     }
@@ -110,7 +112,8 @@ bool checkStudentPassedAl(std::vector<Student>& group)
     {
         for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
         {
-            if ((group[i].RecordBook[j].Title == "Al") && (group[i].RecordBook[j].Rating == Excellent))
+            if ((group[i].RecordBook[j].Title == "Al") &&
+                (group[i].RecordBook[j].Rating == Excellent))
                 ++numberOfGoodStudents;
         }
     }
@@ -119,13 +122,13 @@ bool checkStudentPassedAl(std::vector<Student>& group)
     else
         return true;
 }
-void printVector (std::vector<float>& vec)
+void printVector(std::vector<float>& vec)
 {
     for (float f : vec)
         std::cout << f << ' ';
     std::cout << std::endl;
 }
-int main ()
+int main()
 {
     std::vector<Student> group;
     std::vector<Course> RecordBook = {{"Math", Excellent}, {"Al", Excellent}, {"Ml", Excellent}};
@@ -136,7 +139,8 @@ int main ()
                 };
         group.push_back(Student1);
     }
-    std::vector<Course> RecordBook1 = {{"Math", Unsatisfactorily}, {"Al", Unsatisfactorily}, {"Ml", Unsatisfactorily}};
+    std::vector<Course> RecordBook1 = {{"Math", Unsatisfactorily},
+                                       {"Al", Unsatisfactorily}, {"Ml", Unsatisfactorily}};
     {
         Student Student2 =
                 {
