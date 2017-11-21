@@ -3,6 +3,30 @@
 #include<string>
 #include<vector>
 
+enum Score
+{
+    Unsatisfactorily = 2,
+    Satisfactorily,
+    Good,
+    Excellent
+};
+
+struct Course
+{
+    std::string Title;
+    Score Rating;
+};
+
+struct Student
+{
+    std::vector<Course> RecordBook;
+};
+void printVector(std::vector<float>& vec)
+{
+    for (float f : vec)
+        std::cout << f << ' ';
+    std::cout << std::endl;
+}
 
 int countNegligentStudents(std::vector<Student>& group);
 int countGoodStudents(std::vector<Student>& group);
