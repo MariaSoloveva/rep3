@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include"lab08.hpp"
 
 enum Score
 {
