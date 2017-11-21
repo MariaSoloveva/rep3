@@ -3,6 +3,14 @@
 #include<string>
 #include<vector>
 #include"lab08.hpp"
+
+void printVector(std::vector<float>& vec)
+{
+    for (float f : vec)
+        std::cout << f << ' ';
+    std::cout << std::endl;
+}
+
 int main()
 {
     std::vector<Student> group;
@@ -35,6 +43,7 @@ int main()
     std::cout << "Number of good students " << countGoodStudents(group) << std::endl;
     findStudentsgoodAtMath(group);
     std::vector<float> averageScores = findAverageScores(group);
+    printVector(averageScores);
     std::cout << "Max average score : " << findMaxOfScores(averageScores) << std::endl;
     if (checkStudentFailedMl(group) == false)
         std::cout << "Is there students that failed Ml? - No" << std::endl;
