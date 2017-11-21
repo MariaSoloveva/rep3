@@ -1,10 +1,17 @@
 #include "lab08.hpp"
 
-float findMaxOfScores(std::vector<float>& averageScores)
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <vector>
+
+void saveToFile(const std::string& filename, std::vector<std::string>& data)
 {
-    float max = averageScores[0];
-    for (float f : averageScores)
-        if (max < f)
-            max = f;
-    return max;
+    std::ofstream fl(filename);
+    for (int i = 0; i < data.size(); ++i)
+    {
+        fl << data[i];
+        if (i < data.size() - 1)
+            fl << std::endl;
+    }
 }
