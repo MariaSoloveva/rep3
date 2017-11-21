@@ -2,7 +2,6 @@
 #include<iostream>
 #include<string>
 #include<vector>
-
 void printVector(std::vector<float>& vec)
 {
     for (float f : vec)
