@@ -18,12 +18,6 @@ void printMap(const std::map<K, V> &m) {
     for (const auto& e : m)
         std::cout << e.first << ": " << e.second << std::endl;
 }
-struct Book
-{
-    std::string Author;
-    std::string Title;
-    int Year;
-};
 void printVector(const std::vector<Book> vec)
 {
     for (size_t i = 0; i < vec.size(); ++i)
@@ -55,7 +49,7 @@ int main()
 {
     std::vector<std::string> vec = {"ef", "kje", "fqeif", "u",
                                     "niwe", "fiuwenf", "ienf"};
-    vectorToFile("vec.txt", vec);
+    saveToFile("vec.txt", vec);
     std::vector<std::string> out;
     loadFromFile("vec.txt", out);
     printVector(out);
