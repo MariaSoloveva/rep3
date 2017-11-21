@@ -17,7 +17,6 @@ add_executable(executable
     countNegligentStudents.cpp
     findAverageScores.cpp
     findMaxOfScores.cpp
-    findStudentsgoodAtMath.cpp
 )
 
 target_link_libraries(executable)
