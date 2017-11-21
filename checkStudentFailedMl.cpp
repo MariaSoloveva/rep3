@@ -1,19 +1,25 @@
 #include "lab08.hpp"
 
-bool checkStudentFailedMl(std::vector<Student>& group)
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+void loadFromFile(const std::string& filename, std::vector<Book>& outData)
 {
-    int numberOfBadStudents = 0;
-    for (size_t i = 0; i < group.size(); ++i)
+    Book book1;
+    std::ifstream fl(filename);
+    std::string str;
+    while (!fl.eof())
     {
-        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
-        {
-            if ((group[i].RecordBook[j].Title == "Ml") &&
-                (group[i].RecordBook[j].Rating == Unsatisfactorily))
-                ++numberOfBadStudents;
-        }
+        str.clear();
+        std::getline(fl, str);
+        book1.Author = str;
+        std::getline(fl, str);
+        book1.Title = str;
+        std::getline(fl, str);
+        book1.Year = atoi(str.c_str());
+        outData.push_back(book1);
     }
-    if (numberOfBadStudents == 0)
-        return false;
-    else
-        return true;
 }
