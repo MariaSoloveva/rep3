@@ -1,19 +1,18 @@
 #include "lab08.hpp"
 
-bool checkStudentPassedAl(std::vector<Student>& group)
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+void saveToFile(const std::string& filename, const std::vector<Book>& data)
 {
-    int numberOfGoodStudents = 0;
-    for (size_t i = 0; i < group.size(); ++i)
+    std::fstream fl(filename, std::ios::out);
+    for (size_t i = 0; i < data.size() ; ++i)
     {
-        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
-        {
-            if ((group[i].RecordBook[j].Title == "Al") &&
-                (group[i].RecordBook[j].Rating == Excellent))
-                ++numberOfGoodStudents;
-        }
+        fl << data[i].Author << std::endl;
+        fl << data[i].Title << std::endl;
+        fl << data[i].Year << std::endl;
     }
-    if (numberOfGoodStudents == group.size())
-        return false;
-    else
-        return true;
 }
