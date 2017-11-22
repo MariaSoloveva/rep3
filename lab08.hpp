@@ -17,7 +17,7 @@ struct Book
 };
 using Groups = std::map<std::string, std::vector<Student>>;
 void saveToFile(const std::string& filename, const std::vector<Book>& data);
-void loadFromFile(const std::string& filename, Groups& groups);
+void loadFromFile(const std::string& filename, std::vector<Book>& Outdata);
 
 
 // Task 3
@@ -36,5 +36,6 @@ struct Student
     std::map<std::string, Score> RecordBook;
 };
 
+using Groups = std::map<std::string, std::vector<Student>>;
 void saveToFile(const std::string& filename, const Groups& groups);
 void loadFromFile(const std::string& filename, Groups& groups);
