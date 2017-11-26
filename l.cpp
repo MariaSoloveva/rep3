@@ -41,7 +41,8 @@ int main()
                 };
         group.push_back(Student1);
     }
-    std::vector<Course> RecordBook1 = {{"Math", Unsatisfactorily}, {"Al", Unsatisfactorily}, {"Ml", Unsatisfactorily}};
+    std::vector<Course> RecordBook1 = {{"Math", Unsatisfactorily}, {"Al", Unsatisfactorily},
+                                       {"Ml", Unsatisfactorily}};
     {
         Student Student2 =
                 {
