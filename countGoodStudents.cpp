@@ -1,5 +1,9 @@
 #include "lab08.hpp"
 
+bool ratingExcellent(Course& a)
+{
+    return a.Rating == Score::Excellent;
+}
 int countGoodStudents(std::vector<Student>& students)
 {
     int numberOfGoodStudents = 0;
