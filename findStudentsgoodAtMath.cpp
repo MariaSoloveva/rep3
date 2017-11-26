@@ -1,4 +1,9 @@
 #include"lab08.hpp"
+
+bool ratingExcellentAtMath(Course& a)
+{
+    return ((a.Rating == Score::Unsatisfactorily) && (a.Title == "Math"));
+}
 void findStudentsgoodAtMath(std::vector<Student>& students)
 {
     for (auto s : students)
