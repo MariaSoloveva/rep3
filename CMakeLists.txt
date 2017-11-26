@@ -10,7 +10,7 @@ ADD_DEFINITIONS(
 
 # enum your files
 add_executable(executable
-    REp3.cpp
+    l.cpp
     checkStudentFailedMl.cpp
     checkStudentPassedAl.cpp
     countGoodStudents.cpp
