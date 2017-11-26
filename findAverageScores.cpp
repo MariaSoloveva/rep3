@@ -1,18 +1,17 @@
 #include "lab08.hpp"
 
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
-
-void loadFromFile(const std::string& filename, std::vector<std::string>& data)
+std::vector<float> findAverageScores(std::vector<Student>& group)
 {
-    std::ifstream fl(filename);
-    std::string str;
-    while (!fl.eof())
+    std::vector<float> averageScore;
+    int scores = 0;
+    for (size_t i = 0; i < group.size(); ++i)
     {
-        std::getline(fl, str);
-        data.push_back(str);
+        for (size_t j = 0; j < group[i].RecordBook.size(); ++j)
+        {
+            scores += group[i].RecordBook[j].Rating;
+         }
+        averageScore.push_back(scores / group[i].RecordBook.size());
+        scores = 0;
     }
+    return averageScore;
 }
