@@ -4,13 +4,32 @@
 #include<vector>
 #include"lab08.hpp"
 
+bool ratingUnsatisfactorily(Course& a)
+{
+    return a.Rating == Score::Unsatisfactorily;
+}
+bool ratingExcellent(Course& a)
+{
+    return a.Rating == Score::Excellent;
+}
+bool ratingExcellentAtMath(Course& a)
+{
+    return ((a.Rating == Score::Unsatisfactorily) && (a.Title == "Math"));
+}
+bool ratingUnsatisfactorilyAtMl(Course& a)
+{
+    return ((a.Rating == Score::Unsatisfactorily) && (a.Title == "Ml"));
+}
 void printVector(std::vector<float>& vec)
 {
     for (float f : vec)
         std::cout << f << ' ';
     std::cout << std::endl;
 }
-
+bool ratingGoodAtAl(Course& a)
+{
+    return ((a.Rating != Score::Unsatisfactorily) && (a.Title == "Al"));
+}
 int main()
 {
     std::vector<Student> group;
