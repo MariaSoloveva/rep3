@@ -16,10 +16,6 @@ bool ratingExcellentAtMath(Course& a)
 {
     return ((a.Rating == Score::Unsatisfactorily) && (a.Title == "Math"));
 }
-bool ratingUnsatisfactorilyAtMl(Course& a)
-{
-    return ((a.Rating == Score::Unsatisfactorily) && (a.Title == "Ml"));
-}
 void printVector(std::vector<float>& vec)
 {
     for (float f : vec)
