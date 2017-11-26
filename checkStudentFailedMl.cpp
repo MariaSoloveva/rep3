@@ -1,5 +1,9 @@
 #include "lab08.hpp"
 
+bool ratingUnsatisfactorilyAtMl(Course& a)
+{
+    return ((a.Rating == Score::Unsatisfactorily) && (a.Title == "Ml"));
+}
 bool checkStudentFailedMl(std::vector<Student>& students)
 {
     int numberOfBadStudents = 0;
