@@ -1,5 +1,9 @@
 #include"lab08.hpp"
 
+bool ratingUnsatisfactorily(Course& a)
+{
+    return a.Rating == Score::Unsatisfactorily;
+}
 int countNegligentStudents(std::vector<Student>& students)
 {
     int numberOfBadStudents = 0;
