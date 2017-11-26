@@ -16,6 +16,7 @@ add_executable(executable
     countGoodStudents.cpp
     countNegligentStudents.cpp
     findAverageScores.cpp
+    findStudentsgoodAtMath.cpp
     findMaxOfScores.cpp
 )
 
