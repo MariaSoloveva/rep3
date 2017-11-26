@@ -1,3 +1,4 @@
+#include"lab08.hpp"
 void findStudentsgoodAtMath(std::vector<Student>& students)
 {
     for (auto s : students)
