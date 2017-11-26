@@ -1,18 +1,16 @@
 #include "lab08.hpp"
 
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
-
-void saveToFile(const std::string& filename, const std::vector<Book>& data)
+bool checkStudentPassedAl(std::vector<Student>& students)
 {
-    std::fstream fl(filename, std::ios::out);
-    for (size_t i = 0; i < data.size() ; ++i)
+    int numberOfBadStudents = 0;
+    for (auto s : students)
     {
-        fl << data[i].Author << std::endl;
-        fl << data[i].Title << std::endl;
-        fl << data[i].Year << std::endl;
+        int cnt = std::count_if(s.RecordBook.begin(), s.RecordBook.end(), ratingGoodAtAl);
+        if (cnt == 0)
+            ++numberOfBadStudents;
     }
+    if (numberOfBadStudents != 0)
+        return false;
+    else
+        return true;
 }
