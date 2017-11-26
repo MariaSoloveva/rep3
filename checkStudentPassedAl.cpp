@@ -1,5 +1,9 @@
 #include "lab08.hpp"
 
+bool ratingGoodAtAl(Course& a)
+{
+    return ((a.Rating != Score::Unsatisfactorily) && (a.Title == "Al"));
+}
 bool checkStudentPassedAl(std::vector<Student>& students)
 {
     int numberOfBadStudents = 0;
