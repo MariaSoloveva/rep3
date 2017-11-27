@@ -43,7 +43,7 @@ void saveToFile(const std::string& filename, const Groups& groups)
 void loadFromFile(const std::string& filename, Groups& outGroups)
 {
     std::ifstream fl(filename);
-    std::string strnumberOfGroups ;
+    std::string strnumberOfGroups;
     std::getline(fl, strnumberOfGroups);
     int numberOfGroups = atoi(strnumberOfGroups.c_str());
     std::string nameOfGroup;
@@ -51,7 +51,7 @@ void loadFromFile(const std::string& filename, Groups& outGroups)
     for (int i = 0; i < numberOfGroups; ++i)
     {
         std::vector<Student> vecStudent;
-        std::string strnumberOfStudents ;
+        std::string strnumberOfStudents;
         std::getline(fl, strnumberOfStudents);
         int numberOfStudents = atoi(strnumberOfStudents.c_str());
         for (int j = 0; j < numberOfStudents; ++j)
@@ -61,7 +61,7 @@ void loadFromFile(const std::string& filename, Groups& outGroups)
             std::string strYear;
             std::getline(fl, strYear);
             student.Year = atoi(strYear.c_str());
-            std::string strscores ;
+            std::string strscores;
             std::getline(fl, strscores);
             int scores = atoi(strscores.c_str());
             for (int k = 0; k < scores; ++k)
