@@ -4,6 +4,19 @@
 #include <map>
 #include <string>
 #include <vector>
+enum Score
+{
+    Unsatisfactory = 2,
+    Satisfactory,
+    Good,
+    Excellent
+};
+struct Student
+{
+    std::string Name;
+    int Year;
+    std::map<std::string, Score> RecordBook;
+};
 using Groups = std::map<std::string, std::vector<Student>>;
 void saveToFile(const std::string& filename, const Groups& groups)
 {
