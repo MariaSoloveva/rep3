@@ -1,9 +1,5 @@
-#include <algorithm>
-#include <fstream>
 #include <iostream>
-#include <map>
-#include <string>
-#include <vector>
+#include <cstring>
 // 1
 char* stringCopy(const char* str)
 {
