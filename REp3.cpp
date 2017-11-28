@@ -28,7 +28,7 @@ Matrix newMatrix(int n, int m)
 {
     float **ptr;
     ptr = new float*[n];
-    for(int i = 0; i < m; i++)
+    for (int i = 0; i < m; i++)
         ptr[i] = new float[n];
     Matrix matrixStruct;
     matrixStruct.matrix = ptr;
@@ -36,9 +36,9 @@ Matrix newMatrix(int n, int m)
     matrixStruct.m = m;
     return matrixStruct;
 }
-void getIn (Matrix& matrix1)
+void getIn(Matrix& matrix1)
 {
-    for(int i = 0; i < matrix1.n; ++i)
+    for (int i = 0; i < matrix1.n; ++i)
     {
         for (int j = 0; j < matrix1.m; ++j)
         {
@@ -46,9 +46,9 @@ void getIn (Matrix& matrix1)
         }
     }
 }
-void printMatrix (Matrix& matrix1)
+void printMatrix(Matrix& matrix1)
 {
-    for(int i = 0; i < matrix1.n; ++i)
+    for (int i = 0; i < matrix1.n; ++i)
     {
         for (int j = 0; j < matrix1.m; ++j)
         {
@@ -58,7 +58,7 @@ void printMatrix (Matrix& matrix1)
     }
 }
 // 4
-void deleteMatrix (Matrix& matrix1)
+void deleteMatrix(Matrix& matrix1)
 {
     for (int i = 0; i < matrix1.m; ++i)
         delete[]matrix1.matrix[i];
@@ -66,7 +66,7 @@ void deleteMatrix (Matrix& matrix1)
     (matrix1.matrix) = nullptr;
 }
 // 5
-void snake (Matrix& matrix, int direction, int (*gen)(void)) {
+void snake(Matrix& matrix, int direction, int (*gen)(void)) {
     int i = 0;
     int j = 0;
     for (;;)
@@ -79,7 +79,8 @@ void snake (Matrix& matrix, int direction, int (*gen)(void)) {
             direction ^= 1;
             if (i == matrix.n)
                 break;
-        } else
+        }
+        else
         {
             while (i >= 0)
                 matrix.matrix[i--][j++] = gen();
@@ -105,7 +106,8 @@ void snake (Matrix& matrix, int direction, int (*gen)(void)) {
                     matrix.matrix[i++][j--] = gen();
                 i--;
                 j += 2;
-            } else
+            }
+            else
             {
                 while (j < matrix.n)
                     matrix.matrix[i--][j++] = gen();
@@ -116,7 +118,7 @@ void snake (Matrix& matrix, int direction, int (*gen)(void)) {
         }
     }
 }
-int enterANumber ()
+int enterANumber()
 {
     int n = 0;
     std::cin >> n;
@@ -126,7 +128,7 @@ int enterANumber ()
 Matrix copy(const Matrix& matrix1)
 {
     Matrix matrix2 = newMatrix(matrix1.n, matrix1.m);
-    for(int i = 0; i < matrix1.n; ++i)
+    for (int i = 0; i < matrix1.n; ++i)
     {
         for (int j = 0; j < matrix1.m; ++j)
         {
@@ -146,7 +148,7 @@ Matrix transpose(const Matrix& matrix1)
 }
 // 8
 // 9
-float determinant (Matrix matrix)
+float determinant(Matrix matrix)
 {
     int l;
     float d;
@@ -286,8 +288,8 @@ int main()
     Matrix matrixB = copy(matrixA);
     std::cout << std::endl;
     printMatrix(matrixB);
-    //deleteMatrix(matrixA);
-    //deleteMatrix(matrixB);
+    deleteMatrix(matrixA);
+    deleteMatrix(matrixB);
     // 7
     n = 10;
     m = 10;
