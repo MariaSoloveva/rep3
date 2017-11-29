@@ -66,8 +66,8 @@ int main()
     // 5
      n = 4;
      m = 4;
-    matrix = newMatrix(n, m);
-    snake(matrix, 1, enterANumber);
+    Matrix matrix = newMatrix(n, m);
+    snake(matrix);
     printMatrix(matrix);
     deleteMatrix(matrix);
     // 6
