@@ -16,7 +16,7 @@ Matrix transpose(const Matrix&);
 Matrix inverse(const Matrix&);
 float determinant(const Matrix&);
 Matrix ones(int);
-Matrix operator*(const Matrix&, const Matrix&);
-bool operator==(const Matrix&, const Matrix&);
+Matrix mult(const Matrix&, const Matrix&);
+bool equal(const Matrix&, const Matrix&);
 
 #endif // MATRIX_INCLUDE
