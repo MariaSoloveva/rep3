@@ -2,10 +2,13 @@
 #include <cstring>
 #include "matrix.hpp"
 
-void deleteMatrix(Matrix& matrix1)
+void deleteMatrix(Matrix& m)
 {
-    for (int i = 0; i < matrix1.m; ++i)
-        delete[]matrix1.matrix[i];
-    //delete[]matrix1;
-    //(matrix1.matrix) = nullptr;
+    float ** matrix = m.matrix;
+    for (int i = 0; i < m.n; ++i)
+        delete[] matrix[i];
+    delete [] matrix;
+    m.matrix = nullptr;
+    m.n = 0;
+    m.m = 0;
 }
