@@ -2,7 +2,7 @@
 #include <cstring>
 #include "matrix.hpp"
 
-void snake (Matrix& matrix)
+void snake(Matrix& matrix)
 {
     int value = 0;
     int xy = 0;
