@@ -2,7 +2,7 @@
 #include <cstring>
 #include "matrix.hpp"
 
-float determinant(Matrix matrix)
+float determinant(const Matrix& matrix)
 {
     int l;
     float d;
