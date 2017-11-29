@@ -2,62 +2,94 @@
 #include <cstring>
 #include "matrix.hpp"
 
-void snake(Matrix& matrix, int direction, int (*gen)(void))
+void snake (Matrix& matrix)
 {
-    int i = 0;
-    int j = 0;
-    for (;;)
-    {
-        if (direction == 0)
+    int value = 0;
+    int xy = 0;
+    int yx = 0;
+    for (int x = 0; x < matrix.n; x++)
+        if (x % 2 == 0)
         {
-            while (j >= 0)
-                matrix.matrix[i++][j--] = gen();
-            j++;
-            direction ^= 1;
-            if (i == matrix.n)
-                break;
+            yx = 0;
+            xy = x;
+            while (xy >= 0)
+            {
+                matrix.matrix[xy][yx] = value;
+                value++;
+                xy--;
+                yx++;
+            }
         }
         else
         {
-            while (i >= 0)
-                matrix.matrix[i--][j++] = gen();
-            while (i >= 0);
-            i++;
-            direction ^= 1;
-            if (j == matrix.n)
-                break;
-        }
-        if (direction == 0)
-        {
-            i = 1;
-            j = matrix.n - 1;
-        } else {
-            i = matrix.n - 1;
-            j = 1;
-        }
-        while (i != matrix.n && j != matrix.n)
-        {
-            if (direction == 0)
+            yx = x;
+            xy = 0;
+            while (yx >= 0)
             {
-                while (i < matrix.n)
-                    matrix.matrix[i++][j--] = gen();
-                i--;
-                j += 2;
+                matrix.matrix[xy][yx] = value;
+                value++;
+                yx--;
+                xy++;
+            }
+        }
+    if (matrix.n % 2 == 1)
+    {
+        for (int y = 1; y < matrix.n; y++)
+        {
+            if (y % 2 == 1)
+            {
+                xy = y;
+                yx = matrix.n - 1;
+                while (yx >= y)
+                {
+                    matrix.matrix[xy][yx] = value;
+                    value++;
+                    xy++;
+                    yx--;
+                }
             }
             else
             {
-                while (j < matrix.n)
-                    matrix.matrix[i--][j++] = gen();
-                j--;
-                i += 2;
+                yx = y;
+                xy = matrix.n - 1;
+                while (xy >= y)
+                {
+                    matrix.matrix[xy][yx] = value;
+                    value++;
+                    xy--;
+                    yx++;
+                }
             }
-            direction ^= 1;
         }
     }
-}
-int enterANumber()
-{
-    int n = 0;
-    std::cin >> n;
-    return n;
+    else
+    {
+        for (int x = 1; x < matrix.n; x++)
+        {
+            if (x % 2 == 1)
+            {
+                xy = matrix.n - 1;
+                yx = x;
+                while (xy >= x)
+                {
+                    matrix.matrix[xy][yx] = value;
+                    value++;
+                    xy--;
+                    yx++;
+                }
+            }
+            else
+            {
+                xy = x;
+                yx = matrix.n - 1;
+                while (yx >= x)
+                {
+                    matrix.matrix[xy][yx] = value;
+                    value++;
+                    xy++;
+                    yx--;
+                }
+            }
+        }
+    }
 }
