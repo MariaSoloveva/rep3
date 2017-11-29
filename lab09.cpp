@@ -64,9 +64,9 @@ int main()
     bool b = matrix1.matrix == nullptr;
     std::cout << b << std::endl;
     // 5
-     n = 4;
-     m = 4;
-    Matrix matrix = newMatrix(n, m);
+    n = 4;
+    m = 4;
+    matrix = newMatrix(n, m);
     snake(matrix);
     printMatrix(matrix);
     deleteMatrix(matrix);
