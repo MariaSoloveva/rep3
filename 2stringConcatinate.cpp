@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include "iu_strings.hpp"
 
 char* stringConcatinate(const char* str0, const char* str1)
