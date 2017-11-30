@@ -1,5 +1,6 @@
-#include <iostream>
+#include <cmath>
 #include <cstring>
+#include <iostream>
 #include "matrix.hpp"
 
 void GetMatr(const Matrix matrix, Matrix tempMatr, int indRow, int indCol)
