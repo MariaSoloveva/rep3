@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include "matrix.hpp"
 
 float determinant(const Matrix& matrix)
