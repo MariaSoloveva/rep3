@@ -133,8 +133,7 @@ int main()
     getIn(matrixOne);
     matrixTwo = newMatrix(n, m);
     getIn(matrixTwo);
-    d = equal(matrixOne, matrixTwo);
-    std::cout << d << std::endl;
+    bool d = (matrixOne == matrixTwo)
     deleteMatrix(matrixOne);
     deleteMatrix(matrixTwo);
     return 0;
