@@ -83,11 +83,14 @@ int main()
     deleteMatrix(matrixA);
     deleteMatrix(matrixB);
     // 7
-    n = 10;
-    m = 10;
+    n = 4;
+    m = 3;
     Matrix matrix0 = newMatrix(n, m);
+    getIn(matrix0);
+    printMatrix(matrix0);
+    std::cout << std::endl;
     Matrix matrixT = transpose(matrix0);
-    deleteMatrix(matrix0);
+    printMatrix(matrixT);
     // 8
     n = 10;
     matrix = newMatrix(n, n);
