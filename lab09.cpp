@@ -3,6 +3,7 @@
 #include "iu_strings.hpp"
 #include "matrix.hpp"
 
+
 void getIn(Matrix& matrix1)
 {
     for (int i = 0; i < matrix1.n; ++i)
