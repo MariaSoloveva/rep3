@@ -2,7 +2,7 @@
 #include <cstring>
 #include "matrix.hpp"
 
-Matrix mult(const Matrix& aMatrix, const Matrix& bMatrix)
+Matrix operator*(const Matrix& aMatrix, const Matrix& bMatrix)
 {
     Matrix product = newMatrix(aMatrix.n , bMatrix.m);
     for (int col = 0; col < bMatrix.m; col++)
