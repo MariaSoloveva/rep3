@@ -2,7 +2,7 @@
 #include <cstring>
 #include "matrix.hpp"
 
-bool operator==(const Matrix&, const Matrix&)
+bool operator==(const Matrix& aMatrix, const Matrix& bMatrix)
 {
     int number = 0;
     int inner = 0;
