@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include "matrix.hpp"
 
 Matrix copy(const Matrix& matrix1)
