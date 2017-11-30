@@ -134,7 +134,7 @@ int main()
     getIn(matrixOne);
     matrixTwo = newMatrix(n, m);
     getIn(matrixTwo);
-    bool db = (matrixOne == matrixTwo)
+    bool db = (matrixOne == matrixTwo);
     deleteMatrix(matrixOne);
     deleteMatrix(matrixTwo);
     return 0;
