@@ -8,7 +8,7 @@ void GetMatr(const Matrix matrix, Matrix tempMatr, int indRow, int indCol)
     int ki = 0;
     for (int i = 0; i < matrix.n; i++)
     {
-        if(i != indRow)
+        if (i != indRow)
         {
             for (int j = 0, kj = 0; j < matrix.n; j++)
             {
