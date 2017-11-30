@@ -122,7 +122,7 @@ int main()
     Matrix matrixTwo = newMatrix(m, k);
     getIn(matrixTwo);
     printMatrix(matrixTwo);
-    Matrix matrixThree = mult(matrixOne, matrixTwo);
+    Matrix matrixThree = matrixOne * matrixTwo;
     printMatrix(matrixThree);
     deleteMatrix(matrixOne);
     deleteMatrix(matrixTwo);
