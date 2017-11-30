@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include "matrix.hpp"
 
 Matrix operator*(const Matrix& aMatrix, const Matrix& bMatrix)
