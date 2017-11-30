@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include "iu_strings.hpp"
 #include "matrix.hpp"
 
