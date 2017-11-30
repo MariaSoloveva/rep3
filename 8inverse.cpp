@@ -42,7 +42,7 @@ Matrix inverse(const Matrix& matrix)
     }
     else
     {
-        std::cout << "Т.к. определитель матрицы = 0,\nто матрица вырожденная и обратной не имеет!!!" << std::endl;
+        std::cout << "the determinant is zero , matrix is singular" << std::endl;
         return matrix;
     }
 }
