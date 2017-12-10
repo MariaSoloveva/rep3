@@ -17,7 +17,7 @@ int main()
     insertAfter(l, l->Head, 100);
     print(l);
     std::cout << std::endl;
-    eraseAfter(l,l->Head);
+    eraseAfter(l, l->Head);
     print(l);
     reverse(l);
     std::cout << std::endl;
