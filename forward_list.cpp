@@ -84,11 +84,11 @@ ForwardList::Node* eraseAfter(ForwardList* const list, ForwardList::Node* const 
     else
     {
         ForwardList::Node *ptr;
-        for (ptr = list->Head; ptr->Next != nullptr && ptr->Next != node1; ptr = ptr->Next);
-        if (ptr->Next == nullptr)
-            return 0;
-        else if (ptr->Next == list->Tail)
-            list->Tail = ptr;
+        for (ptr = list->Head; ptr->Next != nullptr && ptr->Next != node1; ptr = ptr->Next)
+            if (ptr->Next == nullptr)
+                return 0;
+            else if (ptr->Next == list->Tail)
+                list->Tail = ptr;
         ptr->Next = node1->Next;
         delete (node1);
         return ptr;
