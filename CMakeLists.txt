@@ -10,7 +10,8 @@ ADD_DEFINITIONS(
 
 # enum your files
 add_executable(executable
-    
+    lab10.cpp
+    forward_list.cpp
 )
 
 target_link_libraries(executable)
