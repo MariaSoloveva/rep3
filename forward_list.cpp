@@ -64,7 +64,8 @@ size_t size(const ForwardList* const list)
     }
     return size;
 }
-ForwardList::Node* insertAfter(ForwardList* const list, ForwardList::Node* const where, const ForwardList::value_type& data)
+ForwardList::Node* insertAfter(ForwardList* const list, ForwardList::Node* const where,
+                               const ForwardList::value_type& data)
 {
     ForwardList::Node* newNode = createNode(data, where->Next);
     ForwardList::Node* prev = where;
@@ -72,7 +73,8 @@ ForwardList::Node* insertAfter(ForwardList* const list, ForwardList::Node* const
         prev->Next = newNode;
     return newNode;
 }
-ForwardList::Node* eraseAfter(ForwardList* const list, ForwardList::Node* const node){
+ForwardList::Node* eraseAfter(ForwardList* const list, ForwardList::Node* const node)
+{
     ForwardList::Node* node1 = node->Next;
     if ( list->Head == node1 )
     {
@@ -111,7 +113,7 @@ ForwardList::Node* reverse(ForwardList* const list)
     {
         int data = first->Next->Data;
         eraseAfter(list1, first);
-        pushFront(list1,data);
+        pushFront(list1, data);
     }
     return list->Head;
 }
