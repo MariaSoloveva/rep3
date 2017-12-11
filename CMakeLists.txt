@@ -12,6 +12,8 @@ ADD_DEFINITIONS(
 add_executable(executable
     lab10.cpp
     forward_list.cpp
+    queue.cpp
+    stack.cpp
 )
 
 target_link_libraries(executable)
