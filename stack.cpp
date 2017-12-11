@@ -36,7 +36,7 @@ Stack::Node* push(Stack* const st, const Stack::value_type& data)
     st->Head->Next = head;
     return node;
 }
-void pop (Stack* const st)
+void pop(Stack* const st)
 {
     Stack::Node* next = 0;
     if (st->Head)
