@@ -23,5 +23,16 @@ int main()
     std::cout << std::endl;
     print(l);
     destroyList(&l);
+    Queue* q = initQueue();
+    push(q, 1);
+    push(q, 2);
+    push(q, 3);
+    push(q, 4);
+    push(q, 5);
+    print(q);
+    std::cout << std::endl;
+    pop(q);
+    print(q);
+    destroyQ(&q);
     return 0;
 }
