@@ -1,6 +1,8 @@
 #include<algorithm>
 #include <iostream>
 #include "forward_list.hpp"
+#include"queue.hpp"
+#include"stack.hpp"
 
 int main()
 {
