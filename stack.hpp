@@ -17,3 +17,4 @@ Stack::Node* createNodeForStack(const Stack::value_type& data, Stack::Node* next
 Stack::Node* push(Stack* const st, const Stack::value_type& data);
 void pop(Stack* const st);
 Stack::Node* top(Stack* const st);
+void print(const Stack* const st);
