@@ -50,3 +50,12 @@ Stack::Node* top(Stack* const st)
 {
     return st->Head;
 }
+void print(const Stack* const st)
+{
+    Stack::Node* tmp = st->Head;
+    while (tmp)
+    {
+        std::cout << tmp->Data << std::endl;
+        tmp = tmp->Next;
+    }
+}
