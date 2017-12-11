@@ -35,6 +35,17 @@ int main()
     std::cout << std::endl;
     pop(q);
     print(q);
-    destroyQ(&q);
+    std::cout << std::endl;
+    Stack* st = initStack();
+    push(st, 1);
+    push(st, 2);
+    push(st, 3);
+    push(st, 4);
+    push(st, 5);
+    print(st);
+    std::cout << std::endl;
+    pop(st);
+    print(st);
+    destroyS(&st);
     return 0;
 }
