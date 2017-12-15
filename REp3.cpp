@@ -1,148 +1,87 @@
 #include <cmath>
 #include <iostream>
 
-int main () {
-    char n = 0;
-    do {
-        std::cout << "What chess piece?" << std::endl;
-        std::cin >> n;
-    } while ((n != 'p') && (n != 'N') && (n != 'Q') && (n != 'R') && (n != 'B'));
-    std::pair<char, int> firstPair;
-    do {
-        std::cout << " Initial coordinate? " << std::endl;
-        std::cin >> firstPair.first >> firstPair.second;
-    } while ((firstPair.second > 8) || ((firstPair.first != 'a') &&
-            (firstPair.first != 'b') && (firstPair.first != 'c')
-                                        && (firstPair.first != 'd') && (firstPair.first != 'e')
-                                        && (firstPair.first != 'f')  && (firstPair.first != 'h')));
-    std::pair<char, int> next;
-    next.first = 'e';
-    next.second = 4;
-    do {
-        std::cout << " Next coordinate? " << std::endl;
-        std::cin >> next.first >> next.second;
-    } while ((firstPair.second > 8) || ((firstPair.first != 'a') && (firstPair.first != 'b') && (firstPair.first != 'c')
-                                 && (firstPair.first != 'd') && (firstPair.first != 'e') && (firstPair.first != 'f')
-                                       && (firstPair.first != 'h')));
-    std::cout << "Answer: " << std::endl;
-    if (n == 'p') {
-        if (((next.first == firstPair.first) && (next.second - 1 == firstPair.second)) &&
-                ((next.first != 'f') && (firstPair.second != 7))){
-            std::cout << "The figure can move" << std::endl;
-        } else if ((firstPair.second == 2) && (next.second - 2 == next.second) && (next.first == firstPair.second)) {
-            std::cout << "The figure can move" << std::endl;
-        } else {
-            std::cout << "The figure can't move" << std::endl;
+bool Check(std::string str)
+{
+    int countSign = 0;
+    for(size_t i = 0; i < str.size(); ++i)
+    {
+        if ((!isdigit(str[i]) && !isdigit(str[i+1])) && !isalpha(str[i]))
+        {
+            return false;
         }
     }
-    if (n == 'R') {
-        if ((next.first == firstPair.first) || (next.second == firstPair.second)) {
-            if ((firstPair.first == 'f') && (next.first == 'f')) {
-                if ((next.second < 7) && (firstPair.second < 7)) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.second > 7) && (firstPair.second > 7)) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.second > 7) && (firstPair.second < 7)) {
-                    std::cout << "False" << std::endl;
-                }
-                if ((next.second < 7) && (firstPair.second > 7)) {
-                    std::cout << "The figure can't move" << std::endl;
-                }
-            }
-            if ((firstPair.first == 7) && (next.first == 7)) {
-                if ((firstPair.first < 'f') && (next.first < 'f')) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.first > 'f') && (firstPair.first > 'f')) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.first > 'f') && (firstPair.first < 'f')) {
-                    std::cout << "The figure can't move" << std::endl;
-                }
-                if ((next.first < 'f') && (firstPair.first > 'f')) {
-                    std::cout << "The figure can't move" << std::endl;
-                }
-            }
-            std::cout << "The figure can move" << std::endl;
+    return true;
+}
+void breakArr(std::string str, int * sign, double * num, int * cs, int * cn)
+{
+    std::string allSign = "+-*/";
+    for (int i = 0; i < str.size(); ++i)
+    {
+        double c = 0;
+        int fl = 0;
+        while (str[i] >= '0' && str[i] <= '9')
+        {
+            fl = 1;
+            c = c * 10 + (str[i++] - '0');
         }
-        else {
-            std::cout << "The figure can't move" << std::endl;
-        }
+        if (fl)
+            num[(*cn)++] = c;
+        fl = allSign.find(str[i]);
+        if (fl != -1)
+            sign[(*cs)++] = fl;
     }
-    if (n == 'B') {
-        if (abs(firstPair.first - firstPair.first) == abs(next.second - firstPair.second)) {
-            if (abs(next.first - 'f') == abs(next.second - 7)) {
-                if ((next.second > 7) && (firstPair.second < 7)) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.second < 7) && (firstPair.second < 7)) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.second > 7) && (firstPair.second > 7)) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.second < 7) && (firstPair.second > 7)) {
-                    std::cout << "The figure can't move" << std::endl;
-                }
-            }
-            std::cout << "The figure can move" << std::endl;
-        }
-        else {
-            std::cout << "The figure can move" << std::endl;
-        }
+}
+
+double changeValue(double a, double b, int sign) {
+    double c = 0;
+    switch (sign) {
+        case 0:
+            c = a + b;
+            break;
+        case 1:
+            c = a - b;
+            break;
+        case 2:
+            c = a * b;
+            break;
+        case 3:
+            c = a / b;
+            break;
     }
-    if (n == 'Q') {
-        if ((abs(firstPair.first - firstPair.first) == abs(next.second - firstPair.second)) ||
-            ((next.first == firstPair.first) || (next.second == firstPair.second))) {
-            if ((firstPair.first == 'f') && (next.first == 'f')) {
-                if ((next.second > 7) && (firstPair.second < 7)) {
-                    std::cout << "The figure can't move" << std::endl;
+    return c;
+}
+
+int main()
+{
+    std::string expression;
+    std::cout << "Enter expression: ";
+    getline(std::cin, expression);
+    expression += ' ';
+    int sign[expression.size() / 2];
+    double num[expression.size() / 2];
+    int countSign = 0;
+    int countNum = 0;
+    breakArr(expression, sign, num, &countSign, &countNum);
+    if (Check(expression)) {
+        while (countNum > 1) {
+            int numOper = 0;
+            for (int i = 0; i < countSign; ++i)
+                if (sign[i] > 1) {
+                    numOper = i;
+                    break;
                 }
-                if ((next.second < 7) && (firstPair.second < 7)) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.second > 7) && (firstPair.second > 7)) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.second < 7) && (firstPair.second > 7)) {
-                    std::cout << "The figure can't move" << std::endl;
-                }
-            }
-            if ((firstPair.first == 7) && (next.first == 7)) {
-                if ((firstPair.first < 'f') && (next.first < 'f')) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.first > 'f') && (firstPair.first > 'f')) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.first > 'f') && (firstPair.first < 'f')) {
-                    std::cout << "The figure can't move" << std::endl;
-                }
-                if ((next.first < 'f') && (firstPair.first > 'f')) {
-                    std::cout << "The figure can't move" << std::endl;
-                }
-            }
-            if (abs(next.first - 'f') == abs(next.second - 7)) {
-                if ((next.second > 7) && (firstPair.second < 7)) {
-                    std::cout << "The figure can't move" << std::endl;
-                }
-                if ((next.second < 7) && (firstPair.second < 7)) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.second > 7) && (firstPair.second > 7)) {
-                    std::cout << "The figure can move" << std::endl;
-                }
-                if ((next.second < 7) && (firstPair.second > 7)) {
-                    std::cout << "The figure can't move" << std::endl;
-                }
-            }
-            std::cout << "The figure can move" << std::endl;
+            num[numOper] = changeValue(num[numOper], num[numOper + 1], sign[numOper]);
+            for (int i = numOper + 1; i < countNum; i++)
+                num[i] = num[i + 1];
+            for (int i = numOper; i < countSign; i++)
+                sign[i] = sign[i + 1];
+            countNum--;
+            countSign--;
         }
-        else {
-            std::cout << "The figure can move" << std::endl;
-        }
+        std::cout << "Result: " << num[0] << std::endl;
+    } else {
+        std::cout << "I don't understand" << std::endl;
     }
     return 0;
 }
