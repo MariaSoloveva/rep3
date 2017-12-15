@@ -4,7 +4,7 @@
 bool Check(std::string str)
 {
     int countSign = 0;
-    for(size_t i = 0; i < str.size(); ++i)
+    for (size_t i = 0; i < str.size(); ++i)
     {
         if ((!isdigit(str[i]) && !isdigit(str[i+1])) && !isalpha(str[i]))
         {
