@@ -1,85 +1,148 @@
 #include <cmath>
 #include <iostream>
 
-int main()
-{
-    std::pair<char, int> p1;
-    p1.first = 'e';
-    p1.second = 4;
-    std::cout << " What chess piece? " << std::endl;
-    char a;
-    std::cin >> a;
-    std::cout << " Initial coordinate? " << std::endl;
-    std::pair<char, int> p2;
-    char b;
-    std::cin >> b;
-    p2.first = b;
-    int c = 0;
-    std::cin >> c;
-    p2.second = c;
-    std::cout << " Next coordinate? " << std::endl;
-    std::pair<char, int> p3;
-    std::cin >> a;
-    std::cin >> c;
-    p1.first = a;
-    p1.second = c;
-    if (a = 'R')
-    {
-        if (((p1.first == p2.first) || (p1.second == p2.second)) &&
-            ((p3.first != p1.first) && (p3.second != p1.second)) &&
-            (((p1.first >= p2.first) || (p1.second >= p2.second)) ||
-             ((p1.first <= p2.first) || (p1.second <= p2.second))))
-        {
-            std::cout << " True " << std::endl;
-        }
-        else
-        {
-            std::cout << " False " << std::endl;
+int main () {
+    char n = 0;
+    do {
+        std::cout << "What chess piece?" << std::endl;
+        std::cin >> n;
+    } while ((n != 'p') && (n != 'N') && (n != 'Q') && (n != 'R') && (n != 'B'));
+    std::pair<char, int> firstPair;
+    do {
+        std::cout << " Initial coordinate? " << std::endl;
+        std::cin >> firstPair.first >> firstPair.second;
+    } while ((firstPair.second > 8) || ((firstPair.first != 'a') &&
+            (firstPair.first != 'b') && (firstPair.first != 'c')
+                                        && (firstPair.first != 'd') && (firstPair.first != 'e')
+                                        && (firstPair.first != 'f')  && (firstPair.first != 'h')));
+    std::pair<char, int> next;
+    next.first = 'e';
+    next.second = 4;
+    do {
+        std::cout << " Next coordinate? " << std::endl;
+        std::cin >> next.first >> next.second;
+    } while ((firstPair.second > 8) || ((firstPair.first != 'a') && (firstPair.first != 'b') && (firstPair.first != 'c')
+                                 && (firstPair.first != 'd') && (firstPair.first != 'e') && (firstPair.first != 'f')
+                                       && (firstPair.first != 'h')));
+    std::cout << "Answer: " << std::endl;
+    if (n == 'p') {
+        if (((next.first == firstPair.first) && (next.second - 1 == firstPair.second)) &&
+                ((next.first != 'f') && (firstPair.second != 7))){
+            std::cout << "The figure can move" << std::endl;
+        } else if ((firstPair.second == 2) && (next.second - 2 == next.second) && (next.first == firstPair.second)) {
+            std::cout << "The figure can move" << std::endl;
+        } else {
+            std::cout << "The figure can't move" << std::endl;
         }
     }
-    if (a =='B')
-    {
-        if (((std::abs(p1.first - p2.first) == std::abs(p1.second - p2.second)) &&
-             ((p3.first != p1.first) || (p3.second != p1.second)) &&
-             (((p2.first - p1.first > 0) || (p2.second - p1.second >0)) ||
-              ((p2.first - p1.first < 0) || (p2.second - p1.second < 0)))))
-        {
-            std::cout << " True " << std::endl;
+    if (n == 'R') {
+        if ((next.first == firstPair.first) || (next.second == firstPair.second)) {
+            if ((firstPair.first == 'f') && (next.first == 'f')) {
+                if ((next.second < 7) && (firstPair.second < 7)) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.second > 7) && (firstPair.second > 7)) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.second > 7) && (firstPair.second < 7)) {
+                    std::cout << "False" << std::endl;
+                }
+                if ((next.second < 7) && (firstPair.second > 7)) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+            }
+            if ((firstPair.first == 7) && (next.first == 7)) {
+                if ((firstPair.first < 'f') && (next.first < 'f')) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.first > 'f') && (firstPair.first > 'f')) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.first > 'f') && (firstPair.first < 'f')) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+                if ((next.first < 'f') && (firstPair.first > 'f')) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+            }
+            std::cout << "The figure can move" << std::endl;
         }
-                else
-        {
-            std::cout << " False " << std::endl;
-        }
-    }
-    if (a == 'Q')
-    {
-        if ((((p1.first == p2.first) || (p1.second == p2.second)) &&
-            ((p3.first != p1.first) && (p3.second != p1.second)) &&
-            (((p1.first >= p2.first) || (p1.second >= p2.second)) ||
-             ((p1.first <= p2.first) || (p1.second <= p2.second)))) &&
-        ((((std::abs(p1.first - p2.first) == std::abs(p1.second - p2.second)) &&
-           ((p3.first != p1.first) || (p3.second != p1.second)) &&
-           (((p2.first - p1.first > 0) || (p2.second - p1.second >0)) ||
-            ((p2.first - p1.first < 0) || (p2.second - p1.second < 0)))))))
-        {
-            std::cout << " True " << std::endl;
-        }
-        else
-        {
-            std::cout << " False " << std::endl;
-        }
-    }
-    if (a = 'p')
-    {
-        if (((p1.second == p2.second + 1) && ((p3.first != p1.first) && (p3.second != p1.second)) &&
-                                           ((p2.second - p1.second) > 0)))
-        {
-            std::cout << " True " << std::endl;
-        }
-        else
-        {
-            std::cout << " False " << std::endl;
+        else {
+            std::cout << "The figure can't move" << std::endl;
         }
     }
-
+    if (n == 'B') {
+        if (abs(firstPair.first - firstPair.first) == abs(next.second - firstPair.second)) {
+            if (abs(next.first - 'f') == abs(next.second - 7)) {
+                if ((next.second > 7) && (firstPair.second < 7)) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.second < 7) && (firstPair.second < 7)) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.second > 7) && (firstPair.second > 7)) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.second < 7) && (firstPair.second > 7)) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+            }
+            std::cout << "The figure can move" << std::endl;
+        }
+        else {
+            std::cout << "The figure can move" << std::endl;
+        }
+    }
+    if (n == 'Q') {
+        if ((abs(firstPair.first - firstPair.first) == abs(next.second - firstPair.second)) ||
+            ((next.first == firstPair.first) || (next.second == firstPair.second))) {
+            if ((firstPair.first == 'f') && (next.first == 'f')) {
+                if ((next.second > 7) && (firstPair.second < 7)) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+                if ((next.second < 7) && (firstPair.second < 7)) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.second > 7) && (firstPair.second > 7)) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.second < 7) && (firstPair.second > 7)) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+            }
+            if ((firstPair.first == 7) && (next.first == 7)) {
+                if ((firstPair.first < 'f') && (next.first < 'f')) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.first > 'f') && (firstPair.first > 'f')) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.first > 'f') && (firstPair.first < 'f')) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+                if ((next.first < 'f') && (firstPair.first > 'f')) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+            }
+            if (abs(next.first - 'f') == abs(next.second - 7)) {
+                if ((next.second > 7) && (firstPair.second < 7)) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+                if ((next.second < 7) && (firstPair.second < 7)) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.second > 7) && (firstPair.second > 7)) {
+                    std::cout << "The figure can move" << std::endl;
+                }
+                if ((next.second < 7) && (firstPair.second > 7)) {
+                    std::cout << "The figure can't move" << std::endl;
+                }
+            }
+            std::cout << "The figure can move" << std::endl;
+        }
+        else {
+            std::cout << "The figure can move" << std::endl;
+        }
+    }
+    return 0;
 }
