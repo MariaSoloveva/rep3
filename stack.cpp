@@ -4,7 +4,8 @@
 int StrLen(char* strIn)
 {
     int size = 0;
-    for (; strIn[size] != 0; size++);
+    for (; strIn[size] != 0; size++)
+        continue;
     return size;
 }
 void StrCopy(char* strOut, char* strIn)
@@ -15,7 +16,8 @@ void StrCopy(char* strOut, char* strIn)
 bool StrCmp(char* strFirst, char* strSecond)
 {
     int i = 0;
-    for (; (strFirst[i] == strSecond[i]) && (i < StrLen(strFirst)); ++i);
+    for (; (strFirst[i] == strSecond[i]) && (i < StrLen(strFirst)); ++i)
+        continue;
     return (i == StrLen(strFirst)) ? true : false;
 }
 
@@ -95,7 +97,8 @@ void String::Replace(char oldSymbol, char newSymbol)
 size_t String::Size() const
 {
     size_t sizeOfData = 0;
-    for (; Data[sizeOfData] != 0; ++sizeOfData);
+    for (; Data[sizeOfData] != 0; ++sizeOfData)
+        continue;
     return sizeOfData;
 }
 bool String::Empty() const
@@ -109,7 +112,6 @@ char String::operator[](size_t index) const
 char& String::operator[](size_t index)
 {
     static char emptyChar = '';
-    //std::cerr << "Index out of range. \n";
     return (index >= 0 && index < StrLen(this->Data)) ? this->Data[index] : emptyChar;
 }
 void String::RTrim(char symbol)
