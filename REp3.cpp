@@ -146,7 +146,7 @@ void String::LTrim(char* Data, char symbol)
     Data = newData;
 }
 
-String operator+(const String& a, const String& b)
+/*String operator+(const String& a, const String& b)
 {
     String c = a;
     return c += b;
@@ -165,7 +165,7 @@ std::ostream& operator<<(std::ostream& out, const String& str)
 {
     return out << str.Data;
 }
-
+*/
 int main()
 {
 }
