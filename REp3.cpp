@@ -1,87 +1,171 @@
-#include <cmath>
 #include <iostream>
+#include "string.h"
 
-bool Check(std::string str)
+int StrLen(char* strIn)
 {
-    int countSign = 0;
-    for (size_t i = 0; i < str.size(); ++i)
-    {
-        if ((!isdigit(str[i]) && !isdigit(str[i+1])) && !isalpha(str[i]))
-        {
-            return false;
-        }
-    }
-    return true;
+    int size = 0;
+    for (; strIn[size] != 0; size++)
+        continue;
+    return size;
 }
-void breakArr(std::string str, int * sign, double * num, int * cs, int * cn)
+void StrCopy(char* strOut, char* strIn)
 {
-    std::string allSign = "+-*/";
-    for (int i = 0; i < str.size(); ++i)
-    {
-        double c = 0;
-        int fl = 0;
-        while (str[i] >= '0' && str[i] <= '9')
-        {
-            fl = 1;
-            c = c * 10 + (str[i++] - '0');
-        }
-        if (fl)
-            num[(*cn)++] = c;
-        fl = allSign.find(str[i]);
-        if (fl != -1)
-            sign[(*cs)++] = fl;
-    }
+    for (int i = 0; i < StrLen(strIn); i++)
+        strOut[i] = strIn[i];
+}
+bool StrCmp(char* strFirst, char* strSecond)
+{
+    int i = 0;
+    for (; (strFirst[i] == strSecond[i]) && (i < StrLen(strFirst)); ++i)
+        continue;
+    return (i == StrLen(strFirst)) ? true : false;
 }
 
-double changeValue(double a, double b, int sign) {
-    double c = 0;
-    switch (sign) {
-        case 0:
-            c = a + b;
-            break;
-        case 1:
-            c = a - b;
-            break;
-        case 2:
-            c = a * b;
-            break;
-        case 3:
-            c = a / b;
+String::~String()
+{
+    delete[] Data;
+}
+String::String() : Data(nullptr) {}
+String::String(const String& rhs)
+{
+    Data = new char[StrLen(rhs.Data)+1];
+    StrCopy(Data, rhs.Data);
+}
+String::String(char* data)
+{
+    Data = new char[StrLen(data)+1];
+    StrCopy(Data, data);
+}
+String& String::operator=(const String& rhs)
+{
+    if (this != &rhs)
+    {
+        delete[] this->Data;
+        this->Data = new char[StrLen(rhs.Data)+1];
+        StrCopy(this->Data, rhs.Data);
+    }
+    return *this;
+}
+String& String::operator+=(const String& rhs)
+{
+    int size = StrLen(this->Data) + StrLen(rhs.Data);
+    char* newString = new char[size + 1];
+    for (int i = 0; i < StrLen(this->Data); i++)
+        newString[i] = this->Data[i];
+    for (int k = StrLen(this->Data), j = 0; k <= size; k++, j++)
+        newString[k] = rhs.Data[j];
+    delete this->Data;
+    this->Data = newString;
+    return *this;
+}
+bool String::operator<(const String& rhs) const
+{
+    return (StrLen(Data) < StrLen(rhs.Data)) ? true : false;
+}
+bool String::operator==(const String& rhs) const
+{
+    return StrCmp(rhs.Data, Data);
+}
+size_t String::Find(const String& substr) const
+{
+    size_t lenSub = StrLen(substr.Data);
+    if ((StrLen(Data) - lenSub) > 0)
+    {
+        for (size_t i = 0; i < (StrLen(Data) - lenSub); ++i)
+        {
+            int j = 0;
+            bool flag = true;
+            for (int k = i; k < lenSub; ++k)
+            {
+                if (Data[k] != substr.Data[j])
+                    flag = false;
+                ++j;
+            }
+            if (flag)
+                return i;
+        }
+    }
+    else
+        return -1;
+}
+void String::Replace(char oldSymbol, char newSymbol)
+{
+    for (int i = 0; Data[i] != 0; ++i)
+        if (Data[i] == oldSymbol)
+            Data[i] = newSymbol;
+}
+size_t String::Size() const
+{
+    size_t sizeOfData = 0;
+    for (; Data[sizeOfData] != 0; ++sizeOfData)
+        continue;
+    return sizeOfData;
+}
+bool String::Empty() const
+{
+    return (Data == nullptr) ? true : false;
+}
+char String::operator[](size_t index) const
+{
+    return (index >= 0 && index < StrLen(this->Data)) ? this->Data[index] : 0;
+}
+char& String::operator[](size_t index)
+{
+    static char emptyChar = '';
+    return (index >= 0 && index < StrLen(this->Data)) ? this->Data[index] : emptyChar;
+}
+void String::RTrim(char symbol)
+{
+    size_t sizeOfData = StrLen(Data);
+    for (; sizeOfData != -1; sizeOfData--)
+    {
+        if (Data[sizeOfData - 1] != symbol)
             break;
     }
-    return c;
+    std::cout << sizeOfData << std::endl;
+    char* newData = new char[sizeOfData + 1];
+    for (int i = 0; i < sizeOfData; ++i)
+        newData[i] = Data[i];
+    Data = newData;
+}
+void String::LTrim(char* Data, char symbol)
+{
+    size_t sizeOfData = 0;
+    for (; Data[sizeOfData] != 0; ++sizeOfData)
+    {
+        if (Data[sizeOfData] != symbol)
+            break;
+    }
+    char* newData = new char[StrLen(Data) - sizeOfData + 1];
+    int i = 0;
+    for (; Data[sizeOfData] != 0; ++sizeOfData)
+    {
+        newData[i] = Data[sizeOfData];
+        ++i;
+    }
+    Data = newData;
+}
+
+String String::operator+(const String& a, const String& b)
+{
+    String c = a;
+    return c += b;
+}
+
+bool String::operator!=(const String& a, const String& b)
+{
+    return !(StrCmp(a.Data, b.Data));
+}
+
+bool String::operator>(const String& a, const String& b)
+{
+    return (StrLen(a.Data) > StrLen(b.Data)) ? true : false;
+}
+std::ostream& operator<<(std::ostream& out, const String& str)
+{
+    return out << str.Data;
 }
 
 int main()
 {
-    std::string expression;
-    std::cout << "Enter expression: ";
-    getline(std::cin, expression);
-    expression += ' ';
-    int sign[expression.size() / 2];
-    double num[expression.size() / 2];
-    int countSign = 0;
-    int countNum = 0;
-    breakArr(expression, sign, num, &countSign, &countNum);
-    if (Check(expression)) {
-        while (countNum > 1) {
-            int numOper = 0;
-            for (int i = 0; i < countSign; ++i)
-                if (sign[i] > 1) {
-                    numOper = i;
-                    break;
-                }
-            num[numOper] = changeValue(num[numOper], num[numOper + 1], sign[numOper]);
-            for (int i = numOper + 1; i < countNum; i++)
-                num[i] = num[i + 1];
-            for (int i = numOper; i < countSign; i++)
-                sign[i] = sign[i + 1];
-            countNum--;
-            countSign--;
-        }
-        std::cout << "Result: " << num[0] << std::endl;
-    } else {
-        std::cout << "I don't understand" << std::endl;
-    }
-    return 0;
 }
