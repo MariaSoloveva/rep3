@@ -7,7 +7,7 @@ bool StrCmp(char* strFirst, char* strSecond);
 class String
 {
     char * Data;
-public:
+ public:
     /// <summary> Деструктор </summary>
     ~String()
     {
