@@ -1,0 +1,31 @@
+#include <iostream>
+
+int StrLen(char* strIn);
+void StrCopy(char* strOut, char* strIn);
+bool StrCmp(char* strFirst, char* strSecond);
+
+class String
+{
+    char * Data;
+ public:
+    ~String();
+    String();
+    String(const String& rhs);
+    String(char* data);
+    String& operator=(const String& rhs);
+    String& operator+=(const String& rhs);
+    bool operator==(const String& rhs) const;
+    bool operator<(const String& rhs) const;
+    size_t Find(const String& substr) const;
+    void Replace(char oldSymbol, char newSymbol);
+    size_t Size() const;
+    bool Empty() const;
+    char operator[](size_t index) const;
+    char& operator[](size_t index);
+    void RTrim(char symbol);
+    void LTrim(char* Data, char symbol);
+    friend std::ostream& operator<<(std::ostream&, const String&);
+    String operator+(const String& a, const String& b);
+    bool operator!=(const String& a, const String& b);
+    bool operator>(const String& a, const String& b);
+};
