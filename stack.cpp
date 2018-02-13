@@ -113,7 +113,8 @@ public:
     size_t Size() const
     {
         size_t sizeOfData = 0;
-        for (; Data[sizeOfData] != 0; ++sizeOfData);
+        for (; Data[sizeOfData] != 0; ++sizeOfData)
+            continue;
         return sizeOfData;
     }
 
@@ -217,7 +218,8 @@ std::ostream& operator<<(std::ostream& out, const String& str)
 int StrLen(char* strIn)
 {
     int size = 0;
-    for (; strIn[size] != 0; size++);
+    for (; strIn[size] != 0; size++)
+        continue;
     return size;
 }
 void StrCopy(char* strOut, char* strIn)
@@ -228,7 +230,8 @@ void StrCopy(char* strOut, char* strIn)
 bool StrCmp(char* strFirst, char* strSecond)
 {
     int i = 0;
-    for (; (strFirst[i] == strSecond[i]) && (i < StrLen(strFirst)); ++i);
+    for (; (strFirst[i] == strSecond[i]) && (i < StrLen(strFirst)); ++i)
+        continue;
     return (i == StrLen(strFirst)) ? true : false;
 }
 int main()
