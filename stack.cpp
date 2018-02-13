@@ -135,7 +135,6 @@ class String
     /// <returns> Значение символа в строке с индексом index</returns>
     char operator[](size_t index) const
     {
-    //std::cerr << "Index out of range. \n";
         return (index >= 0 && index < StrLen(this->Data)) ? this->Data[index] : 0;
     }
     /// <summary> Оператор [] </summary>
@@ -150,7 +149,6 @@ class String
     char& operator[](size_t index)
     {
         static char emptyChar = '';
-        //std::cerr << "Index out of range. \n";
         return (index >= 0 && index < StrLen(this->Data)) ? this->Data[index] : emptyChar;
     }
 
