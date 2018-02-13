@@ -166,8 +166,18 @@ class String
     /// <param name="symbol"> Значение символов, которе отрезаем </param>
     void RTrim(char symbol)
     {
+        size_t sizeOfData = StrLen(Data);
+        for (; sizeOfData != -1; sizeOfData--)
+        {
+            if (Data[sizeOfData - 1] != symbol)
+                break;
+        }
+        std::cout << sizeOfData << std::endl;
+        char* newData = new char[sizeOfData + 1];
+        for (int i = 0; i < sizeOfData; ++i)
+            newData[i] = Data[i];
+        Data = newData;
     }
-
     /// <summary> Смотри пример </summary>
     /// <example>
     /// <code>
@@ -176,10 +186,23 @@ class String
     /// </code>
     /// </example>
     /// <param name="symbol"> Значение символов, которе отрезаем </param>
-    void LTrim(char symbol)
+    void LTrim(char* Data, char symbol)
     {
+        size_t sizeOfData = 0;
+        for (; Data[sizeOfData] != 0; ++sizeOfData)
+        {
+            if (Data[sizeOfData] != symbol)
+                break;
+        }
+        char* newData = new char[StrLen(Data) - sizeOfData + 1];
+        int i = 0;
+        for (; Data[sizeOfData] != 0; ++sizeOfData)
+        {
+            newData[i] = Data[sizeOfData];
+            ++i;
+        }
+        Data = newData;
     }
-
     friend std::ostream& operator<<(std::ostream&, const String&);
 };
 
