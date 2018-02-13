@@ -14,7 +14,11 @@ class String
         delete[] Data;
     }
     /// <summary> Конструктор по умолчанию </summary>
-    String();
+    String()
+    {
+        Data = new char[1];
+        Data = nullptr;
+    }
     /// <summary> Конструктор копирования </summary>
     /// <param name="rhs">Объект, который копируем </param>
     String(const String& rhs)
