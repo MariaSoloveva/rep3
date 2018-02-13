@@ -25,7 +25,7 @@ class String
     void RTrim(char symbol);
     void LTrim(char* Data, char symbol);
     friend std::ostream& operator<<(std::ostream&, const String&);
+};
     String operator+(const String& a, const String& b);
     bool operator!=(const String& a, const String& b);
     bool operator>(const String& a, const String& b);
-};
