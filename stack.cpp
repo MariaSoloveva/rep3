@@ -7,7 +7,7 @@ bool StrCmp(char* strFirst, char* strSecond);
 class String
 {
     char * Data;
-public: 
+public:
     /// <summary> Деструктор </summary>
     ~String()
     {
@@ -161,7 +161,6 @@ public:
     /// <param name="symbol"> Значение символов, которе отрезаем </param>
     void RTrim(char symbol)
     {
-
     }
 
     /// <summary> Смотри пример </summary>
@@ -174,7 +173,6 @@ public:
     /// <param name="symbol"> Значение символов, которе отрезаем </param>
     void LTrim(char symbol)
     {
-
     }
 
     friend std::ostream& operator<<(std::ostream&, const String&);
@@ -235,5 +233,4 @@ bool StrCmp(char* strFirst, char* strSecond)
 }
 int main()
 {
-
 }
