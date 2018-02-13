@@ -146,18 +146,18 @@ void String::LTrim(char* Data, char symbol)
     Data = newData;
 }
 
-String String::operator+(const String& a, const String& b)
+String operator+(const String& a, const String& b)
 {
     String c = a;
     return c += b;
 }
 
-bool String::operator!=(const String& a, const String& b)
+bool operator!=(const String& a, const String& b)
 {
     return !(StrCmp(a.Data, b.Data));
 }
 
-bool String::operator>(const String& a, const String& b)
+bool operator>(const String& a, const String& b)
 {
     return (StrLen(a.Data) > StrLen(b.Data)) ? true : false;
 }
