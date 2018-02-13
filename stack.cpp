@@ -7,6 +7,7 @@ bool StrCmp(char* strFirst, char* strSecond);
 class String
 {
     char * Data;
+    
 public:
     /// <summary> Деструктор </summary>
     ~String()
@@ -15,8 +16,6 @@ public:
     }
     /// <summary> Конструктор по умолчанию </summary>
     String();
-    
-
     /// <summary> Конструктор копирования </summary>
     /// <param name="rhs">Объект, который копируем </param>
     String(const String& rhs)
