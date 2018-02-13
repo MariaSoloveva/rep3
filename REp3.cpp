@@ -147,13 +147,13 @@ void String::LTrim(char* Data, char symbol)
     Data = newData;
 }
 
-/*String operator+(const String& a, const String& b)
+String operator+(const String& a, const String& b)
 {
     String c = a;
     return c += b;
 }
 
-bool operator!=(const String& a, const String& b)
+/*bool operator!=(const String& a, const String& b)
 {
     return !(StrCmp(a.Data, b.Data));
 }
