@@ -1,9 +1,5 @@
 #include <iostream>
 
-int StrLen(char* strIn);
-void StrCopy(char* strOut, char* strIn);
-bool StrCmp(char* strFirst, char* strSecond);
-
 class String
 {
     char * Data;
@@ -11,7 +7,7 @@ class String
     ~String();
     String();
     String(const String& rhs);
-    String(char* data);
+    String(const char* data);
     String& operator=(const String& rhs);
     String& operator+=(const String& rhs);
     bool operator==(const String& rhs) const;
@@ -26,6 +22,6 @@ class String
     void LTrim(char* Data, char symbol);
     friend std::ostream& operator<<(std::ostream&, const String&);
 };
-    /*String operator+(const String& a, const String& b);
+    String operator+(const String& a, const String& b);
     bool operator!=(const String& a, const String& b);
-    bool operator>(const String& a, const String& b);*/
+    bool operator>(const String& a, const String& b);
