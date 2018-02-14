@@ -19,7 +19,7 @@ class String
     char operator[](size_t index) const;
     char& operator[](size_t index);
     void RTrim(char symbol);
-    void LTrim(char* Data, char symbol);
+    void LTrim(char symbol);
     friend std::ostream& operator<<(std::ostream&, const String&);
 };
     String operator+(const String& a, const String& b);
