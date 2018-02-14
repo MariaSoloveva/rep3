@@ -111,8 +111,7 @@ char String::operator[](size_t index) const
 }
 char& String::operator[](size_t index)
 {
-    static char emptyChar;
-    emptyChar = '';
+    static char emptyChar = 0;
     return (index >= 0 && index < StrLen(this->Data)) ? this->Data[index] : emptyChar;
 }
 void String::RTrim(char symbol)
@@ -155,7 +154,7 @@ String operator+(const String& a, const String& b)
 
 bool operator!=(const String& a, const String& b)
 {
-    return !(a == b));
+    return !(a == b);
 }
 
 bool operator>(const String& a, const String& b)
