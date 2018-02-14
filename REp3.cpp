@@ -153,20 +153,19 @@ String operator+(const String& a, const String& b)
     return c += b;
 }
 
-/*bool operator!=(const String& a, const String& b)
+bool operator!=(const String& a, const String& b)
 {
-    return !(StrCmp(a.Data, b.Data));
+    return !(a == b));
 }
 
 bool operator>(const String& a, const String& b)
 {
-    return (StrLen(a.Data) > StrLen(b.Data)) ? true : false;
+    return (a < b) ? true : false;
 }
 std::ostream& operator<<(std::ostream& out, const String& str)
 {
     return out << str.Data;
 }
-*/
 int main()
 {
 }
