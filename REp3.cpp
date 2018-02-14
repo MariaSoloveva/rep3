@@ -4,7 +4,8 @@
 int StrLen(const char* strIn)
 {
     int size = 0;
-    for (; strIn[size] != 0; size++);
+    for (; strIn[size] != 0; size++)
+        continue;
     return size;
 }
 void StrCopy(char* strOut, const char* strIn)
@@ -93,7 +94,8 @@ void String::Replace(char oldSymbol, char newSymbol)
 size_t String::Size() const
 {
     size_t sizeOfData = 0;
-    for (; Data[sizeOfData] != 0; ++sizeOfData);
+    for (; Data[sizeOfData] != 0; ++sizeOfData)
+        continue;
     return sizeOfData;
 }
 bool String::Empty() const
@@ -160,11 +162,11 @@ int main()
 {
     const char* data = {"__some string__"};
     const char* data2 = {"Some String"};
-    //String stringFirst;
+    String stringFirst;
     String stringSecond(data);
     String stringCopy(stringSecond);
     String stringThird(data2);
-    //std::cout << stringFirst << std::endl;
+    std::cout << stringFirst << std::endl;
     std::cout << "2   " << stringSecond << std::endl;
     std::cout << "3   " << stringThird << std::endl;
     std::cout << "Copy   " << stringCopy << std::endl;
@@ -181,7 +183,8 @@ int main()
     stringSecond.Replace('s', 'S');
     std::cout << "2 replace 's' -> 'S' " << stringSecond << std::endl;
 
-    std::cout << "find third string in second position" << stringSecond.Find(stringThird) << std::endl;
+    std::cout << "find third string in second position"
+        << stringSecond.Find(stringThird) << std::endl;
     stringSecond.Replace('S', 's');
     std::cout << "2 replace 'S' -> 's' " << stringSecond << std::endl;
     std::cout << "3   " << stringThird << std::endl;
