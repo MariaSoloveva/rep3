@@ -2,6 +2,7 @@
 #include <iostream>
 #include "strings.hpp"
 
+
 String::~String()
 {
     delete[] Data;
