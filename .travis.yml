@@ -7,7 +7,7 @@ matrix:
   include:
     - os: linux
       compiler: g++-5
-      env: COMPILER=g++ -std=c++11
+      env: COMPILER=g++ -Werror -std=c++11
 
 script:
   - chmod 777 ./cpplint.py
