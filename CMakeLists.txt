@@ -11,6 +11,7 @@ ADD_DEFINITIONS(
 # enum your files
 add_executable(executable
     REp3.cpp
+    gcdex.cpp
 )
 
 target_link_libraries(executable)
