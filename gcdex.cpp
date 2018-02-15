@@ -4,7 +4,7 @@ int gcdex(int a, int b, int & x, int & y)
     {
         x = 0;
 	y = 1;
-	return b;
+return b;
     }
     int x1 = 0;
     int y1 = 0;
