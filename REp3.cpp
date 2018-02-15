@@ -18,7 +18,7 @@ String::String() : Data(nullptr) {}
 String::String(const String& rhs)
 {
     Data = new char[rhs.Size() + 1];
-    memcpy(&rhs.Date, &Data, rhs.Size());
+    memcpy(rhs, this, rhs.Size());
 }
 String::String(const char* data)
 {
@@ -32,7 +32,7 @@ String& String::operator=(const String& rhs)
         Data = nullptr;
         delete[] this->Data;
         Data = new char[rhs.Size()+1];
-        memcpy(rhs.Data, Data, rhs.Size());
+        memcpy(rhs, this, rhs.Size());
     }
     return *this;
 }
