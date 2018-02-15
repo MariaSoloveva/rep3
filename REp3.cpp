@@ -1,4 +1,4 @@
-#include <algorithm>
+#include <cstring>
 #include <iostream>
 #include "strings.hpp"
 
@@ -18,12 +18,12 @@ String::String() : Data(nullptr) {}
 String::String(const String& rhs)
 {
     Data = new char[rhs.Size() + 1];
-    memset(rhs.Date, Date, rhs.Size());
+    memcpy(rhs.Date, Date, rhs.Size());
 }
 String::String(const char* data)
 {
     Data = new char[StrLen(data)+1];
-    memset(date, Date, StrLen(data));
+    memcpy(date, Date, StrLen(data));
 }
 String& String::operator=(const String& rhs)
 {
@@ -32,7 +32,7 @@ String& String::operator=(const String& rhs)
         Data = nullptr;
         delete[] this->Data;
         Data = new char[rhs.Size()+1];
-        memset(rhs.Data, Data, rhs.Size());
+        memcpy(rhs.Data, Data, rhs.Size());
     }
     return *this;
 }
