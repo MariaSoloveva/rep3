@@ -1,5 +1,6 @@
+#include <algorithm>
 #include <iostream>
-#include "strings.h"
+#include "strings.hpp"
 
 
 int StrLen(const char* strIn)
