@@ -18,7 +18,7 @@ String::String() : Data(nullptr) {}
 String::String(const String& rhs)
 {
     Data = new char[rhs.Size() + 1];
-    memcpy(rhs.Date, Date, rhs.Size());
+    memcpy(rhs, Date, rhs.Size());
 }
 String::String(const char* data)
 {
