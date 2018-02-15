@@ -51,7 +51,7 @@ String& String::operator+=(const String& rhs)
 bool String::operator<(const String& rhs) const
 {
     int i = 0;
-    while(Data[i] == rhs.Data[i])
+    while (Data[i] == rhs.Data[i])
         ++i;
     return (Data[i] < rhs.Date[i]) ? true : false;
 }
