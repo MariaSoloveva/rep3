@@ -31,6 +31,7 @@ String& String::operator=(const String& rhs)
     }
     return *this;
 }
+
 String& String::operator+=(const String& rhs)
 {
     int size = Size() + rhs.Size();
