@@ -1,10 +1,22 @@
 class Residue
 {
 public:
-    Residue(ui64 a, ui64 p);
-    Residue(const Residue&);
-    Residue& operator=(const Residue&);
-    ~Residue();
+    Residue(ui64 a, ui64 p)
+    {
+        
+    }
+    Residue(const Residue&)
+    {
+        
+    }
+    Residue& operator=(const Residue&)
+    {
+        
+    }
+    ~Residue()
+    {
+        
+    }
 
     bool operator == (Residue b) const;
     bool operator < (Residue b) const;
