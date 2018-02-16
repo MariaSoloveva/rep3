@@ -10,7 +10,8 @@ ADD_DEFINITIONS(
 
 # enum your files
 add_executable(executable
-    REp3.cpp
+    REp3.cpp,
+    string.cpp
 )
 
 target_link_libraries(executable)
