@@ -17,10 +17,11 @@ Residue& Residue::operator=(const Residue& a)
     Number = a.Number;
     N = a.Mod();
 }
-/*Residue::~Residue()
+Residue::~Residue()
 {
     delete Number;
-}*/
+    delete N;
+}
 bool Residue::operator == (Residue b) const
 {
     if (Mod() == b.Mod())
