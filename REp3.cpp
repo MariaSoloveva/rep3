@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include "residue.hpp"
 
 #define EXPECT_TRUE(x) if(!(x)) { throw std::logic_error(#x); }
 #define EXPECT_FALSE(x) if((x)) { throw std::logic_error(#x); }
