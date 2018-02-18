@@ -107,7 +107,7 @@ Residue& Residue::operator --()
         Number--;
     return *this;
 }
-Residue Residue::operator ~ () const
+Residue Residue::operator ~() const
 {
     for (ui64 i = 0; i < Mod(); ++i)
     {
@@ -134,7 +134,7 @@ Residue Residue::operator ^= (ui64 b) const
     {
         num *= Number;
     }
-    Residue s (num % Mod(), Mod());
+    Residue s(num % Mod(), Mod());
     return s;
 }
 ui64 Residue::Mod() const
