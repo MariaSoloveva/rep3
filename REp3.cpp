@@ -1,62 +1,97 @@
-class Residue
+#include <iostream>
+#include <stdexcept>
+
+#define EXPECT_TRUE(x) if(!(x)) { throw std::logic_error(#x); }
+#define EXPECT_FALSE(x) if((x)) { throw std::logic_error(#x); }
+#define EXPECT_EXCEPTION(x) try { (x); throw std::logic_error(#x); } catch(const std::runtime_error&) { }
+
+int main()
 {
-public:
-    Residue(ui64 a, ui64 p)
+    try
     {
-        
+        Residue a(1, 7);
+        Residue b(0, 7);
+
+        Residue c(a);
+        c = b;
+
+        EXPECT_TRUE(a == Residue(8, 7));
+        EXPECT_TRUE(a == Residue(7 * 13 + 7 * 10 + 1, 7));
+
+        EXPECT_TRUE(c == b);
+        EXPECT_FALSE(c == a);
+
+        EXPECT_FALSE(c != b);
+        EXPECT_TRUE(c != a);
+
+        EXPECT_TRUE(c < a);
+        EXPECT_FALSE(c < b);
+
+        EXPECT_TRUE(c <= a);
+        EXPECT_TRUE(c <= b);
+
+        EXPECT_TRUE(c >= b);
+        EXPECT_FALSE(c > b);
+
+        EXPECT_TRUE(c <= a);
+        EXPECT_TRUE(c <= a);
+
+        a += b;
+        EXPECT_TRUE(a == Residue(1, 7));
+
+        a += a;
+        EXPECT_TRUE(a == Residue(2, 7));
+
+        a -= a;
+        EXPECT_TRUE(a == Residue(0, 7));
+
+        EXPECT_TRUE(a++ == Residue(0, 7));
+        EXPECT_TRUE(++a == Residue(2, 7));
+
+        EXPECT_TRUE(a-- == Residue(2, 7));
+        EXPECT_TRUE(--a == Residue(0, 7));
+        EXPECT_TRUE(--a == Residue(6, 7));
+
+        EXPECT_TRUE(~a == a);
+        EXPECT_TRUE(-a == Residue(1, 7));
+
+        EXPECT_TRUE(~(--a) == Residue(3, 7));
+
+        a *= 10;
+        EXPECT_TRUE(a == Residue(1, 7));
+
+        a *= 10;
+        EXPECT_TRUE(a == Residue(3, 7));
+
+        a *= Residue(3, 7);
+        EXPECT_TRUE(a == Residue(2, 7));
+
+        a /= Residue(5, 7);
+        EXPECT_TRUE(a == Residue(6, 7));
+
+        Residue d = a * 3;
+        EXPECT_TRUE(d == Residue(4, 7));
+
+        d = 3 * d;
+        EXPECT_TRUE(d == Residue(5, 7));
+
+        EXPECT_EXCEPTION(a < Residue(5, 17));
+        EXPECT_EXCEPTION(a == Residue(5, 17));
+        EXPECT_EXCEPTION(a != Residue(5, 17));
+        EXPECT_EXCEPTION(a >= Residue(5, 17));
+        EXPECT_EXCEPTION(a *= Residue(5, 17));
+        EXPECT_EXCEPTION(a -= Residue(5, 17));
+        EXPECT_EXCEPTION(a += Residue(5, 17));
+        EXPECT_EXCEPTION(a /= Residue(5, 17));
+
+        a = Residue(5, 17);
+
+        EXPECT_TRUE(a.Mod() == 17);
     }
-    Residue(const Residue&)
+    catch (const std::logic_error& e)
     {
-        
+        std::cout << "test failed! " << e.what() << std::endl;
+        return 1;
     }
-    Residue& operator=(const Residue&)
-    {
-        
-    }
-    ~Residue()
-    {
-        
-    }
-
-    bool operator == (Residue b) const;
-    bool operator < (Residue b) const;
-
-    Residue& operator += (Residue b);
-    Residue& operator -= (Residue b);
-    Residue& operator *= (Residue b);
-    Residue& operator *= (ui64 b);
-    Residue& operator /= (Residue b);
-
-    Residue operator ++(ui64 b);
-    Residue& operator ++();
-    Residue operator --(ui64 b);
-    Residue& operator --();
-
-    // обратный по умножению
-    // если P состовное - бросить исключение
-    Residue operator ~ () const;
-
-    // обратный по сложению
-    Residue operator - () const;
-
-    // возведение в степень b
-    Residue operator ^= (ui64 b) const;
-    
-    ui64 Mod() const;
-private:
-};
-
-Residue operator + (Residue a, Residue b);
-Residue operator - (Residue a, Residue b);
-Residue operator * (Residue a, ui64 b);
-Residue operator * (ui64 a, Residue b);
-Residue operator * (Residue a, Residue b);
-Residue operator / (Residue a, Residue b);
-
-// возведение a в степень b
-Residue operator ^ (Residue a, ui64 b);
-
-bool operator != (Residue a, Residue b);
-bool operator > (Residue a, Residue b);
-bool operator >= (Residue a, Residue b);
-bool operator <= (Residue a, Residue b);
+    return 0;
+}
