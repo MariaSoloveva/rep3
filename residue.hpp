@@ -36,6 +36,8 @@ public:
     
     ui64 Mod() const;
 private:
+    ui64 Number;
+    ui64 N;
 };
 
 Residue operator + (Residue a, Residue b);
