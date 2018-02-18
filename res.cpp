@@ -72,7 +72,7 @@ Residue& Residue::operator *= (ui64 b)
     Number = Number % Mod();
     return *this;
 }
-Residue& Residue::operator /= (Residue b)/////////////////////////////////////////
+Residue& Residue::operator /= (Residue b)
 {
     if (Mod() == b.Mod())
     {
@@ -95,7 +95,7 @@ Residue& Residue::operator ++()
 }
 Residue Residue::operator --(int b)
 {
-    Residue s (Number, Mod());
+    Residue s(Number, Mod());
     --Number;
     return s;
 }
@@ -107,8 +107,6 @@ Residue& Residue::operator --()
         Number--;
     return *this;
 }
-// обратный по умножению
-// если P составное - бросить исключение
 Residue Residue::operator ~ () const
 {
     for (ui64 i = 0; i < Mod(); ++i)
