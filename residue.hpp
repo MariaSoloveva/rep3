@@ -19,9 +19,9 @@ public:
     Residue& operator *= (ui64 b);
     Residue& operator /= (Residue b);
 
-    Residue operator ++(ui64 b);
+    Residue operator ++(int b);
     Residue& operator ++();
-    Residue operator --(ui64 b);
+    Residue operator --(int b);
     Residue& operator --();
 
     // обратный по умножению
