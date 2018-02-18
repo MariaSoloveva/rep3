@@ -12,6 +12,7 @@ ADD_DEFINITIONS(
 add_executable(executable
     REp3.cpp
     gcdex.cpp
+    res.cpp
 )
 
 target_link_libraries(executable)
