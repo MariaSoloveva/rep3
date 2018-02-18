@@ -4,10 +4,10 @@
 
 int strstrFind(const std::string& str, const std::string& substr)
 {
-    for(int i = 0; i < str.length() - substr.length(); ++i)
+    for (int i = 0; i < str.length() - substr.length(); ++i)
     {
         bool flag = true;
-        for(int j = 0; j < substr.length(); ++j)
+        for (int j = 0; j < substr.length(); ++j)
             if (substr[j] != str[i + j])
             {
                 flag = false;
@@ -48,12 +48,12 @@ int rkFind(const std::string& str, const std::string& substr)
     }
 }
 std::vector<int> findPrefix(std::string s) {
-    int n = (int) s.length();
-    std::vector<int> pi (n);
-    for (int i=1; i<n; ++i) {
-        int j = pi[i-1];
+    int n = s.length();
+    std::vector<int> pi(n);
+    for (int i = 1; i < n; ++i) {
+        int j = pi[i - 1];
         while (j > 0 && s[i] != s[j])
-            j = pi[j-1];
+            j = pi[j - 1];
         if (s[i] == s[j]) ++j;
         pi[i] = j;
     }
@@ -73,7 +73,6 @@ int kmpFind(const std::string& str, const std::string& substr)
             q = q + 1;
         if ((q + 1 == m)  && (substr[0] == str[i - q]))
             return i - m + 1;
-        //q = pi[q];
     }
 }
 int main()
