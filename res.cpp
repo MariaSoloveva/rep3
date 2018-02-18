@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include "residue.hpp"
 
 Residue::Residue(ui64 a, ui64 p)
