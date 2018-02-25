@@ -1,187 +1,83 @@
 #include <iostream>
-#include <stdexcept>
-#include "residue.hpp"
+#include <sstream>
+#include <map>
+#include <string>
+#include <vector>
 
-Residue::Residue(ui64 a, ui64 p)
+using ui64 = unsigned long long int;
+using byte = unsigned char;
+std::string BytesToHex(const std::vector<ui64> &bytes)
 {
-    Number = a % p;
-    N = p;
-}
-Residue::Residue(const Residue& a)
-{
-    Number = a.Number;
-    N = a.Mod();
-}
-Residue& Residue::operator=(const Residue& a)
-{
-    Number = a.Number;
-    N = a.Mod();
-}
-Residue::~Residue()
-{}
-bool Residue::operator == (Residue b) const
-{
-    if (Mod() == b.Mod())
-        return Number == b.Number;
-    else
-        throw std::runtime_error("the residues have different modules");
-}
-bool Residue::operator < (Residue b) const
-{
-    if (Mod() == b.Mod())
-        return Number < b.Number;
-    else
-        throw std::runtime_error("the residues have different modules");
-}
-Residue& Residue::operator += (Residue b)
-{
-    if (Mod() == b.Mod())
+    std::string str;
+    for (size_t i = 0; i < bytes.size(); ++i)
     {
-        Number += b.Number;
-        Number = Number % Mod();
-        return *this;
+        str.push_back(static_cast<unsigned char>(bytes[i]));
     }
-    else
-        throw std::runtime_error("the residues have different modules");
+    return str;
 }
-Residue& Residue::operator -= (Residue b)
+std::vector<ui64> BytesFromHex(const std::string &str)
 {
-    if (Mod() == b.Mod())
+    std::vector<ui64> bytes;
+    for (size_t i = 0; i < str.size(); ++i)
     {
-        Number -= b.Number;
-        Number = Number % Mod();
-        return *this;
+        bytes.push_back(static_cast<ui64>(str[i]));
     }
-    else
-        throw std::runtime_error("the residues have different modules");
+    return bytes;
 }
-Residue& Residue::operator *= (Residue b)
+ui64 Degree(ui64 Number,ui64 b,ui64 N)
 {
-    if (Mod() == b.Mod())
-    {
-        Number = (Number * b.Number) % Mod();
-        return *this;
-    }
-    else
-        throw std::runtime_error("the residues have different modules");
-}
-Residue& Residue::operator *= (ui64 b)
-{
-    Number *= b;
-    Number = Number % Mod();
-    return *this;
-}
-Residue& Residue::operator /= (Residue b)
-{
-    if (Mod() == b.Mod())
-    {
-        Number = (Number * (~b).Number) % Mod();
-        return *this;
-    }
-    else
-        throw std::runtime_error("the residues have different modules");
-}
-Residue Residue::operator ++(int b)
-{
-    Residue s(Number, N);
-    Number = (Number + 1) % Mod();
-    return s;
-}
-Residue& Residue::operator ++()
-{
-    Number = (++Number) % Mod();
-    return *this;
-}
-Residue Residue::operator --(int b)
-{
-    Residue s(Number, Mod());
-    --Number;
-    return s;
-}
-Residue& Residue::operator --()
-{
-    if (Number == 0)
-        Number += Mod() - 1;
-    else
-        Number--;
-    return *this;
-}
-Residue Residue::operator ~() const
-{
-    for (ui64 i = 0; i < Mod(); ++i)
-    {
-        if ((i * Number) % Mod() == 1)
-        {
-            Residue s(i, Mod());
-            return s;
-        }
-    }
-}
-
-Residue Residue::operator - () const
-{
-    ui64 newNum = -Number;
-    newNum += Mod();
-    Residue s(newNum, Mod());
-    return s;
-}
-
-Residue Residue::operator ^= (ui64 b) const
-{
-    ui64 num = Number;
-    for (int i = 0; i < b; ++i)
+    ui64 num = 1;
+    for (ui64 i = 0; i < b; ++i)
     {
         num *= Number;
     }
-    Residue s(num % Mod(), Mod());
-    return s;
+    return num % N;
 }
-ui64 Residue::Mod() const
+std::vector<byte> Encrypti(const std::vector<ui64> &message)
 {
-    return N;
+    std::vector<byte> bytes;
+    for (size_t i = 0; i < message.size(); ++i)
+    {
+        std::cout << Degree(message[i], 7, 33) << std::endl;
+        //bytes.push_back(static_cast<byte>(Degree(message[i], 7, 33)));
+    }
+    return bytes;
 }
-
-Residue operator + (Residue a, Residue b)
+std::vector<byte> Encrypt(const std::string &message)
 {
-    return a += b;
+    std::vector<byte> bytes(message.size());
+    for (size_t i = 0; i < message.size(); ++i)
+    {
+        std::cout << Degree((ui64)message[i], 3 , 9173503) << std::endl;
+        bytes[i] = (unsigned char)Degree((ui64)message[i], 3 , 9173503);
+    }
+    return bytes;
 }
-Residue operator - (Residue a, Residue b)
+std::string Decrypt(const std::vector<byte> &cipherText)
 {
-    return a -= b;
+    std::string bytes;
+    std::vector<ui64> degree(cipherText.size());
+    for (size_t i = 0; i < cipherText.size(); ++i)
+    {
+        degree[i] = Degree((ui64)cipherText[i], 6111579, 9173503);
+        std::cout << (unsigned char)degree[i] << std::endl;
+        //bytes.push_back(reinterpret_cast<char>(Degree((ui64)cipherText[i], 6111579, 9173503)));
+    }
+    return bytes;
 }
-Residue operator * (Residue a, ui64 b)
+int main()
 {
-    return a *= b;
-}
-Residue operator * (ui64 a, Residue b)
-{
-    return b *= a;
-}
-Residue operator * (Residue a, Residue b)
-{
-    return a *= b;
-}
-Residue operator / (Residue a, Residue b)
-{
-    return a /= b;
-}
-Residue operator ^ (Residue a, ui64 b)
-{
-    return a ^= b;
-}
-bool operator != (Residue a, Residue b)
-{
-    return !(a == b);
-}
-bool operator > (Residue a, Residue b)
-{
-    return ((b < a) && !(a == b));
-}
-bool operator >= (Residue a, Residue b)
-{
-    return (a > b) || (a == b);
-}
-bool operator <= (Residue a, Residue b)
-{
-    return (a < b) || (a == b);
+    std::string str = "klm";
+    //std::getline(std::cin, str);
+    //std::vector<ui64> x = BytesFromHex(str);
+    //for(auto s : x)
+    //    std::cout << s << std::endl;
+    const std::vector<byte> bytes = Encrypt(str);
+    std::string str1 = Decrypt(bytes);
+    std::cout << str1 << std::endl;
+    //for(auto s : bytes)
+        //std::cout << s << std::endl;
+    //std::string str1 = BytesToHex(x);
+    //std::cout << str1 << std::endl;
+    return 0;
 }
