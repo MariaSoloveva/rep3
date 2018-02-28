@@ -1,86 +1,125 @@
-#include <cmath>
+#include <algorithm>
 #include <iostream>
-#include <vector>
+#include <iterator>
+#include <functional>
 
-int strstrFind(const std::string& str, const std::string& substr)
+/*template <class It, class Out, class Compare = std::less<int>>
+Out merge(It first1, It last1, It first2, It last2, Out out, Compare cmp=Compare{})
 {
-    for (int i = 0; i < str.length() - substr.length(); ++i)
+    while (first1 != last1)
     {
-        bool flag = true;
-        for (int j = 0; j < substr.length(); ++j)
-            if (substr[j] != str[i + j])
-            {
-                flag = false;
-                break;
-            }
-        if (flag)
-            return i;
+        if (first2 == last2)
+            return std::copy(first1, last1, out);
+        if (cmp(*first2, *first1))
+        {
+            *out = *first2;
+            ++first2;
+        } else
+        {
+            *out = *first1;
+            ++first1;
+        }
+        ++out;
     }
-    return -1;
-}
-using ui64 = long long int;
-int rkFind(const std::string& str, const std::string& substr)
+    return std::copy(first2, last2, out);
+}*/
+template <class It, class Compare=std::less<int>>
+void merge_sort(It first, It last, Compare cmp=Compare{})
 {
-    ui64 lenStr = str.length();
-    ui64 lenSubstr = substr.length();
-    const int p = 53;
-    std::vector<ui64> degree(lenStr);
-    degree[0] = 1;
-    for (size_t i = 1; i < lenStr; ++i)
-        degree[i] = degree[i - 1] * p;
-    std::vector<ui64> hashesOfPrefix(lenStr);
-    for (size_t i = 0; i < lenStr; ++i)
-    {
-        hashesOfPrefix[i] = (str[i] - 'a' + 1) * degree[i];
-        if (i)
-            hashesOfPrefix[i] += hashesOfPrefix[i - 1];
-    }
-    ui64 hashOfStr = 0;
-    for (size_t i = 0; i < lenSubstr; ++i)
-        hashOfStr += (substr[i] - 'a' + 1) * degree[i];
-    for (size_t i = 0; i < lenStr - lenSubstr + 1; ++i)
-    {
-        ui64 cur_h = hashesOfPrefix[i + lenSubstr - 1];
-        if (i)
-            cur_h -= hashesOfPrefix[i - 1];
-        if (cur_h == hashOfStr * degree[i])
-            return i;
-    }
+    if (std::distance(first, last) <= 1)
+        return;
+    auto const middle = std::next(first, std::distance(first, last) / 2);
+    merge_sort(first, middle, cmp);
+    merge_sort(middle, last, cmp);
+    std::inplace_merge(first, middle, last, cmp);
 }
-std::vector<int> findPrefix(std::string s) {
-    int n = s.length();
-    std::vector<int> pi(n);
-    for (int i = 1; i < n; ++i) {
-        int j = pi[i - 1];
-        while (j > 0 && s[i] != s[j])
-            j = pi[j - 1];
-        if (s[i] == s[j]) ++j;
-        pi[i] = j;
-    }
-    return pi;
-}
-int kmpFind(const std::string& str, const std::string& substr)
+
+template<class It, class Compare=std::less<int>>
+void shiftDown(It first, int head, int bottom, Compare cmp=Compare{})
 {
-    int n = str.length();
-    int m = substr.length();
-    std::vector<int> pi = findPrefix(substr);
-    int q = 0;
-    for (int i = 0 ; i < n; ++i)
+    int inner = 0;
+    int flag = 1;
+    while ((head * 2 <= bottom) && flag)
     {
-        while (q > 0 && substr[q + 1] != str[i])
-            q = pi[q];
-        if (substr[q + 1] == str[i])
-            q = q + 1;
-        if ((q + 1 == m)  && (substr[0] == str[i - q]))
-            return i - m + 1;
+        if (head * 2 == bottom)
+            inner = head * 2;
+        else if (cmp(*(first + head * 2), *(first + head * 2 + 1)))
+            inner = head * 2;
+        else
+            inner = head * 2 + 1;
+        if (cmp(*(first + head), *(first + inner)))
+        {
+            std::iter_swap(first + head, first + inner);
+            head = inner;
+        }
+        else
+            flag = 0;
     }
+}
+
+template<class It, class Compare=std::less<int>>
+void heap_sort(It first, It last, Compare cmp=Compare{})
+{
+    for (int i = (std::distance(first, last) / 2) - 1; i >= 0; --i)
+        shiftDown(first, i, std::distance(first, last));
+    for (int i = std::distance(first, last) - 1; i >= 1; --i)
+    {
+        std::iter_swap(first, first + i);
+        shiftDown(first, 0, i - 1);
+    }
+}
+
+template <class It, class Compare=std::less<int>>
+void quick_sort(It first, It last, Compare cmp=Compare{})
+{
+    if (std::distance(first, last) <= 1)
+        return;
+    auto const middle = std::next(first, std::distance(first, last) / 2);
+    std::nth_element(first, middle, last, cmp);
+    quick_sort(first, middle, cmp);
+    quick_sort(middle, last, cmp);
+}
+template <class It, class Compare=std::less<int>>
+void insertion_sort(It first, It last, Compare cmp=Compare{})
+{
+    if (!(first < last))
+        return;
+    for (It i = first + 1; i != last; ++i)
+        for (It j = i; j != first && *j < *(j - 1); --j)
+            std::iter_swap(j - 1, j);
 }
 int main()
 {
-    const std::string str = "wehfbkfjwkabcabcdefjwkabcabcd";
-    const std::string substr = "abcabcd";
-    std::cout << strstrFind(str, substr) << std::endl;
-    std::cout << rkFind(str, substr)<< std::endl;
-    std::cout << kmpFind(str, substr)<< std::endl;
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<> dis(0, 9);
+    std::vector<int> v1(10), v2(10), v3(10);
+    std::generate(v1.begin(), v1.end(), std::bind(dis, std::ref(mt)));
+    /*std::generate(v2.begin(), v2.end(), std::bind(dis, std::ref(mt)));
+    std::generate(v3.begin(), v3.end(), std::bind(dis, std::ref(mt)));
+    //std::sort(v1.begin(), v1.end());
+    //std::sort(v2.begin(), v2.end());
+    std::cout << "v1 : ";
+    std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::cout << std::endl;
+    heap_sort(v1.begin(), v1.end());
+    std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::cout << std::endl;
+    std::cout << "v2 : ";
+    std::copy(v2.begin(), v2.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::cout << std::endl;
+    quick_sort(v2.begin(), v2.end());
+    std::copy(v2.begin(), v2.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::cout << std::endl;
+    std::cout << "v3 : ";
+    std::copy(v3.begin(), v3.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::cout << std::endl;
+    insertion_sort(v3.begin(), v3.end());
+    std::copy(v3.begin(), v3.end(), std::ostream_iterator<int>(std::cout, " "));*/
+    std::cout << "v1 : ";
+    std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
+    merge_sort(v1.begin(), v1.end());
+    std::cout << std::endl;
+    std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
     return 0;
 }
