@@ -7,6 +7,11 @@ public:
         T* Rows;
         size_t M;
     public:
+        Row()
+        {
+            Rows = nullptr;
+            M = 0;
+        }
         Row(size_t a)
         {
             Rows = new T[a];
@@ -34,7 +39,7 @@ public:
     };
     Matrix(size_t n, size_t m)
     {
-        MatrixNM* = new Row(m);
+        MatrixNM = new Row[m];
         for(size_t i = 1; i < n; ++i)
             MatrixNM[i] = new Row(m);
     }
