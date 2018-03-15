@@ -5,7 +5,7 @@
 class Integer
 {
     int Number;
-public:
+ public:
     Integer() = default;
     ~Integer() = default;
     Integer(const int value)
@@ -101,7 +101,7 @@ public:
             Number = 1;
             return *this;
         }
-        for(int i = 1; i < a; ++i)
+        for (int i = 1; i < a; ++i)
         {
             if (Number * a > INT16_MAX)
                 throw std::invalid_argument("It's imposible to find degree ");
@@ -118,7 +118,7 @@ public:
             Number = 1;
             return *this;
         }
-        for(int i = 1; i < a.Number; ++i)
+        for (int i = 1; i < a.Number; ++i)
         {
             if (Number * a.Number > INT16_MAX)
                 throw std::invalid_argument("It's imposible to find degree ");
