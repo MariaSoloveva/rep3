@@ -1,125 +1,298 @@
 #include <algorithm>
 #include <iostream>
-#include <iterator>
-#include <functional>
 
-/*template <class It, class Out, class Compare = std::less<int>>
-Out merge(It first1, It last1, It first2, It last2, Out out, Compare cmp=Compare{})
+
+class Integer
 {
-    while (first1 != last1)
+    int Number;
+public:
+    Integer() = default;
+    ~Integer() = default;
+    Integer(const int value)
+        : Number(value)
+    {}
+    Integer(const Integer& a)
+        : Number(a.Number)
+    {}
+    Integer& operator = (const Integer& a)
     {
-        if (first2 == last2)
-            return std::copy(first1, last1, out);
-        if (cmp(*first2, *first1))
+        Number = a.Number;
+    }
+    Integer& operator = (const int& a)
+    {
+        Number = a;
+    }
+    Integer& operator += (const Integer& a)
+    {
+        if (Number + a.Number > INT16_MAX)
+            throw std::invalid_argument("It's imposible to find sum ");
+        Number += a.Number;
+        return *this;
+    }
+    Integer& operator += (const int& a)
+    {
+        if (Number + a > INT16_MAX)
+            throw std::invalid_argument("It's imposible to find sum ");
+        Number += a;
+        return *this;
+    }
+    Integer& operator -= (const Integer& a)
+    {
+        if (Number - a.Number < INT16_MIN)
+            throw std::invalid_argument("It's imposible to find difference ");
+        Number -= a.Number;
+        return *this;
+    }
+    Integer& operator -= (const int& a)
+    {
+        if (Number - a < INT16_MIN)
+            throw std::invalid_argument("It's imposible to find sum ");
+        Number -= a;
+        return *this;
+    }
+    Integer& operator *= (const int& a)
+    {
+        if (Number * a > INT16_MAX)
+            throw std::invalid_argument("It's imposible to obtain ");
+        Number *= a;
+        return *this;
+    }
+    Integer& operator *= (const Integer& a)
+    {
+        if (Number * a.Number > INT16_MAX)
+            throw std::invalid_argument("It's imposible to obtain ");
+        Number *= a.Number;
+        return *this;
+    }
+    Integer& operator /= (const int& a)
+    {
+        if (a == 0)
+            throw std::invalid_argument("It's imposible to obtain ");
+        Number /= a;
+        return *this;
+    }
+    Integer& operator /= (const Integer& a)
+    {
+        if (a.Number == 0)
+            throw std::invalid_argument("It's imposible to obtain ");
+        Number /= a.Number;
+        return *this;
+    }
+    Integer& operator %= (const int& a)
+    {
+        if (a == 0)
+            throw std::invalid_argument("It's imposible to find residue");
+        Number %= a;
+        return *this;
+    }
+    Integer& operator %= (const Integer& a)
+    {
+        if (a.Number == 0)
+            throw std::invalid_argument("It's imposible to find residue ");
+        Number %= a.Number;
+        return *this;
+    }
+    Integer& operator ^= (const int& a)
+    {
+        if (a < 0)
+            throw std::invalid_argument("It's imposible to find degree ");
+        if (a == 0)
         {
-            *out = *first2;
-            ++first2;
-        } else
-        {
-            *out = *first1;
-            ++first1;
+            Number = 1;
+            return *this;
         }
-        ++out;
-    }
-    return std::copy(first2, last2, out);
-}*/
-template <class It, class Compare=std::less<int>>
-void merge_sort(It first, It last, Compare cmp=Compare{})
-{
-    if (std::distance(first, last) <= 1)
-        return;
-    auto const middle = std::next(first, std::distance(first, last) / 2);
-    merge_sort(first, middle, cmp);
-    merge_sort(middle, last, cmp);
-    std::inplace_merge(first, middle, last, cmp);
-}
-
-template<class It, class Compare=std::less<int>>
-void shiftDown(It first, int head, int bottom, Compare cmp=Compare{})
-{
-    int inner = 0;
-    int flag = 1;
-    while ((head * 2 <= bottom) && flag)
-    {
-        if (head * 2 == bottom)
-            inner = head * 2;
-        else if (cmp(*(first + head * 2), *(first + head * 2 + 1)))
-            inner = head * 2;
-        else
-            inner = head * 2 + 1;
-        if (cmp(*(first + head), *(first + inner)))
+        for(int i = 1; i < a; ++i)
         {
-            std::iter_swap(first + head, first + inner);
-            head = inner;
+            if (Number * a > INT16_MAX)
+                throw std::invalid_argument("It's imposible to find degree ");
+            Number *= a;
         }
-        else
-            flag = 0;
+        return *this;
     }
-}
-
-template<class It, class Compare=std::less<int>>
-void heap_sort(It first, It last, Compare cmp=Compare{})
-{
-    for (int i = (std::distance(first, last) / 2) - 1; i >= 0; --i)
-        shiftDown(first, i, std::distance(first, last));
-    for (int i = std::distance(first, last) - 1; i >= 1; --i)
+    Integer& operator ^= (const Integer& a)
     {
-        std::iter_swap(first, first + i);
-        shiftDown(first, 0, i - 1);
+        if (a.Number < 0)
+            throw std::invalid_argument("It's imposible to find degree ");
+        if (a.Number == 0)
+        {
+            Number = 1;
+            return *this;
+        }
+        for(int i = 1; i < a.Number; ++i)
+        {
+            if (Number * a.Number > INT16_MAX)
+                throw std::invalid_argument("It's imposible to find degree ");
+            Number *= a.Number;
+        }
+        return *this;
     }
+    bool operator ==(const Integer& a)
+    {
+        return (a.Number == Number);
+    }
+    bool operator < (const Integer& a)
+    {
+        return (Number < a.Number);
+    }
+    friend std::ostream& operator<<(std::ostream& out, const Integer& a);
+};
+Integer operator+(const Integer& a, const Integer& b)
+{
+    Integer c(a);
+    c += b;
+    return c;
+}
+Integer operator+(const int& a, const Integer& b)
+{
+    Integer c(b);
+    c += a;
+    return c;
+}
+Integer operator+(const Integer& a, const int& b)
+{
+    Integer c(a);
+    c += b;
+    return c;
+}
+Integer operator-(const Integer& a, const Integer& b)
+{
+    Integer c(a);
+    c -= b;
+    return c;
+}
+Integer operator-(const int& a, const Integer& b)
+{
+    Integer c(b);
+    c -= a;
+    return c;
+}
+Integer operator-(const Integer& a, const int& b)
+{
+    Integer c(a);
+    c -= b;
+    return c;
+}
+Integer operator*(const Integer& a, const Integer& b)
+{
+    Integer c(a);
+    c *= b;
+    return c;
+}
+Integer operator*(const int& a, const Integer& b)
+{
+    Integer c(b);
+    c *= a;
+    return c;
+}
+Integer operator*(const Integer& a, const int& b)
+{
+    Integer c(a);
+    c *= b;
+    return c;
+}
+Integer operator/(const Integer& a, const Integer& b)
+{
+    Integer c(a);
+    c /= b;
+    return c;
+}
+Integer operator/(const int& a, const Integer& b)
+{
+    Integer c(b);
+    c /= a;
+    return c;
+}
+Integer operator/(const Integer& a, const int& b)
+{
+    Integer c(a);
+    c /= b;
+    return c;
+}
+Integer operator%(const Integer& a, const Integer& b)
+{
+    Integer c(a);
+    c %= b;
+    return c;
+}
+Integer operator%(const int& a, const Integer& b)
+{
+    Integer c(b);
+    c %= a;
+    return c;
+}
+Integer operator%(const Integer& a, const int& b)
+{
+    Integer c(a);
+    c %= b;
+    return c;
+}
+Integer operator^(const Integer& a, const Integer& b)
+{
+    Integer c(a);
+    c /= b;
+    return c;
+}
+Integer operator^(const Integer& a, const int& b)
+{
+    Integer c(a);
+    c /= b;
+    return c;
+}
+bool operator !=(const Integer& a, const Integer& b)
+{
+    Integer c(a);
+    return !(c == b);
+}
+bool operator > (const Integer& a, const Integer& b)
+{
+    Integer c(a);
+    return !(c < b) && !(c == b);
+}
+bool operator >= (const Integer& a, const Integer& b)
+{
+    Integer c(a);
+    return c > b || c == b;
 }
 
-template <class It, class Compare=std::less<int>>
-void quick_sort(It first, It last, Compare cmp=Compare{})
+bool operator <= (const Integer& a, const Integer& b)
 {
-    if (std::distance(first, last) <= 1)
-        return;
-    auto const middle = std::next(first, std::distance(first, last) / 2);
-    std::nth_element(first, middle, last, cmp);
-    quick_sort(first, middle, cmp);
-    quick_sort(middle, last, cmp);
+    Integer c(a);
+    return c < b || c == b;
 }
-template <class It, class Compare=std::less<int>>
-void insertion_sort(It first, It last, Compare cmp=Compare{})
+std::ostream& operator<<(std::ostream& out, const Integer& a)
 {
-    if (!(first < last))
-        return;
-    for (It i = first + 1; i != last; ++i)
-        for (It j = i; j != first && *j < *(j - 1); --j)
-            std::iter_swap(j - 1, j);
+    return out << a.Number;
 }
 int main()
 {
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<> dis(0, 9);
-    std::vector<int> v1(10), v2(10), v3(10);
-    std::generate(v1.begin(), v1.end(), std::bind(dis, std::ref(mt)));
-    /*std::generate(v2.begin(), v2.end(), std::bind(dis, std::ref(mt)));
-    std::generate(v3.begin(), v3.end(), std::bind(dis, std::ref(mt)));
-    //std::sort(v1.begin(), v1.end());
-    //std::sort(v2.begin(), v2.end());
-    std::cout << "v1 : ";
-    std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    heap_sort(v1.begin(), v1.end());
-    std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    std::cout << "v2 : ";
-    std::copy(v2.begin(), v2.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    quick_sort(v2.begin(), v2.end());
-    std::copy(v2.begin(), v2.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    std::cout << "v3 : ";
-    std::copy(v3.begin(), v3.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    insertion_sort(v3.begin(), v3.end());
-    std::copy(v3.begin(), v3.end(), std::ostream_iterator<int>(std::cout, " "));*/
-    std::cout << "v1 : ";
-    std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
-    merge_sort(v1.begin(), v1.end());
-    std::cout << std::endl;
-    std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
+    Integer num1;
+    Integer num2(32);
+    Integer num3(16);
+    num1 = num3;
+    std::cout << " num1 : " << num1 << std::endl;
+    num1 += 2;
+    std::cout << "num1 += 2 : " << num1 << std::endl;
+    num1 += num2;
+    std::cout << "num1 += num2 : " << num1 << std::endl;
+    num1 = 2;
+    std::cout << "num1 = 2 : " << num1 << std::endl;
+    num3 /= num1;
+    std::cout << "num3 /= num1 : " << num1 << std::endl;
+    num3 ^= num1;
+    std::cout << "num3 ^= num1 : " << num1 << std::endl;
+    num3 -= num1;
+    std::cout << "num3 == num1 : " << (num3 == num1) << std::endl;
+    std::cout << "num3 == num3 : " << (num3 == num3) << std::endl;
+    std::cout << "num3 != num1 : " << (num3 != num1) << std::endl;
+    std::cout << "num3 != num3 : " << (num3 != num3) << std::endl;
+    std::cout << "num3 > num1 : " << (num3 > num1) << std::endl;
+    std::cout << "num3 < num1 : " << (num3 < num1) << std::endl;
+    std::cout << "num3 < num3 : " << (num3 < num3) << std::endl;
+    std::cout << "num3 >= num1 : " << (num3 >= num1) << std::endl;
+    std::cout << "num3 <= num3 : " << (num3 <= num3) << std::endl;
+    std::cout << "num3 - num3 : " << (num3 - num3) << std::endl;
+    std::cout << "num3 + num3 : " << (num3 + num3) << std::endl;
+    std::cout << "num3 * num3 : " << (num3 * num3) << std::endl;
+    std::cout << "num3 / num3 : " << (num3 / num3) << std::endl;
     return 0;
 }
