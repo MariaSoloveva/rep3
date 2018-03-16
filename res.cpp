@@ -50,7 +50,7 @@ public:
     }
     explicit operator bool()
     {
-
+        return !bool();
     }
 };
 
