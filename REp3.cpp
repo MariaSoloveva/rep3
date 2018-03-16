@@ -1,298 +1,84 @@
-#include <algorithm>
-#include <iostream>
+#ifndef LAB_03_FSM_MARIASOLOVEVA_FSM_HPP
+#define LAB_03_FSM_MARIASOLOVEVA_FSM_HPP
 
+#include <map>
+#include <vector>
+#include <fstream>
 
-class Integer
+template <class StateType, class InputType, class OutputType>
+class FiniteStateMachine
 {
-    int Number;
- public:
-    Integer() = default;
-    ~Integer() = default;
-    Integer(const int value)
-        : Number(value)
-    {}
-    Integer(const Integer& a)
-        : Number(a.Number)
-    {}
-    Integer& operator = (const Integer& a)
+    std::map<StateType, OutputType> Status;
+    StateType Now;
+    std::map<InputType, std::map<InputType, StateType>> Out;
+public:
+    FiniteStateMachine() = default;
+    ~FiniteStateMachine() = default;
+    FiniteStateMachine& AddState(const StateType& state,
+                                 const OutputType& output,
+                                 const std::map<InputType, StateType>& table)
     {
-        Number = a.Number;
-    }
-    Integer& operator = (const int& a)
-    {
-        Number = a;
-    }
-    Integer& operator += (const Integer& a)
-    {
-        if (Number + a.Number > INT16_MAX)
-            throw std::invalid_argument("It's imposible to find sum ");
-        Number += a.Number;
+        Status[state] = output;
+        Out[state] = table;
         return *this;
     }
-    Integer& operator += (const int& a)
+    void SetState(const StateType& state)
     {
-        if (Number + a > INT16_MAX)
-            throw std::invalid_argument("It's imposible to find sum ");
-        Number += a;
-        return *this;
+        if (Status.find(state) == Status.end())
+            throw std::runtime_error("ERROR");
+        Now = state;
     }
-    Integer& operator -= (const Integer& a)
+    OutputType operator()(const InputType& input)
     {
-        if (Number - a.Number < INT16_MIN)
-            throw std::invalid_argument("It's imposible to find difference ");
-        Number -= a.Number;
-        return *this;
+        if (Status.find(input) == Status.end())
+            throw std::runtime_error("ERROR");
+        return Out[input];
     }
-    Integer& operator -= (const int& a)
+    void ChangeOutput(const StateType& state, const OutputType& newOut)
     {
-        if (Number - a < INT16_MIN)
-            throw std::invalid_argument("It's imposible to find sum ");
-        Number -= a;
-        return *this;
+        if (Status.find(state) == Status.end())
+            throw std::runtime_error("ERROR");
+        Now = state;
     }
-    Integer& operator *= (const int& a)
+
+    void ChangeAction(const StateType& state, const InputType& input, const StateType& newState)
     {
-        if (Number * a > INT16_MAX)
-            throw std::invalid_argument("It's imposible to obtain ");
-        Number *= a;
-        return *this;
+        if (Status.find(state) == Status.end() && Out[state].end() &&
+                Status.find(newState) == Status.end())
+            throw std::runtime_error("ERROR");
+        Out[state][input] = newState;
     }
-    Integer& operator *= (const Integer& a)
-    {
-        if (Number * a.Number > INT16_MAX)
-            throw std::invalid_argument("It's imposible to obtain ");
-        Number *= a.Number;
-        return *this;
-    }
-    Integer& operator /= (const int& a)
-    {
-        if (a == 0)
-            throw std::invalid_argument("It's imposible to obtain ");
-        Number /= a;
-        return *this;
-    }
-    Integer& operator /= (const Integer& a)
-    {
-        if (a.Number == 0)
-            throw std::invalid_argument("It's imposible to obtain ");
-        Number /= a.Number;
-        return *this;
-    }
-    Integer& operator %= (const int& a)
-    {
-        if (a == 0)
-            throw std::invalid_argument("It's imposible to find residue");
-        Number %= a;
-        return *this;
-    }
-    Integer& operator %= (const Integer& a)
-    {
-        if (a.Number == 0)
-            throw std::invalid_argument("It's imposible to find residue ");
-        Number %= a.Number;
-        return *this;
-    }
-    Integer& operator ^= (const int& a)
-    {
-        if (a < 0)
-            throw std::invalid_argument("It's imposible to find degree ");
-        if (a == 0)
-        {
-            Number = 1;
-            return *this;
-        }
-        for (int i = 1; i < a; ++i)
-        {
-            if (Number * a > INT16_MAX)
-                throw std::invalid_argument("It's imposible to find degree ");
-            Number *= a;
-        }
-        return *this;
-    }
-    Integer& operator ^= (const Integer& a)
-    {
-        if (a.Number < 0)
-            throw std::invalid_argument("It's imposible to find degree ");
-        if (a.Number == 0)
-        {
-            Number = 1;
-            return *this;
-        }
-        for (int i = 1; i < a.Number; ++i)
-        {
-            if (Number * a.Number > INT16_MAX)
-                throw std::invalid_argument("It's imposible to find degree ");
-            Number *= a.Number;
-        }
-        return *this;
-    }
-    bool operator ==(const Integer& a)
-    {
-        return (a.Number == Number);
-    }
-    bool operator < (const Integer& a)
-    {
-        return (Number < a.Number);
-    }
-    friend std::ostream& operator<<(std::ostream& out, const Integer& a);
 };
-Integer operator+(const Integer& a, const Integer& b)
-{
-    Integer c(a);
-    c += b;
-    return c;
-}
-Integer operator+(const int& a, const Integer& b)
-{
-    Integer c(b);
-    c += a;
-    return c;
-}
-Integer operator+(const Integer& a, const int& b)
-{
-    Integer c(a);
-    c += b;
-    return c;
-}
-Integer operator-(const Integer& a, const Integer& b)
-{
-    Integer c(a);
-    c -= b;
-    return c;
-}
-Integer operator-(const int& a, const Integer& b)
-{
-    Integer c(b);
-    c -= a;
-    return c;
-}
-Integer operator-(const Integer& a, const int& b)
-{
-    Integer c(a);
-    c -= b;
-    return c;
-}
-Integer operator*(const Integer& a, const Integer& b)
-{
-    Integer c(a);
-    c *= b;
-    return c;
-}
-Integer operator*(const int& a, const Integer& b)
-{
-    Integer c(b);
-    c *= a;
-    return c;
-}
-Integer operator*(const Integer& a, const int& b)
-{
-    Integer c(a);
-    c *= b;
-    return c;
-}
-Integer operator/(const Integer& a, const Integer& b)
-{
-    Integer c(a);
-    c /= b;
-    return c;
-}
-Integer operator/(const int& a, const Integer& b)
-{
-    Integer c(b);
-    c /= a;
-    return c;
-}
-Integer operator/(const Integer& a, const int& b)
-{
-    Integer c(a);
-    c /= b;
-    return c;
-}
-Integer operator%(const Integer& a, const Integer& b)
-{
-    Integer c(a);
-    c %= b;
-    return c;
-}
-Integer operator%(const int& a, const Integer& b)
-{
-    Integer c(b);
-    c %= a;
-    return c;
-}
-Integer operator%(const Integer& a, const int& b)
-{
-    Integer c(a);
-    c %= b;
-    return c;
-}
-Integer operator^(const Integer& a, const Integer& b)
-{
-    Integer c(a);
-    c /= b;
-    return c;
-}
-Integer operator^(const Integer& a, const int& b)
-{
-    Integer c(a);
-    c /= b;
-    return c;
-}
-bool operator !=(const Integer& a, const Integer& b)
-{
-    Integer c(a);
-    return !(c == b);
-}
-bool operator > (const Integer& a, const Integer& b)
-{
-    Integer c(a);
-    return !(c < b) && !(c == b);
-}
-bool operator >= (const Integer& a, const Integer& b)
-{
-    Integer c(a);
-    return c > b || c == b;
-}
 
-bool operator <= (const Integer& a, const Integer& b)
+template <class S, class I, class O>
+void SaveToFile(const std::wstring& filename, const FiniteStateMachine<S, I, O>& finiteStateMachine1)
 {
-    Integer c(a);
-    return c < b || c == b;
-}
-std::ostream& operator<<(std::ostream& out, const Integer& a)
+    const std::string filename1(filename.begin(), filename.end());
+    std::fstream fl(filename1, std::ios::out);
+    //fl << finiteStateMachine1.size() << std::endl;
+    for (const auto& e : groups)
+    {
+        fl << e.first << std::endl;
+        fl << e.second.size() << std::endl;
+        for (size_t i = 0; i < e.second.size(); ++i)
+        {
+            fl << e.second[i].Name << std::endl;
+            fl << e.second[i].Year << std::endl;
+            fl << e.second[i].RecordBook.size() << std::endl;
+            for (const auto& a : e.second[i].RecordBook)
+            {
+                fl << a.first << std::endl;
+                fl << a.second << std::endl;
+            }
+        }
+        std::cout << std::endl;
+    }
+};
+
+template <class S, class I, class O>
+void LoadFromFile(const std::wstring& filename, FiniteStateMachine<S, I, O>&)
 {
-    return out << a.Number;
-}
-int main()
-{
-    Integer num1;
-    Integer num2(32);
-    Integer num3(16);
-    num1 = num3;
-    std::cout << " num1 : " << num1 << std::endl;
-    num1 += 2;
-    std::cout << "num1 += 2 : " << num1 << std::endl;
-    num1 += num2;
-    std::cout << "num1 += num2 : " << num1 << std::endl;
-    num1 = 2;
-    std::cout << "num1 = 2 : " << num1 << std::endl;
-    num3 /= num1;
-    std::cout << "num3 /= num1 : " << num1 << std::endl;
-    num3 ^= num1;
-    std::cout << "num3 ^= num1 : " << num1 << std::endl;
-    num3 -= num1;
-    std::cout << "num3 == num1 : " << (num3 == num1) << std::endl;
-    std::cout << "num3 == num3 : " << (num3 == num3) << std::endl;
-    std::cout << "num3 != num1 : " << (num3 != num1) << std::endl;
-    std::cout << "num3 != num3 : " << (num3 != num3) << std::endl;
-    std::cout << "num3 > num1 : " << (num3 > num1) << std::endl;
-    std::cout << "num3 < num1 : " << (num3 < num1) << std::endl;
-    std::cout << "num3 < num3 : " << (num3 < num3) << std::endl;
-    std::cout << "num3 >= num1 : " << (num3 >= num1) << std::endl;
-    std::cout << "num3 <= num3 : " << (num3 <= num3) << std::endl;
-    std::cout << "num3 - num3 : " << (num3 - num3) << std::endl;
-    std::cout << "num3 + num3 : " << (num3 + num3) << std::endl;
-    std::cout << "num3 * num3 : " << (num3 * num3) << std::endl;
-    std::cout << "num3 / num3 : " << (num3 / num3) << std::endl;
-    return 0;
-}
+
+};
+
+#endif //LAB_03_FSM_MARIASOLOVEVA_FSM_HPP
