@@ -10,7 +10,7 @@ ADD_DEFINITIONS(
 
 # enum your files
 add_executable(executable
-   res.cpp
+   main.cpp
 )
 
 target_link_libraries(executable)
