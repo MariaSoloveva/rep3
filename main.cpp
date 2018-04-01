@@ -10,14 +10,14 @@ int main()
         std::cout << a[i] << " ";
     }
     std::cout << std::endl;
-    /*a.pop_back();
+    a.pop_back();
     a.insert(3, 4444);
     for (size_t i = 0; i < a.size(); ++i)
     {
         std::cout << a[i] << " ";
     }
     std::cout << std::endl;
-    vector<int> a1(10, 0);
+    /*vector<int> a1(10, 0);
     const vector<int> b(10, 0);
     vector<int> c;
     c = a;
