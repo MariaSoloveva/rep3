@@ -26,7 +26,7 @@ int main()
     a[1] = 11;
     std::cout << a[1] << std::endl;
     std::cout << a.size() << std::endl;
-    /*std::cout << a.back() << " " << a.front() << std::endl;
+    std::cout << a.back() << " " << a.front() << std::endl;
     std::cout << a.empty() << std::endl;
     a.swap(a1);
     a.clear();
@@ -34,6 +34,6 @@ int main()
     {
         a[i] = i;
         std::cout << a[i] << " ";
-    }*/
+    }
     return 0;
 }
