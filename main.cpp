@@ -12,7 +12,7 @@ int main()
     std::cout << std::endl;
     a.pop_back();
     a.insert(3, 4444);
-    for (size_t i = 0; i < a.size(); ++i)
+    /*for (size_t i = 0; i < a.size(); ++i)
     {
         std::cout << a[i] << " ";
     }
@@ -34,6 +34,6 @@ int main()
     {
         a[i] = i;
         std::cout << a[i] << " ";
-    }
+    }*/
     return 0;
 }
