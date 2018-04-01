@@ -217,7 +217,7 @@ public:
     }
     void clear()
     {
-        for(int index = 0; index < N; index++)
+        for(int index = 0; (size_t)index < N; index++)
             Vector[index] = 0;
     }
     void insert(size_type pos, const T& value)
@@ -228,7 +228,7 @@ public:
             for(int index = N; index != -1; --index)
             {
                 result[index + 1] = Vector[index];
-                if (pos == index)
+                if (pos == (size_t)index)
                     result[index + 1] = value;
             }
             delete [] Vector;
@@ -240,7 +240,7 @@ public:
             for(int index = N - 1; index != -1; --index)
             {
                 Vector[index + 1] = Vector[index];
-                if (pos == index)
+                if (pos == (size_t)index)
                     Vector[index + 1] = value;
             }
         }
