@@ -104,7 +104,12 @@ public:
     using const_pointer = const T*;
     using iterator = Iterator;
     using const_iterator = const Iterator;
-    vector() = default;
+    vector()
+    {
+        Vector = nullptr;
+        N = 0;
+        Pow = 0;
+    }
     ~vector()
     {
         delete[] Vector;
