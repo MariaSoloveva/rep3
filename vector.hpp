@@ -13,9 +13,9 @@ public:
     class Iterator
             : public std::iterator<std::random_access_iterator_tag, T>
     {
-     private:
+    private:
         T * ptr;
-     public:
+    public:
         explicit Iterator(T* p)
                 : ptr(p)
         { }
@@ -137,10 +137,10 @@ public:
         if (this != &vec)
         {
             delete[] Vector;
+            Vector = new T[vec.Pow];
+            memcpy(Vector, vec.Vector, vec.N * sizeof(Vector[0]));
             N = vec.N;
             Pow = vec.Pow;
-            Vector = new T[Pow];
-            memcpy(Vector, vec.Vector, N * sizeof(Vector[0]));
         }
         return *this;
     }
@@ -239,7 +239,10 @@ public:
             {
                 result[index + 1] = Vector[index];
                 if (pos == (size_t)index)
+                {
                     result[index + 1] = value;
+                    break;
+                }
             }
             delete [] Vector;
             Vector = result;
@@ -247,12 +250,16 @@ public:
         }
         else
         {
-            for(int index = N - 1; index != -1; --index)
+            for(int index = size() + 1; index != -1; --index)
             {
-                Vector[index + 1] = Vector[index];
+                Vector[index] = Vector[index - 1];
                 if (pos == (size_t)index)
-                    Vector[index + 1] = value;
+                {
+                    Vector[index] = value;
+                    break;
+                }
             }
+            ++N;
         }
     }
     void push_back(const T& value)
