@@ -17,7 +17,7 @@ int main()
         std::cout << a[i] << " ";
     }
     std::cout << std::endl;
-    /*vector<int> a1(10, 0);
+    vector<int> a1(10, 0);
     const vector<int> b(10, 0);
     vector<int> c;
     c = a;
@@ -34,6 +34,6 @@ int main()
     {
         a[i] = i;
         std::cout << a[i] << " ";
-    }*/
+    }
     return 0;
 }
