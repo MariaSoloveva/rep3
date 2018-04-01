@@ -105,7 +105,12 @@ public:
     using iterator = Iterator;
     using const_iterator = const Iterator;
     vector() = default;
-    ~vector() = default;
+    ~vector()
+    {
+        delete[] Vector;
+        N = 0;
+        Pow = 0;
+    }
     vector(const vector& vec)
             : N(vec.N)
             , Pow(vec.Pow)
