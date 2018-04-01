@@ -18,7 +18,7 @@ int main()
     }
     std::cout << std::endl;
     vector<int> a1(10, 0);
-    //  vector<int> b(10, 0);
+    vector<int> b(10, 0);
     /*vector<int> c;
     c = a;
     std::cout << a.at(0) << " " << b.at(1)  << " " << b.at(b.size() - 1)<< std::endl;
