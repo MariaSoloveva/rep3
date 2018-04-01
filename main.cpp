@@ -11,6 +11,11 @@ int main()
     }
     std::cout << std::endl;
     a.pop_back();
+    for (size_t i = 0; i < a.size(); ++i)
+    {
+        std::cout << a[i] << " ";
+    }
+    std::cout << std::endl;
     a.insert(3, 4444);
     for (size_t i = 0; i < a.size(); ++i)
     {
@@ -18,11 +23,26 @@ int main()
     }
     std::cout << std::endl;
     vector<int> a1(10, 0);
-    vector<int> b(10, 0);
+    const vector<int> b(10, 0);
+    for (size_t i = 0; i < b.size(); ++i)
+    {
+        std::cout << b[i] << " ";
+    }
+    std::cout << std::endl;
     vector<int> c;
     c = a;
+    for (size_t i = 0; i < c.size(); ++i)
+    {
+        std::cout << c[i] << " ";
+    }
+    std::cout << std::endl;
     std::cout << a.at(0) << " " << b.at(1)  << " " << b.at(b.size() - 1)<< std::endl;
-    std::cout << a[1] << " " << b[1] << std::endl;
+    for (size_t i = 0; i < a.size(); ++i)
+    {
+        std::cout << a[i] << " ";
+    }
+    std::cout << std::endl;
+    std::cout << a[2] << " " << b[1] << std::endl;
     a[1] = 11;
     std::cout << a[1] << std::endl;
     std::cout << a.size() << std::endl;
