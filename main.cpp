@@ -21,7 +21,7 @@ int main()
     const vector<int> b(10, 0);
     vector<int> c;
     c = a;
-    std::cout << a.at(0) << " " << b.at(1)  << " " << b.at(b.size() - 1)<< std::endl;
+    /*std::cout << a.at(0) << " " << b.at(1)  << " " << b.at(b.size() - 1)<< std::endl;
     std::cout << a[1] << " " << b[1] << std::endl;
     a[1] = 11;
     std::cout << a[1] << std::endl;
@@ -34,6 +34,6 @@ int main()
     {
         a[i] = i;
         std::cout << a[i] << " ";
-    }
+    }*/
     return 0;
 }
