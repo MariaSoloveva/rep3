@@ -11,11 +11,11 @@ int main()
     String stringSecond(data);
     String stringCopy(stringSecond);
     String stringThird(data2);
-    /*std::cout << "Size stringFirst  " << stringFirst.Size() << std::endl;
+    std::cout << "Size stringFirst  " << stringFirst.Size() << std::endl;
     std::cout << "2   " << stringSecond << std::endl;
     std::cout << "3   " << stringThird << std::endl;
     std::cout << "Copy   " << stringCopy << std::endl;
-    stringSecond = stringThird;
+   /* stringSecond = stringThird;
     std::cout << "2 after =   " << stringSecond << std::endl;
     stringSecond += stringCopy;
     std::cout << "2 after +=   " << stringSecond << std::endl;
