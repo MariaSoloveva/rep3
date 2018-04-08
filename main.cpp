@@ -1,59 +1,41 @@
+#include <cstring>
 #include <iostream>
-#include "vector.hpp"
+#include "string.hpp"
+
 
 int main()
 {
-    vector<int> a(10, 0);
-    for (size_t i = 0; i < a.size(); ++i)
-    {
-        a[i] = i;
-        std::cout << a[i] << " ";
-    }
-    std::cout << std::endl;
-    a.pop_back();
-    for (size_t i = 0; i < a.size(); ++i)
-    {
-        std::cout << a[i] << " ";
-    }
-    std::cout << std::endl;
-    a.insert(3, 4444);
-    for (size_t i = 0; i < a.size(); ++i)
-    {
-        std::cout << a[i] << " ";
-    }
-    std::cout << std::endl;
-    vector<int> a1(10, 0);
-    const vector<int> b(10, 0);
-    for (size_t i = 0; i < b.size(); ++i)
-    {
-        std::cout << b[i] << " ";
-    }
-    std::cout << std::endl;
-    vector<int> c;
-    c = a;
-    for (size_t i = 0; i < c.size(); ++i)
-    {
-        std::cout << c[i] << " ";
-    }
-    std::cout << std::endl;
-    std::cout << a.at(0) << " " << b.at(1)  << " " << b.at(b.size() - 1)<< std::endl;
-    for (size_t i = 0; i < a.size(); ++i)
-    {
-        std::cout << a[i] << " ";
-    }
-    std::cout << std::endl;
-    std::cout << a[2] << " " << b[1] << std::endl;
-    a[1] = 11;
-    std::cout << a[1] << std::endl;
-    std::cout << a.size() << std::endl;
-    std::cout << a.back() << " " << a.front() << std::endl;
-    std::cout << a.empty() << std::endl;
-    a.swap(a1);
-    a.clear();
-    for (size_t i = 0; i < a.size(); ++i)
-    {
-        a[i] = i;
-        std::cout << a[i] << " ";
-    }
+    const char* data = {"awesome string___"};
+    const char* data2 = {"Sssssome String"};
+    String stringFirst;
+    String stringSecond(data);
+    String stringCopy(stringSecond);
+    String stringThird(data2);
+    std::cout << "Size stringFirst  " << stringFirst.Size() << std::endl;
+    std::cout << "2   " << stringSecond << std::endl;
+    std::cout << "3   " << stringThird << std::endl;
+    std::cout << "Copy   " << stringCopy << std::endl;
+    stringSecond = stringThird;
+    std::cout << "2 after =   " << stringSecond << std::endl;
+    stringSecond += stringCopy;
+    std::cout << "2 after +=   " << stringSecond << std::endl;
+    std::cout << "2 < 3 ? true : false   " << (stringCopy < stringThird)<< std::endl;
+    std::cout << "2 > 3 ? true : false   " << (stringCopy > stringThird) << std::endl;
+    std::cout << "2 == 3  " << (stringThird == stringSecond) << std::endl;
+    std::cout << "2 == 2  " << (stringSecond == stringSecond) << std::endl;
+    std::cout << "2 != 3  " << (stringThird != stringSecond) << std::endl;
+    stringSecond.Replace('s', 'S');
+    std::cout << "2 replace 's' -> 'S' " << stringSecond << std::endl;
+    std::cout << "find third string in second position"
+              << stringSecond.Find(stringThird) << std::endl;
+    stringSecond.Replace('S', 's');
+    std::cout << "2 replace 'S' -> 's' " << stringSecond << std::endl;
+    stringSecond.LTrim('s');
+    std::cout << "Delete 's' on left  " << stringSecond << std::endl;
+    stringSecond.RTrim('_');
+    std::cout << "Delete '_' on right  " << stringSecond << std::endl;
+    std::cout << "find third string in second " << stringSecond.Find(stringThird) << std::endl;
+    std::cout << "2 size  " << stringSecond.Size() << std::endl;
+    std::cout << "2 empty or not  " << stringSecond.Empty() << std::endl;
     return 0;
 }
