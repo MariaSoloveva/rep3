@@ -64,16 +64,12 @@ size_t String::Find(const String& substr) const
 {
     for (size_t i = 0; i < Size() - substr.Size(); ++i)
     {
-        bool flag = true;
         for (size_t j = 0; j < substr.Size(); ++j)
         {
             if (substr.Data[j] != Data[i + j])
             {
-                flag = false;
-                break;
-            }
-            if (flag)
                 return i;
+            }
         }
     }
     return -1;
