@@ -40,7 +40,7 @@ String& String::operator+=(const String& rhs)
     int size = Size() + rhs.Size();
     char* newString = new char[size + 1];
     memcpy(newString, Data, rhs.Size());
-    for (int k = Size(), j = 0; k <= size; k++, j++)
+    for (size_t k = Size(), j = 0; k <= size; k++, j++)
         newString[k] = rhs.Data[j];
     delete[] Data;
     Data = newString;
@@ -48,7 +48,7 @@ String& String::operator+=(const String& rhs)
 }
 bool String::operator<(const String& rhs) const
 {
-    int i = 0;
+    size_t i = 0;
     while ((Data[i] == rhs.Data[i]) && (i < Size()))
         ++i;
     return Data[i] < rhs.Data[i];
