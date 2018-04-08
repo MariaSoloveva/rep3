@@ -15,9 +15,9 @@ int main()
     std::cout << "2   " << stringSecond << std::endl;
     std::cout << "3   " << stringThird << std::endl;
     std::cout << "Copy   " << stringCopy << std::endl;
-   /* stringSecond = stringThird;
+    stringSecond = stringThird;
     std::cout << "2 after =   " << stringSecond << std::endl;
-    stringSecond += stringCopy;
+   /* stringSecond += stringCopy;
     std::cout << "2 after +=   " << stringSecond << std::endl;
     std::cout << "2 < 3 ? true : false   " << (stringCopy < stringThird)<< std::endl;
     std::cout << "2 > 3 ? true : false   " << (stringCopy > stringThird) << std::endl;
