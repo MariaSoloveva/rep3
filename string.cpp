@@ -48,14 +48,14 @@ String& String::operator+=(const String& rhs)
 }
 bool String::operator<(const String& rhs) const
 {
-    int i = 0;
+    size_t i = 0;
     while ((Data[i] == rhs.Data[i]) && (i < Size()))
         ++i;
     return Data[i] < rhs.Data[i];
 }
 bool String::operator==(const String& rhs) const
 {
-    int i = 0;
+    size_t i = 0;
     for (; (rhs.Data[i] == Data[i]) && (i < rhs.Size()); ++i)
         continue;
     return i == rhs.Size();
@@ -65,7 +65,7 @@ size_t String::Find(const String& substr) const
     for (size_t i = 0; i < Size() - substr.Size(); ++i)
     {
         bool flag = true;
-        for (int j = 0; j < substr.Size(); ++j)
+        for (size_t j = 0; j < substr.Size(); ++j)
         {
             if (substr.Data[j] != Data[i + j])
             {
@@ -117,7 +117,7 @@ void String::RTrim(char symbol)
 void String::LTrim(char symbol)
 {
     size_t sizeOfData = 0;
-    while ((Data[sizeOfData] == symbol) && (sizeOfData >= 0))
+    while (Data[sizeOfData] == symbol)
         ++sizeOfData;
     char* newData = new char[Size() - sizeOfData];
     int newSize = Size() - sizeOfData;
