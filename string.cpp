@@ -37,7 +37,7 @@ String& String::operator=(const String& rhs)
 
 String& String::operator+=(const String& rhs)
 {
-    int size = Size() + rhs.Size();
+    size_t size = Size() + rhs.Size();
     char* newString = new char[size + 1];
     memcpy(newString, Data, rhs.Size());
     for (size_t k = Size(), j = 0; k <= size; k++, j++)
@@ -61,7 +61,7 @@ size_t String::Find(const String& substr) const
 {
     for (size_t i = 0; i < Size() - substr.Size(); ++i)
     {
-        for (int j = 0; j < substr.Size(); ++j)
+        for (size_t j = 0; j < substr.Size(); ++j)
         {
             if (substr.Data[j] != Data[i + j])
                 return i;
@@ -108,7 +108,7 @@ void String::RTrim(char symbol)
 void String::LTrim(char symbol)
 {
     size_t sizeOfData = 0;
-    while((Data[sizeOfData] == symbol) && (sizeOfData >= 0))
+    while (Data[sizeOfData] == symbol)
         ++sizeOfData;
     char* newData = new char[Size() - sizeOfData];
     int newSize = Size() - sizeOfData;
