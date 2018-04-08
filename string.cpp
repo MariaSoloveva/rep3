@@ -2,23 +2,23 @@
 #include <iostream>
 #include "string.hpp"
 
+String::String()
+    : Data(new char[1])
+{
+    Data[0] = '\0';
+}
 String::~String()
 {
     delete[] Data;
 }
-String::String()
-{
-    Data = new char[1];
-    Data[0] = '\0';
-}
 String::String(const String& rhs)
+    : Data(new char[rhs.Size() + 1])
 {
-    Data = new char[rhs.Size() + 1];
     memcpy(Data, rhs.Data, rhs.Size() + 1);
 }
 String::String(const char* data)
 {
-    int size = 0;
+    size_t size = 0;
     for (; data[size] != 0; size++)
         continue;
     Data = new char[size + 1];
@@ -48,28 +48,23 @@ String& String::operator+=(const String& rhs)
 }
 bool String::operator<(const String& rhs) const
 {
-    size_t i = 0;
+    int i = 0;
     while ((Data[i] == rhs.Data[i]) && (i < Size()))
         ++i;
     return Data[i] < rhs.Data[i];
 }
 bool String::operator==(const String& rhs) const
 {
-    size_t i = 0;
-    for (; (rhs.Data[i] == Data[i]) && (i < rhs.Size()); ++i)
-        continue;
-    return i == rhs.Size();
+    return Data == rhs.Data;
 }
 size_t String::Find(const String& substr) const
 {
     for (size_t i = 0; i < Size() - substr.Size(); ++i)
     {
-        for (size_t j = 0; j < substr.Size(); ++j)
+        for (int j = 0; j < substr.Size(); ++j)
         {
             if (substr.Data[j] != Data[i + j])
-            {
                 return i;
-            }
         }
     }
     return -1;
@@ -101,8 +96,8 @@ char& String::operator[](size_t index)
 }
 void String::RTrim(char symbol)
 {
-    int sizeOfData = Size();
-    while ((Data[sizeOfData - 1] == symbol) && (sizeOfData > 0))
+    size_t sizeOfData = Size();
+    while((Data[sizeOfData - 1] == symbol) && (sizeOfData > 0))
             --sizeOfData;
     char* newData = new char[sizeOfData + 1];
     memcpy(newData, Data, sizeOfData);
@@ -113,7 +108,7 @@ void String::RTrim(char symbol)
 void String::LTrim(char symbol)
 {
     size_t sizeOfData = 0;
-    while (Data[sizeOfData] == symbol)
+    while((Data[sizeOfData] == symbol) && (sizeOfData >= 0))
         ++sizeOfData;
     char* newData = new char[Size() - sizeOfData];
     int newSize = Size() - sizeOfData;
@@ -126,7 +121,7 @@ void String::LTrim(char symbol)
 
 String operator+(const String& a, const String& b)
 {
-    String c = a;
+    String c(a);
     return c += b;
 }
 
