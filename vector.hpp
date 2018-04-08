@@ -1,310 +1,141 @@
-#include <cstdio>
-#include <cstring>
-#include <iterator>
-#include <stdexcept>
+#include <iostream>
 
-template <class T>
-class vector
+class String
 {
-    T* Vector;
-    size_t N;
-    size_t Pow;
-public:
-    class Iterator
-            : public std::iterator<std::random_access_iterator_tag, T>
-    {
-    private:
-        T * ptr;
-    public:
-        explicit Iterator(T* p)
-                : ptr(p)
-        { }
+    char * Data;
+ public:
+    /// <summary> Деструктор </summary> 
+    ~String();
 
-        T& operator*()
-        {
-            return *ptr;
-        }
 
-        T* operator->()
-        {
-            return ptr;
-        }
+    /// <summary> Конструктор по умолчанию </summary>  
+    String();
 
-        Iterator& operator++()
-        {
-            ++ptr;
-            return *this;
-        }
-        Iterator operator++(int)
-        {
-            Iterator it(ptr);
-            ++ptr;
-            return it;
-        }
-        Iterator& operator+=(size_t n)
-        {
-            ptr += n;
-            return *this;
-        }
-        Iterator& operator-=(size_t n)
-        {
-            ptr -= n;
-            return *this;
-        }
 
-        Iterator& operator--()
-        {
-            --ptr;
-            return *this;
-        }
+    /// <summary> Конструктор копирования </summary>  
+    /// <param name="rhs">Объект, который копируем </param>  
+    String(const String& rhs);
 
-        Iterator operator--(int)
-        {
-            Iterator it(ptr);
-            --ptr;
-            return it;
-        }
 
-        bool operator==(Iterator it)
-        {
-            return ptr == it.ptr;
-        }
+    /// <summary> Пользовательский конструктор </summary>  
+    /// <param name="data">Данные, которые требуется поместить в создаваемый объект </param>  
+    String(const char * data);
 
-        bool operator<(Iterator it)
-        {
-            return ptr < it.ptr;
-        }
 
-        bool operator<=(Iterator it)
-        {
-            return this->operator==(it) || this->operator<(it);
-        }
+    /// <summary> Оператор присваивания </summary>  
+    /// <param name="data">Объект, который копируем </param>  
+    /// <returns>Возвращаем ссылку на себя</returns>  
+    String& operator=(const String& rhs);
 
-        bool operator>(Iterator it)
-        {
-            return !(this->operator==(it) || this->operator<(it));
-        }
 
-        bool operator>=(Iterator it)
-        {
-            return !this->operator<(it);
-        }
+    /// <summary> Оператор += </summary>  
+    /// <param name="rhs">Объект, который стоит после знака '+=' </param>  
+    /// <returns>Возвращаем ссылку на себя</returns>  
+    String& operator+=(const String& rhs);
 
-        bool operator!=(Iterator it)
-        {
-            return !(this->operator==(it));
-        }
-    };
-    using value_type = T;
-    using size_type = size_t;
-    using difference_type = std::ptrdiff_t;
-    using reference = value_type&;
-    using const_reference = const value_type&;
-    using pointer = T*;
-    using const_pointer = const T*;
-    using iterator = Iterator;
-    using const_iterator = const Iterator;
-    vector()
-    {
-        Vector = nullptr;
-        N = 0;
-        Pow = 0;
-    }
-    ~vector()
-    {
-        delete[] Vector;
-        N = 0;
-        Pow = 0;
-    }
-    vector(const vector& vec)
-            : N(vec.N)
-            , Pow(vec.Pow)
-            , Vector(new T[Pow])
-    {
-        memcpy(Vector, vec.Vector, Pow * sizeof(Vector[0]));
-    }
-    vector(size_t n, const T& v)
-            : N(n)
-    {
-        Pow = 1;
-        while (Pow < n)
-            Pow *= 2;
-        Vector = new T[Pow];
-        memset(Vector, v, N * sizeof(v));
-    }
-    vector& operator=(const vector& vec)
-    {
-        if (this != &vec)
-        {
-            delete[] Vector;
-            Vector = new T[vec.Pow];
-            memcpy(Vector, vec.Vector, vec.N * sizeof(Vector[0]));
-            N = vec.N;
-            Pow = vec.Pow;
-        }
-        return *this;
-    }
-    reference operator[](size_t input)
-    {
-        return Vector[input];
-    }
-    const_reference operator[](size_t input) const
-    {
-        return Vector[input];
-    }
-    size_type size() const noexcept
-    {
-        return N;
-    }
-    reference at(size_t pos)
-    {
-        if (pos < size())
-            return Vector[pos];
-        throw std::out_of_range("out_of_range");
-    }
-    const_reference at(size_t pos) const
-    {
-        if (pos < size())
-            return Vector[pos];
-        throw std::out_of_range("out_of_range");
-    }
-    reference front()
-    {
-        return Vector[0];
-    }
 
-    const_reference front() const
-    {
-        return Vector[0];
-    }
+    /// <summary> Оператор == </summary>  
+    /// <param name="rhs">Объект, который стоит после знака '==' </param>  
+    /// <returns>Возвращаем значения равенства двух строк</returns>  
+    bool operator==(const String& rhs) const;
 
-    reference back()
-    {
-        return Vector[size() - 1];
-    }
 
-    const_reference back() const
-    {
-        return Vector[size() - 1];
-    }
-    iterator begin()
-    {
-        return iterator(Vector);
-    }
+    /// <summary> Оператор &lt; </summary>  
+    /// <param name="rhs">Объект, который стоит после знака "&lt;" </param>  
+    /// <returns>Возвращаем значения сравнения двух строк</returns>  
+    bool operator<(const String& rhs) const;
 
-    const_iterator begin() const
-    {
-        return const_iterator(Vector);
-    }
-    iterator end()
-    {
-        return iterator(Vector + size());
-    }
-    const_iterator end() const
-    {
-        return const_iterator(Vector + size());
-    }
-    pointer data() noexcept
-    {
-        return &front();
-    }
-    const_pointer data() const noexcept
-    {
-        return &front();
-    }
-    bool empty() const
-    {
-        return size() == 0;
-    }
-    void reserve(size_type size1)
-    {
-        if (size1 > Pow)
-            throw std::length_error("Length error");
-    }
-    size_type capacity() const
-    {
-        return Pow;
-    }
-    void clear()
-    {
-        for(int index = 0; (size_t)index < N; index++)
-            Vector[index] = 0;
-    }
-    void insert(size_type pos, const T& value)
-    {
-        if (N + 1 > Pow)
-        {
-            T* result = new T[++this->N];
-            for(int index = N; index != -1; --index)
-            {
-                result[index + 1] = Vector[index];
-                if (pos == (size_t)index)
-                {
-                    result[index + 1] = value;
-                    break;
-                }
-            }
-            delete [] Vector;
-            Vector = result;
-            delete [] result;
-        }
-        else
-        {
-            for(int index = size() + 1; index != -1; --index)
-            {
-                Vector[index] = Vector[index - 1];
-                if (pos == (size_t)index)
-                {
-                    Vector[index] = value;
-                    break;
-                }
-            }
-            ++N;
-        }
-    }
-    void push_back(const T& value)
-    {
-        if (N + 1 > Pow)
-        {
-            T* result = new T[++this->N];
-            memcpy(result, Vector, Pow * sizeof(Vector[0]));
-            result[N] = value;
-            delete[] Vector;
-            Vector = result;
-            delete[] result;
-        }
-        else
-        {
-            Vector[N] = value;
-        }
-        ++N;
-    }
-    void pop_back()
-    {
-        Vector[size() - 1] = 0;
-        --N;
-    }
-    void swap(vector& oth)
-    {
-        for (size_type i = 0; i < size(); ++i)
-        {
-            std::swap(oth[i], Vector[i]);
-        }
-    }
+
+    /// <summary> Функция поиска подстроки</summary>  
+    /// <param name="substr">Подстрока, которую необходимо найти </param>  
+    /// <returns>Возвращаем позицию substr. Если подстрока не найдена, то возвратить -1</returns> 
+    size_t Find(const String& substr) const;
+
+
+    /// <summary> Функция замены букв </summary>  
+    /// <param name="oldSymbol">Символ, который требуется заменить </param>  
+    /// <param name="newSymbol">Символ, на который требуется заменить </param>
+    void Replace(char oldSymbol, char newSymbol);
+
+
+    /// <summary> Функция возвращает длину строки </summary>  
+    /// <returns>Возвращаем длину строки</returns> 
+    size_t Size() const;
+
+
+    /// <summary> Функция для определения пуста ли строка </summary>  
+    bool Empty() const;
+
+
+    /// <summary> Оператор [] </summary> 
+    /// <example> 
+    /// <code>
+    /// String str = "some string";
+    /// char symbol = str[2]; // symbol == 'm'
+    /// </code>
+    /// </example>
+    /// <param name="index"> Индекс символа </param>  
+    /// <returns> Значение символа в строке с индексом index</returns> 
+    char operator[](size_t index) const;
+
+
+    /// <summary> Оператор [] </summary> 
+    /// <example> 
+    /// <code>
+    /// String str = "some string";
+    /// str[0] = 'S'; // теперь переменная str равна "Some string"
+    /// </code>
+    /// </example>
+    /// <param name="index"> Индекс символа </param>  
+    /// <returns> Ссылка на символ в строке с индексом index</returns> 
+    char& operator[](size_t index);
+
+
+    /// <summary> Смотри пример </summary> 
+    /// <example> 
+    /// <code>
+    /// String str = "___some string___";
+    /// str.RTrim('_'); // теперь переменная str равна "___some string"
+    /// </code>
+    /// </example>
+    /// <param name="symbol"> Значение символов, которе отрезаем </param> 
+    void RTrim(char symbol);
+
+
+    /// <summary> Смотри пример </summary> 
+    /// <example> 
+    /// <code>
+    /// String str = "___some string___";
+    /// str.LTrim('_'); // теперь переменная str равна "some string___"
+    /// </code>
+    /// </example>
+    /// <param name="symbol"> Значение символов, которе отрезаем </param> 
+    void LTrim(char symbol);
+
+    friend std::ostream& operator<<(std::ostream&, const String&);
 };
-template<class T>
-bool operator==(const vector<T>& a, const vector<T>& b)
-{
-    for (size_t i = 0; i < a.size(); ++i)
-    {
-        if (a[i] != b[i])
-            return false;
-    }
-    return true;
-}
+/// <summary> Оператор +</summary>  
+/// <example> 
+/// <code>
+/// String a = "Hello";
+/// String b = "World";
+/// String c = a + b; // c равна "HelloWorld"
+/// </code>
+/// </example>
+/// <returns>Возвращаем строку равную a + b</returns>  
+String operator+(const String& a, const String& b);
 
-template<class T>
-bool operator!=(const vector<T>& a, const vector<T>& b)
-{
-    return !(a == b);
-}
+
+/// <summary> Оператор !=</summary>
+bool operator!=(const String& a, const String& b);
+
+
+/// <summary> Оператор &gt;</summary>
+bool operator>(const String& a, const String& b);
+
+
+/// <summary> Оператор вывода </summary>  
+/// <param name="out">Поток куда выводим строку </param>  
+/// <param name="str">Строка, которую выводим </param>
+/// <returns>Возвращаем ссылку на поток</returns> 
+std::ostream & operator<<(std::ostream& out, const String& str);
