@@ -1,6 +1,6 @@
 #include <cstring>
 #include <iostream>
-#include "vector.hpp"
+#include "string.hpp"
 
 String::~String()
 {
