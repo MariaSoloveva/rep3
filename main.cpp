@@ -17,10 +17,10 @@ int main()
     std::cout << "Copy   " << stringCopy << std::endl;
     stringSecond = stringThird;
     std::cout << "2 after =   " << stringSecond << std::endl;
-    stringSecond += stringCopy;
+    //stringSecond += stringCopy;
     std::cout << "2 after +=   " << stringSecond << std::endl;
-    /*std::cout << "2 < 3 ? true : false   " << (stringCopy < stringThird)<< std::endl;
-    std::cout << "2 > 3 ? true : false   " << (stringCopy > stringThird) << std::endl;
+    std::cout << "2 < 3 ? true : false   " << (stringCopy < stringThird)<< std::endl;
+    /*std::cout << "2 > 3 ? true : false   " << (stringCopy > stringThird) << std::endl;
     std::cout << "2 == 3  " << (stringThird == stringSecond) << std::endl;
     std::cout << "2 == 2  " << (stringSecond == stringSecond) << std::endl;
     std::cout << "2 != 3  " << (stringThird != stringSecond) << std::endl;
