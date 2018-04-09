@@ -44,6 +44,7 @@ String& String::operator+=(const String& rhs)
         newString[k] = rhs.Data[j];
     delete[] Data;
     Data = newString;
+    delete[] newString;
     return *this;
 }
 bool String::operator<(const String& rhs) const
