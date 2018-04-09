@@ -43,8 +43,8 @@ String& String::operator+=(const String& rhs)
     for (size_t k = Size() + 1, j = 0; k <= size; k++, j++)
         newString[k] = rhs.Data[j];
     delete[] Data;
+    newString[size] = '/0';
     Data = newString;
-    delete[] newString;
     return *this;
 }
 bool String::operator<(const String& rhs) const
