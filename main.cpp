@@ -32,7 +32,7 @@ int main()
     std::cout << "2 replace 'S' -> 's' " << stringSecond << std::endl;
     stringSecond.LTrim('s');
     std::cout << "Delete 's' on left  " << stringSecond << std::endl;
-    .*  stringSecond.RTrim('_');
+    /*  stringSecond.RTrim('_');
     std::cout << "Delete '_' on right  " << stringSecond << std::endl;
     std::cout << "find third string in second " << stringSecond.Find(stringThird) << std::endl;
     std::cout << "2 size  " << stringSecond.Size() << std::endl;
