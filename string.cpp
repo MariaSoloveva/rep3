@@ -38,8 +38,8 @@ String& String::operator=(const String& rhs)
 String& String::operator+=(const String& rhs)
 {
     size_t size = Size() + rhs.Size();
-    char* newString = new char[size + 1];
-    memcpy(newString, Data, rhs.Size());
+    char* newString = new char[Size() + rhs.Size() + 1];
+    //  memcpy(newString, Data, rhs.Size());
     for (size_t k = 0, j = 0; k <= size; k++)
         if (k < Size())
             newString[k] = Data[k];
