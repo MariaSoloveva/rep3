@@ -2,7 +2,6 @@
 #include <iostream>
 #include "string.hpp"
 
-
 int main()
 {
     const char* data = {"awesome string___"};
