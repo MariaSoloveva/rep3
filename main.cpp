@@ -33,9 +33,9 @@ int main()
     /*  stringSecond.LTrim('s');
     std::cout << "Delete 's' on left  " << stringSecond << std::endl;
     stringSecond.RTrim('_');
-    std::cout << "Delete '_' on right  " << stringSecond << std::endl;
+    std::cout << "Delete '_' on right  " << stringSecond << std::endl;*/
     std::cout << "find third string in second " << stringSecond.Find(stringThird) << std::endl;
     std::cout << "2 size  " << stringSecond.Size() << std::endl;
-    std::cout << "2 empty or not  " << stringSecond.Empty() << std::endl;*/
+    std::cout << "2 empty or not  " << stringSecond.Empty() << std::endl;
     return 0;
 }
