@@ -40,8 +40,14 @@ String& String::operator+=(const String& rhs)
     size_t size = Size() + rhs.Size();
     char* newString = new char[size + 1];
     memcpy(newString, Data, rhs.Size());
-    for (size_t k = Size(), j = 0; k <= size; k++, j++)
-        newString[k] = rhs.Data[j];
+    for (size_t k = 0, j = 0; k <= size; k++)
+        if (k < Size)
+            newString[k] = Data[k];
+        else
+        {
+            newString[k] = rhs.Data[j];
+            ++j;
+        }
     delete[] Data;
     newString[size] = '\0';
     Data = newString;
