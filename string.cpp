@@ -39,11 +39,11 @@ String& String::operator+=(const String& rhs)
 {
     size_t size = Size() + rhs.Size();
     char* newString = new char[size + 1];
-    //memcpy(newString, Data, rhs.Size());
+    memcpy(newString, Data, rhs.Size());
     for (size_t k = Size() + 1, j = 0; k <= size; k++, j++)
         newString[k] = rhs.Data[j];
     delete[] Data;
-    newString[size] = '/0';
+    newString[size] = '\0';
     Data = newString;
     return *this;
 }
