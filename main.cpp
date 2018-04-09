@@ -24,9 +24,9 @@ int main()
     std::cout << "2 == 3  " << (stringThird == stringSecond) << std::endl;
     std::cout << "2 == 2  " << (stringSecond == stringSecond) << std::endl;
     std::cout << "2 != 3  " << (stringThird != stringSecond) << std::endl;
-    /*stringSecond.Replace('s', 'S');
+    stringSecond.Replace('s', 'S');
     std::cout << "2 replace 's' -> 'S' " << stringSecond << std::endl;
-    std::cout << "find third string in second position"
+    //  std::cout << "find third string in second position"
               << stringSecond.Find(stringThird) << std::endl;
     stringSecond.Replace('S', 's');
     std::cout << "2 replace 'S' -> 's' " << stringSecond << std::endl;
