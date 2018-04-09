@@ -41,7 +41,7 @@ String& String::operator+=(const String& rhs)
     char* newString = new char[size + 1];
     memcpy(newString, Data, rhs.Size());
     for (size_t k = 0, j = 0; k <= size; k++)
-        if (k < Size)
+        if (k < Size())
             newString[k] = Data[k];
         else
         {
