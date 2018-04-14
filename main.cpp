@@ -432,12 +432,12 @@ int main()
     s1.insert(2);
     s1.insert(8);
     s1.insert(0);
-    s1.insert(15);
+    /*  s1.insert(15);
     s1.insert(20);
     s1.insert(11);
     s1.insert(22);
     s1.insert(19);
-    /*  std::cout<< s1.size() <<std::endl;
+    std::cout<< s1.size() <<std::endl;
     std::cout<< s1.empty() <<std::endl;
     s1.find(9);
     std::cout<< s1.has(9) <<std::endl;
