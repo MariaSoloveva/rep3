@@ -428,8 +428,8 @@ int main()
 {
     set<int> s1;
     s1.insert(10);
-    /*  s1.insert(5);
-    s1.insert(3);
+    s1.insert(5);
+    /*  s1.insert(3);
     s1.insert(2);
     s1.insert(8);
     s1.insert(0);
