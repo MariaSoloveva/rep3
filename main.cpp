@@ -332,7 +332,7 @@ class set
             return iterator(where);
         }
     }
-    iterator erase(const_iterator node)
+    void erase(const_iterator node)
     {
         iterator where1 = node;
         Node* where = &(*where1);
@@ -345,7 +345,7 @@ class set
             }
             where->Value = root->Value;
             erase(Iterator(root));
-            return Iterator(root);
+            return ;
         }
         else if (where->Right || where->Left)
         {
