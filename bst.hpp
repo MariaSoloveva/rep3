@@ -104,7 +104,7 @@ public:
     }
     void Remove(Node* node)
     {
-        //  Node* where = node;
+        Node* where = node;
         /*if (where->Left && where->Right)
         {
             Node* root = where;
@@ -133,8 +133,9 @@ public:
         }
         else
         {*/
-            node = NULL;
             delete node;
+            where->Parent->Right = NULL;
+            where = Root;
             //  node->Right = nullptr;
         //  }
     }
