@@ -29,12 +29,12 @@ public:
                 where = where->Parent;
                 if (where->Left)
                 {
-                    delete[] where->Left;
+                    delete where->Left;
                     where->Left = NULL;
                 }
                 if (where->Right)
                 {
-                    delete[] where->Right;
+                    delete where->Right;
                     where->Right = NULL;
                 }
             }
