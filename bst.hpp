@@ -116,7 +116,7 @@ public:
             Remove(root);
             return;
         }
-        /*else if (where->Right || where->Left)
+        else if (where->Right || where->Left)
         {
             where = where->Parent;
             if (where->Right == node)
@@ -162,7 +162,7 @@ public:
             }
         }
         return true;
-    }*/
+    }
  private:
         Node* Root;
 };
