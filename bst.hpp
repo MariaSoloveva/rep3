@@ -3,7 +3,6 @@
 template <class T>
 class BinarySearchTree
 {
-    Node* Root;
 public:
     struct Node
     {
@@ -164,4 +163,6 @@ public:
         }
         return true;
     }*/
+ private:
+        Node* Root;
 };
