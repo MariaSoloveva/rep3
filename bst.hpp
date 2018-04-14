@@ -17,27 +17,30 @@ public:
     }
     ~BinarySearchTree()
     {
-        Node * where = Root;
-        while (where->Left)
-            where = where->Left;
-        while (where->Right)
-            where = where->Right;
-        while (Root->Right || Root->Left)
+        if (Root != NULL)
         {
-            where = where->Parent;
-            if (where->Left)
+            Node *where = Root;
+            while (where->Left)
+                where = where->Left;
+            while (where->Right)
+                where = where->Right;
+            while (Root->Right || Root->Left)
             {
-                delete[] where->Left;
-                where->Left = NULL;
+                where = where->Parent;
+                if (where->Left)
+                {
+                    delete[] where->Left;
+                    where->Left = NULL;
+                }
+                if (where->Right)
+                {
+                    delete[] where->Right;
+                    where->Right = NULL;
+                }
             }
-            if (where->Right)
-            {
-                delete[] where->Right;
-                where->Right = NULL;
-            }
+            delete[] Root;
+            Root = NULL;
         }
-        delete[] Root;
-        Root = NULL;
     }
 
     Node* createNode(T value, Node *parent)
