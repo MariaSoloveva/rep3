@@ -134,7 +134,7 @@ public:
         else
         {*/
             delete node;
-            node->Parent->Right - NULL;
+            node->Parent->Right = NULL;
             //  node->Right = nullptr;
         //  }
     }
