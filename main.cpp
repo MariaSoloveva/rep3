@@ -1,12 +1,13 @@
 #include <iostream>
 #include "bst.hpp"
 
+
 int main()
 {
     BinarySearchTree<int> tree;
     BinarySearchTree<int>::Node* x;
-    /*  tree.Add(4);
-    tree.Add(5);
+    tree.Add(4);
+    /*  tree.Add(5);
     tree.Add(3);
     tree.Add(2);
     tree.Add(6);
