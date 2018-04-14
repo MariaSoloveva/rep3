@@ -447,7 +447,7 @@ int main()
     s1.insert(20);
     s1.insert(11);
     s1.insert(22);
-    s1.insert(19);*/
+    s1.insert(19);
     std::cout<< s1.size() <<std::endl;
     std::cout<< s1.empty() <<std::endl;
     s1.find(9);
