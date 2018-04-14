@@ -1,7 +1,6 @@
 #include <iostream>
 #include "bst.hpp"
 
-
 int main()
 {
     BinarySearchTree<int> tree;
