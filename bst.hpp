@@ -81,19 +81,11 @@ public:
         while (where)
         {
             if (where->Value > value)
-            {
                 where = where->Left;
-                continue;
-            }
             else if (where->Value < value)
-            {
                 where = where->Right;
-                continue;
-            }
             else
-            {
                 return where;
-            }
         }
         return NULL;
     }
