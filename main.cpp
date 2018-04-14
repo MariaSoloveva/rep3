@@ -5,7 +5,7 @@
 int main()
 {
     BinarySearchTree<int> tree;
-    BinarySearchTree<int>::Node* x;
+    //  BinarySearchTree<int>::Node* x;
     tree.Add(4);
     /*tree.Add(5);
     tree.Add(3);
@@ -15,7 +15,7 @@ int main()
     tree.Remove(x);
     x = tree.Find(6);
     tree.Remove(x);
-    x = tree.Find(4);*/
-    std::cout << tree.isBST(x) << std::endl;
+    x = tree.Find(4);
+    std::cout << tree.isBST(x) << std::endl;*/
     return 0;
 }
