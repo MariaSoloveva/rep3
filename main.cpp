@@ -347,7 +347,7 @@ class set
             erase(Iterator(root));
             return Iterator(root);
         }
-        else if (where->Right || where->Left)
+        /*else if (where->Right || where->Left)
         {
             where = where->Parent;
             if (where->Right == &(*where1))
@@ -371,7 +371,7 @@ class set
                 where->Left = NULL;
             delete &(*where1);
         }
-        return Iterator(where);
+        return Iterator(where);*/
     }
     void swap(set& other)
     {
