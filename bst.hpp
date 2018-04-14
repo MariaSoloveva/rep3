@@ -105,7 +105,7 @@ public:
     void Remove(Node* node)
     {
         Node* where = node;
-        /*if (where->Left && where->Right)
+        if (where->Left && where->Right)
         {
             Node* root = where;
             while (root->Right)
@@ -132,12 +132,19 @@ public:
             delete node;
         }
         else
-        {*/
-            delete node;
-            where->Parent->Right = NULL;
-            free(where);
-            //  node->Right = nullptr;
-        //  }
+        {
+            where = where->Parent;
+            if (where->Right == node)
+            {
+                delete where->Right;
+                where->Right = NULL;
+            }
+            else
+            {
+                delete where->Left;
+                where->Left = NULL;
+            }
+        }
     }
     bool isBST(BinarySearchTree<T>::Node* rootOfTree)
     {
