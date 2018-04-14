@@ -133,8 +133,8 @@ public:
         }
         else
         {*/
-            node = node->Parent;
-            delete node->Right;
+            delete node;
+            node->Parent->Right - NULL;
             //  node->Right = nullptr;
         //  }
     }
