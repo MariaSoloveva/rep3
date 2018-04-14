@@ -135,7 +135,7 @@ public:
         {*/
             delete node;
             where->Parent->Right = NULL;
-            where = Root;
+            free(where);
             //  node->Right = nullptr;
         //  }
     }
