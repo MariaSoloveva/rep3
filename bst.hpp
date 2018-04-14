@@ -38,7 +38,7 @@ public:
                     where->Right = NULL;
                 }
             }
-            delete[] Root;
+            delete Root;
             Root = NULL;
         }
     }
