@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 template <class T>
 class set
 {
@@ -31,13 +32,13 @@ class set
                 copy(node->Right, nodeS->Right);
         }
     }
-public:
+ public:
     class Iterator
             : public std::iterator<std::random_access_iterator_tag, T>
     {
-    private:
+     private:
         Node *ptr;
-    public:
+     public:
         explicit Iterator(Node *n)
                 : ptr(n)
         {}
@@ -240,28 +241,28 @@ public:
     iterator begin()
     {
         Node* where = Root;
-        while(where->Left)
+        while (where->Left)
             where = where->Left;
         return iterator(where);
     }
     const_iterator begin() const
     {
         Node* where = Root;
-        while(where->Left)
+        while (where->Left)
             where = where->Left;
         return const_iterator(where);
     }
     iterator end()
     {
         Node* where = Root;
-        while(where->Right)
+        while (where->Right)
             where = where->Right;
         return iterator(where);
     }
     const_iterator end() const
     {
         Node* where = Root;
-        while(where->Right)
+        while (where->Right)
             where = where->Right;
         return const_iterator(where);
     }
@@ -308,7 +309,8 @@ public:
                 {
                     where->Left = createNode(value, where);
                     return iterator(where);
-                } else if (value > where->Value && where->Right == NULL)
+                }
+                else
                 {
                     where->Right = createNode(value, where);
                     return iterator(where);
@@ -318,7 +320,9 @@ public:
                 else
                     where = where->Right;
             }
+            return iterator(where);
         }
+        
     }
     iterator erase(const_iterator node)
     {
