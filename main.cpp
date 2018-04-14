@@ -15,7 +15,6 @@ int main()
     tree.Remove(x);
     x = tree.Find(5);
     tree.Remove(x);
-    x = tree.Find(4);
-    //  std::cout << tree.isBST(x) << std::endl;
+    std::cout << tree.isBST(x) << std::endl;
     return 0;
 }
