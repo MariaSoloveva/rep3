@@ -136,12 +136,12 @@ public:
             where = where->Parent;
             if (where->Right == node)
             {
-                delete[] where->Right;
+                delete where->Right;
                 where->Right = NULL;
             }
             else
             {
-                delete[] where->Left;
+                delete where->Left;
                 where->Left = NULL;
             }
         //  }
