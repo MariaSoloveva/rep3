@@ -442,7 +442,7 @@ int main()
     s1.insert(5);
     s1.insert(3);
     s1.insert(2);
-    /*s1.insert(8);
+    s1.insert(8);
     s1.insert(0);
     s1.insert(15);
     s1.insert(20);
@@ -461,7 +461,7 @@ int main()
 int main()
 {
     BinarySearchTree<int> tree;
-    BinarySearchTree<int>::Node* x;
+    //BinarySearchTree<int>::Node* x;
     tree.Add(20);
     tree.Add(15);
     tree.Add(10);
