@@ -3,6 +3,8 @@
 template <class T>
 class BinarySearchTree
 {
+    Node* Root;
+public:
     struct Node
     {
         Node* Parent;
@@ -10,8 +12,6 @@ class BinarySearchTree
         Node* Right;
         T Value;
     };
-    Node* Root;
-public:
     BinarySearchTree()
     {
         Root = NULL;
