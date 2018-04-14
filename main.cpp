@@ -461,7 +461,7 @@ int main()
 int main()
 {
     BinarySearchTree<int> tree;
-    //BinarySearchTree<int>::Node* x;
+    //  BinarySearchTree<int>::Node* x;
     tree.Add(20);
     tree.Add(15);
     tree.Add(10);
