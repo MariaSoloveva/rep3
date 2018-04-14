@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 template <class T>
 class BinarySearchTree
 {
@@ -59,7 +58,7 @@ public:
             Root = createNode(value, Root);
             return;
         }
-        /*else
+        else
         {
             Node *where = Root;
             while (where)
@@ -78,7 +77,7 @@ public:
                 else
                     where = where->Right;
             }
-        }*/
+        }
     }
     Node* Find(const T& value)
     {
