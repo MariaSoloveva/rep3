@@ -9,8 +9,8 @@ int main()
     tree.Add(5);
     tree.Add(3);
     tree.Add(2);
-    tree.Add(6);
-    /*x = tree.Find(5);
+    /*tree.Add(6);
+    x = tree.Find(5);
     tree.Remove(x);
     x = tree.Find(6);
     tree.Remove(x);
