@@ -46,6 +46,7 @@ public:
     Node* createNode(T value, Node *parent)
     {
         Node* tmp = new Node;
+        tmp->Right = tmp->Left = NULL;
         tmp->Value = value;
         tmp->Parent = parent;
         return tmp;
