@@ -130,7 +130,7 @@ public:
                 where->Right = NULL;
             else
                 where->Left = NULL;
-            delete[] node;
+            delete node;
         }
     }
     bool isBST(BinarySearchTree<T>::Node* rootOfTree)
