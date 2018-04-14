@@ -136,7 +136,7 @@ public:
         {*/
             node = node->Parent;
             delete node->Right;
-            node->Right = NULL;
+            node->Right = nullptr;
         //  }
     }
     bool isBST(BinarySearchTree<T>::Node* rootOfTree)
