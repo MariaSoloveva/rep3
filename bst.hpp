@@ -121,7 +121,7 @@ public:
                 where->Left = where->Left->Left;
                 where->Left->Parent = where;
             }
-            delete[] node;
+            delete node;
         }
         else
         {
