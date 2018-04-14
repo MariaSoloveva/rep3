@@ -1,5 +1,5 @@
 #include <iostream>
-#includ"bst.hpp"
+#include"bst.hpp"
 
 
 /*template <class T>
