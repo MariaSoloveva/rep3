@@ -28,6 +28,15 @@ public:
             while (Root->Right || Root->Left)
             {
                 where = where->Parent;
+                if (where->Parent == NULL && where->Left != NULL)
+                {
+                    delete where->Left;
+                    where->Left = NULL;
+                    while (where->Right)
+                        where = where->Right;
+                    while (where->Left)
+                        where = where->Left;
+                }
                 if (where->Left)
                 {
                     delete where->Left;
