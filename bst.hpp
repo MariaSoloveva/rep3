@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 template <class T>
 class BinarySearchTree
 {
@@ -136,7 +135,7 @@ public:
         {*/
             node = node->Parent;
             delete node->Right;
-            node->Right = nullptr;
+            //  node->Right = nullptr;
         //  }
     }
     bool isBST(BinarySearchTree<T>::Node* rootOfTree)
