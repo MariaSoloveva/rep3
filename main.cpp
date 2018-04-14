@@ -370,8 +370,8 @@ class set
             else
                 where->Left = NULL;
             delete &(*where1);
-        }
-        return Iterator(where);*/
+        }*/
+        return Iterator(where);
     }
     void swap(set& other)
     {
