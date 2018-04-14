@@ -10,9 +10,9 @@ int main()
     tree.Add(3);
     tree.Add(2);
     //  tree.Add(6);
+    x = tree.Find(3);
+    tree.Remove(x);
     x = tree.Find(5);
-    /*  tree.Remove(x);
-    x = tree.Find(6);
     tree.Remove(x);
     x = tree.Find(4);
     std::cout << tree.isBST(x) << std::endl;*/
