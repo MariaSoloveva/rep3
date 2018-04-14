@@ -371,6 +371,7 @@ class set
                 where->Left = NULL;
             delete &(*where1);
         }
+        return Iterator(where);
     }
     void swap(set& other)
     {
