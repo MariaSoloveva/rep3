@@ -428,7 +428,6 @@ class set
     }
 };
 
-
 template<class T>
 bool operator!=(const set<T>& a, const set<T>& b)
 {
@@ -441,8 +440,8 @@ int main()
     s1.insert(10);
     s1.insert(5);
     s1.insert(3);
-    /*  s1.insert(2);
-    s1.insert(8);
+    s1.insert(2);
+    /*s1.insert(8);
     s1.insert(0);
     s1.insert(15);
     s1.insert(20);
