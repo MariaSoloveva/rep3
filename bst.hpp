@@ -116,7 +116,7 @@ public:
             Remove(root);
             return;
         }
-        else if (where->Right || where->Left)
+        /*else if (where->Right || where->Left)
         {
             where = where->Parent;
             if (where->Right == node)
@@ -139,7 +139,7 @@ public:
             else
                 where->Left = NULL;
             delete node;
-        }
+        }*/
     }
     bool isBST(BinarySearchTree<T>::Node* rootOfTree)
     {
