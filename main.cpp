@@ -429,10 +429,10 @@ int main()
     s1.insert(10);
     s1.insert(5);
     s1.insert(3);
-    s1.insert(2);
+    /*  s1.insert(2);
     s1.insert(8);
     s1.insert(0);
-    /*  s1.insert(15);
+    s1.insert(15);
     s1.insert(20);
     s1.insert(11);
     s1.insert(22);
