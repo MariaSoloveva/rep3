@@ -322,7 +322,6 @@ class set
             }
             return iterator(where);
         }
-        
     }
     iterator erase(const_iterator node)
     {
