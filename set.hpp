@@ -1,3 +1,10 @@
+//
+// Created by Мария on 15.04.2018.
+//
+
+#ifndef UNTITLED_SET_HPP
+#define UNTITLED_SET_HPP
+
 #include <iostream>
 
 template <class T>
@@ -228,7 +235,6 @@ public:
     }
     set(const set& s)
     {
-        Root = new Node;
         Root = s.Root;
         if (s.Root->Left)
             copy(Root->Left, s.Root->Left);
@@ -397,7 +403,7 @@ public:
                     return i;
             }
         }
-        return iterator(end()->Right);
+        throw std::invalid_argument("There is value like this");
     }
     const_iterator find(const T& value) const
     {
@@ -409,7 +415,7 @@ public:
                     return i;
             }
         }
-        return iterator(end()->Right);
+        throw std::invalid_argument("There is value like this");
     }
     bool operator==(const set<T>& b)
     {
@@ -429,3 +435,5 @@ bool operator!=(const set<T>& a, const set<T>& b)
 {
     return !(a == b);
 }
+
+#endif //UNTITLED_SET_HPP
