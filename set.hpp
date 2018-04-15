@@ -1,10 +1,3 @@
-//
-// Created by Мария on 15.04.2018.
-//
-
-#ifndef UNTITLED_SET_HPP
-#define UNTITLED_SET_HPP
-
 #include <iostream>
 
 template <class T>
@@ -436,4 +429,3 @@ bool operator!=(const set<T>& a, const set<T>& b)
     return !(a == b);
 }
 
-#endif //UNTITLED_SET_HPP
