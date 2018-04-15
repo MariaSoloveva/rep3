@@ -102,7 +102,7 @@ public:
         }
         return NULL;
     }
-    void Remove(Node* target)
+    void Remove(Node* node)
     {
         if (node != NULL) {
             Node *where = node;
