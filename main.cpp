@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 #include "set.hpp"
 
 
@@ -22,8 +22,8 @@ int main()
     std::cout<< s1.has(9) <<std::endl;
     s1.erase(s1.find(19));
     return 0;
-}*/
-
+}
+/*
 #include <iostream>
 #include"bst.hpp"
 
@@ -44,9 +44,10 @@ int main()
     tree.Add(31);
     x = tree.Find(11);
     tree.Remove(x);
-    /*x = tree.Find(6);
+    x = tree.Find(6);
     tree.Remove(x);
     x = tree.Find(4);
-    std::cout << tree.isBST(x) << std::endl;*/
+    std::cout << tree.isBST(x) << std::endl;
     return 0;
 }
+*/
