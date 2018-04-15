@@ -1,6 +1,7 @@
 #include <iostream>
 #include "set.hpp"
 
+
 int main()
 {
     set<int> s1;
@@ -19,6 +20,6 @@ int main()
     std::cout<< s1.empty() <<std::endl;
     s1.find(9);
     std::cout<< s1.has(9) <<std::endl;
-    //  s1.erase(s1.find(19));
+    s1.erase(s1.find(19));
     return 0;
 }
