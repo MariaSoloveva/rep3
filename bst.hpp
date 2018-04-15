@@ -105,7 +105,7 @@ public:
     void Remove(Node* node)
     {
         Node* where = node;
-        if (where->Left && where->Right)
+        /*if (where->Left && where->Right)
         {
             Node* root = where;
             while (root->Right)
@@ -116,7 +116,7 @@ public:
             Remove(root);
             return;
         }
-        else if (where->Right || where->Left)
+        else*/ if (where->Right || where->Left)
         {
             where = where->Parent;
             if (where->Right == node)
