@@ -104,47 +104,35 @@ public:
     }
     void Remove(Node* node)
     {
-        Node* where = node;
-        if (where->Left && where->Right)
-        {
-            Node* root = where;
+        if (node->Left && node->Right) {
+            Node* root = node;
             while (root->Right)
             {
                 root = root->Right;
             }
-            where->Value = root->Value;
+            node->Value = root->Value;
             Remove(root);
             return;
-        }
-        else if (where->Right || where->Left)
-        {
-            where = where->Parent;
-            if (where->Right == node)
-            {
-                where->Right = where->Right->Right;
-                where->Right->Parent = where;
+        } else if (node->Left) {
+            if (node == node->Parent->Left) {
+                node->Parent->Left = node->Left;
+            } else {
+                node->Parent->Right = node->Left;
             }
-            else
-            {
-                where->Left = where->Left->Left;
-                where->Left->Parent = where;
+        } else if (node->Right) {
+            if (node == node->Parent->Right) {
+                node->Parent->Right = node->Right;
+            } else {
+                node->Parent->Left = node->Right;
             }
-            delete node;
-        }
-        else
-        {
-            where = where->Parent;
-            if (where->Right == node)
-            {
-                delete where->Right;
-                where->Right = NULL;
-            }
-            else
-            {
-                delete where->Left;
-                where->Left = NULL;
+        } else {
+            if (node == node->Parent->Left) {
+                node->Parent->Left = NULL;
+            } else {
+                node->Parent->Right = NULL;
             }
         }
+        free(node);
     }
     bool isBST(BinarySearchTree<T>::Node* rootOfTree)
     {
