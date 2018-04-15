@@ -128,10 +128,10 @@ public:
         } else {
             Node* root = node;
             if (node == node->Parent->Left) {
-                free(node);
+                delete node;
                 root->Parent->Left = NULL;
             } else {
-                free(node);
+                delete node;
                 root->Parent->Right = NULL;
             }
         }
