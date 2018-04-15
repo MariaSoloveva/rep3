@@ -1,6 +1,7 @@
 #include <iostream>
 #include"bst.hpp"
 
+
 int main()
 {
     BinarySearchTree<int> tree;
@@ -16,10 +17,10 @@ int main()
     tree.Add(35);
     tree.Add(31);
     x = tree.Find(11);
-    tree.Remove(x);
-    x = tree.Find(6);
+    //  tree.Remove(x);
+    /*x = tree.Find(6);
     tree.Remove(x);
     x = tree.Find(4);
-    std::cout << tree.isBST(x) << std::endl;
+    std::cout << tree.isBST(x) << std::endl;*/
     return 0;
 }
