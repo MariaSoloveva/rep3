@@ -1,5 +1,4 @@
 #include <iostream>
-#include <exception>
 
 template <class T>
 class set
@@ -397,7 +396,7 @@ public:
                     return i;
             }
         }
-        throw std::invalid_argument("There is value like this");
+        return iterator(end()->Right);
     }
     const_iterator find(const T& value) const
     {
@@ -409,7 +408,7 @@ public:
                     return i;
             }
         }
-        throw std::invalid_argument("There is value like this");
+        return const_iterator(end()->Right);
     }
     bool operator==(const set<T>& b)
     {
