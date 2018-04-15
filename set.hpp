@@ -337,7 +337,7 @@ public:
     {
         Node where1 = *node;
         Node* where = &where1;
-        if (node->Left && node->Right) {
+        /*if (node->Left && node->Right) {
             while (where->Right)
             {
                 where = where->Right;
@@ -357,7 +357,7 @@ public:
             } else {
                 node->Parent->Left = node->Right;
             }
-        } else {
+        } else {*/
             Node* root = &(*node);
             if (where == node->Parent->Left) {
                 delete root;
@@ -366,7 +366,7 @@ public:
                 delete root;
                 node->Parent->Right = NULL;
             }
-        }
+        //  }
     }
     void swap(set& other)
     {
