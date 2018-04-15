@@ -19,7 +19,7 @@ int main()
     std::cout<< s1.empty() <<std::endl;
     s1.find(9);
     std::cout<< s1.has(9) <<std::endl;
-    //set<int> s2(s1);
+    set<int> s2(s1);
     //  s1.erase(s1.find(19));
     //  set<int> s2;
     //  s2 = s1;
