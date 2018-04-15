@@ -126,13 +126,15 @@ public:
                 node->Parent->Left = node->Right;
             }
         } else {
+            Node* root = node;
             if (node == node->Parent->Left) {
-                node->Parent->Left = NULL;
+                free(node);
+                root->Parent->Left = NULL;
             } else {
-                node->Parent->Right = NULL;
+                free(node);
+                root->Parent->Right = NULL;
             }
         }
-        free(node);
     }
     bool isBST(BinarySearchTree<T>::Node* rootOfTree)
     {
