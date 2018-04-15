@@ -102,49 +102,40 @@ public:
         }
         return NULL;
     }
-    void Remove(Node* node)
+    void Remove(Node* target)
     {
-        Node* where = node;
-        /*if (where->Left && where->Right)
-        {
-            Node* root = where;
-            while (root->Right)
-            {
-                root = root->Right;
-            }
-            where->Value = root->Value;
-            Remove(root);
-            return;
-        }
-        else if (where->Right || where->Left)
-        {
-            where = where->Parent;
-            if (where->Right == node)
-            {
-                where->Right = where->Right->Right;
-                where->Right->Parent = where;
-            }
-            else
-            {
-                where->Left = where->Left->Left;
-                where->Left->Parent = where;
-            }
-            delete node;
-        }
-        else
-        {*/
-            where = where->Parent;
-            if (where->Right == node)
-            {
-                where->Right = NULL;
+        if (node != NULL) {
+            Node *where = node;
+            if (where->Left && where->Right) {
+                Node *root = where;
+                while (root->Right) {
+                    root = root->Right;
+                }
+                where->Value = root->Value;
+                Remove(root);
+                return;
+            } else if (where->Right || where->Left) {
+                where = where->Parent;
+                if (where->Right == node) {
+                    where->Right = where->Right->Right;
+                    where->Right->Parent = where;
+                } else {
+                    where->Left = where->Left->Left;
+                    where->Left->Parent = where;
+                }
+                delete node;
+            } else {
+                where = where->Parent;
+                if (where->Right == node) {
+                    delete where->Right;
+                    where->Right = NULL;
+                } else {
+                    delete where->Left;
+                    where->Left = NULL;
+                }
                 delete node;
             }
-            else
-            {
-                where->Left = NULL;
-                delete node;
-            }
-        //}
+        }
     }
     bool isBST(BinarySearchTree<T>::Node* rootOfTree)
     {
