@@ -333,40 +333,42 @@ public:
             return iterator(where);
         }
     }
-    void erase(iterator  node)
+    void erase(iterator  node1)
     {
-        Node where1 = *node;
-        Node* where = &where1;
-        /*if (node->Left && node->Right) {
-            while (where->Right)
-            {
-                where = where->Right;
-            }
-            node->Value = where->Value;
-            erase(iterator(where));
-            return;
-        } else if (where->Left) {
-            if (where == node->Parent->Left) {
-                node->Parent->Left = node->Left;
+        Node where1 = *node1;
+        Node* node = &where1;
+        if (node != NULL) {
+            Node *where = node;
+            if (where->Left && where->Right) {
+                Node *root = where;
+                while (root->Right) {
+                    root = root->Right;
+                }
+                where->Value = root->Value;
+                erase(root);
+                return;
+            } else if (where->Right || where->Left) {
+                where = where->Parent;
+                if (where->Right == node) {
+                    where->Right = where->Right->Right;
+                    where->Right->Parent = where;
+                } else {
+                    where->Left = where->Left->Left;
+                    where->Left->Parent = where;
+                }
+                delete node;
             } else {
-                node->Parent->Right = node->Left;
+                where = where->Parent;
+                if (where->Right == node) {
+                    delete where->Right;
+                    where->Right = NULL;
+                } else {
+                    delete where->Left;
+                    where->Left = NULL;
+                }
+                delete node;
             }
-        } else if (where->Right) {
-            if (where == node->Parent->Right) {
-                node->Parent->Right = node->Right;
-            } else {
-                node->Parent->Left = node->Right;
-            }
-        } else {*/
-            Node* root = &(*node);
-            if (where == node->Parent->Left) {
-                delete root;
-                node->Parent->Left = NULL;
-            } else {
-                delete root;
-                node->Parent->Right = NULL;
-            }
-        //  }
+        }
     }
     void swap(set& other)
     {
