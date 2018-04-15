@@ -345,7 +345,7 @@ public:
                     root = root->Right;
                 }
                 where->Value = root->Value;
-                erase(root);
+                erase(iterator(root));
                 return;
             } else if (where->Right || where->Left) {
                 where = where->Parent;
