@@ -23,6 +23,8 @@ class set
     {
         node = new Node;
         node = nodeS;
+        if (!node->Right && !node->Left)
+            return;
         if (nodeS->Parent != NULL)
         {
             if (nodeS->Left)
