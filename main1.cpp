@@ -1,3 +1,5 @@
+#include <iostream>
+
 int findPath(const int startX, const int startY,
                  const int targetX, const int targetY,
                  const unsigned char* map, const int mapWidth, const int mapHeight,
@@ -61,7 +63,8 @@ int findPath(const int startX, const int startY,
             }
             outBuffer[mapTabl[y][x] - 1] = x + y * mapWidth;
         }
-        return mapTabl[targetY][targetX];
+        outBuffer = mapTabl[targetY][targetX];
+        return outBuffer;
     }
 
 int main() {
