@@ -64,7 +64,13 @@ int findPath(const int startX, const int startY,
             }
             outBuffer[mapTabl[y][x] - 1] = x + y * mapWidth;
         }
-        return mapTabl[targetY][targetX];
+        int x =  (int)mapTabl[targetY][targetX];
+        for (int i = 0; i < mapHeight; ++i)
+        {
+            delete[] mapTabl[i];
+        }
+        delete[] mapTabl;
+        return x;
     }
 
 int main() {
