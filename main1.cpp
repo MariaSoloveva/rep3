@@ -18,12 +18,12 @@ int findPath(const int startX, const int startY,
                 else
                     mapTabl[i][j] = (unsigned char)(-2);
         }
-        /*if (mapTabl[targetY][targetX] == (unsigned char)(-1) ||
+        if (mapTabl[targetY][targetX] == (unsigned char)(-1) ||
             mapTabl[startY][startX] == (unsigned char)(-1))
             return -1;
         unsigned char d = 0;
         mapTabl[startY][startX] = 0;
-        do
+        /*do
         {
             stop = true;
             for (int y = 0; y < mapHeight; ++y)
