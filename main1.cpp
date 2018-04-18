@@ -23,7 +23,7 @@ int findPath(const int startX, const int startY,
             return -1;
         unsigned char d = 0;
         mapTabl[startY][startX] = 0;
-        /*do
+        do
         {
             stop = true;
             for (int y = 0; y < mapHeight; ++y)
@@ -44,7 +44,7 @@ int findPath(const int startX, const int startY,
                     }
             d++;
         } while (!stop && mapTabl[targetY][targetX] == (unsigned char)(-2));
-        outBuffer[mapTabl[targetY][targetX] - 1] = targetX + targetY * mapWidth;
+        /*outBuffer[mapTabl[targetY][targetX] - 1] = targetX + targetY * mapWidth;
         d = mapTabl[targetY][targetX];
         int x = targetX;
         int y = targetY;
