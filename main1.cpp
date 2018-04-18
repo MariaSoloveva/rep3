@@ -81,8 +81,7 @@ int main() {
     for (size_t i = 0; i < 12; ++i)
         std::cout << outBuffer[i] << " ";
     unsigned char map1[] = {0, 0, 1, 0, 1, 1, 1, 0, 1};
-    int outBuffer1[7];
-    int x1 = findPath(2, 0, 0, 2, map, 3, 3, outBuffer, 7);
+    int x1 = findPath(2, 0, 0, 2, map1, 3, 3, outBuffer, 7);
     std::cout << x1 << std::endl;
     return 0;
 }
