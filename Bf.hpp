@@ -14,7 +14,8 @@ public:
 
 	using iterator = typename std::vector<value_type>::iterator;
 	using const_iterator = typename std::vector<value_type>::const_iterator;
-
+private:
+	std::vector<value_type> bf;
 public:
 
 	// возвращает функцию которая равна xn с размерностью dimension
@@ -32,11 +33,11 @@ public:
 	static boolean_function zero(size_t dimension);
 
 	// тождественная единица "от dimension переменных"
-  static boolean_function one(size_t dimension);
+        static boolean_function one(size_t dimension);
 
 	static boolean_function from_anf(std::vector<value_type> v);
 
-	boolean_function();
+	boolean_function() = default;
   	// а n = 3
 	// тогда АНФ boolean_function будет равна x + y + xy + zx + zy + zyx
 	boolean_function(unsigned long long value, size_type n);
@@ -81,16 +82,40 @@ public:
 	reference operator[](size_type ind);
 	const_reference operator[](size_type ind) const;
 
-	reference at(size_type ind);
-	const_reference at(size_type ind) const;
-
-	iterator begin();
-	iterator end();
-  // длина столбца функции
-	size_type size() const throw();
+	reference at(size_type ind)
+	{
+	    return bf.at(ind);
+	}
+	const_reference at(size_type ind) const
+	{
+	    return bf.at(ind);
+	}
+	iterator begin()
+	{
+	    return bf.begin();
+	}
+	iterator end()
+	{
+	    return bf.end();
+	}
+        // длина столбца функции
+	size_type size() const throw()
+	{
+	    return bf.size();
+	}
 
 	// количество переменных
-	size_type dimension() const throw();
+	size_type dimension() const throw()
+	{
+	    size_type size = bf.size();
+            size_type inner = 0;
+	    while (size != 1)
+	    {
+	        size /= 2;
+		++inner;
+	    }
+            return inner;
+	}
 
 	// возвращает значение функции
 	// пусть boolean_function задает функцию f(x, y, z)
@@ -110,7 +135,16 @@ public:
 	bool is_T1() const;
 	bool is_T0() const;
 	bool is_balanced() const; //равновесная ли
-	size_t weight() const;
+	size_t weight() const
+	{
+            size_t inner = 0;
+	    for (size_t i = 0; i < bf.size(); ++i)
+	    {
+	        if (bf[i] == 0)
+		    ++inner;
+	    }
+            return inner;
+	}
 
 	bool is_functionally_complete_system() const;
 
@@ -122,10 +156,30 @@ public:
 // тогда get_polynom вернет строку "x0 + x1 + x0x1 + x0x2 + x1x2 + x0x1x2"
 std::string get_polynom(const boolean_function&);
 
-boolean_function operator + (const boolean_function& a, const boolean_function& b);
+boolean_function operator + (const boolean_function& a, const boolean_function& b)
+{
+    boolean_function aCopy(a);
+    aCopy += b;
+    return aCopy;
+}
 
-boolean_function operator * (const boolean_function& a, const boolean_function& b);
+boolean_function operator * (const boolean_function& a, const boolean_function& b)
+{
+    boolean_function aCopy(a);
+    aCopy *= b;
+    return aCopy;
+}
 
-boolean_function operator | (const boolean_function& a, const boolean_function& b);
+boolean_function operator | (const boolean_function& a, const boolean_function& b)
+{
+    boolean_function aCopy(a);
+    aCopy += b;
+    return aCopy;
+}
 
-bool operator != (const boolean_function& a, const boolean_function& b);
+bool operator != (const boolean_function& a, const boolean_function& b)
+{
+    boolean_function aCopy(a);
+    aCopy += b;
+    return aCopy;
+}
