@@ -192,13 +192,38 @@ public:
     // возвращает значение функции
     // пусть boolean_function задает функцию f(x, y, z)
     // тогда функция вернет f(vars[0], vars[1], vars[2])
-    bool operator()(const std::vector<bool>& vars) const;
+    bool operator()(const std::vector<bool>& vars) const
+    {
+        size_type inner = 0;
+        size_type two = 0;
+        for (auto a : vars)
+        {
+            inner += i * two;
+            two *= 2;
+        }
+        return bf[inner];
+    }
     bool operator()(const std::initializer_list<bool> vars) const;
 
 
     // T(x1, x2, ..., xN) - текущая функция
     // operator вернет новую функцию, которая равна композиции G = T(fs[0], fs[1], ..., fs[N-1])
-    boolean_function operator()(const std::vector<boolean_function>& fs) const;
+    boolean_function operator()(const std::vector<boolean_function>& fs) const
+    {
+        std::vector<bool> vars(fs.size());
+        std::vector<> newfunc(fs[0].size());
+        for (size_t i = 0; i < fs[0].size(); ++i)
+        {
+            for (size_t j = 0; j < fs.size(); ++j)
+            {
+                vars.push_back(fs[j].bf[i]);
+            }
+            newfunc.push_back(bf(vars));
+            vars.clear();
+        }
+        boolean_function boolfunc(newfunc);
+        return boolfunc;
+    }
     boolean_function operator()(const std::initializer_list<boolean_function> vars) const;
 
     bool is_monotone() const;
