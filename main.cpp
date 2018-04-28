@@ -67,9 +67,9 @@ TEST_CASE("test of operator ()", "[file]")
     REQUIRE(boolean_function (vec)(vec1) == 1);
     REQUIRE(boolean_function (vec)({1, 1, 0}) == 1);
     std::vector<boolean_function> vecOfBF;
-    vecOfBF.push_back(boolean_function (vec));
-    vecOfBF.push_back(boolean_function (vec1));
-    vecOfBF.push_back(boolean_function (vec));
+    vecOfBF.push_back(boolean_function(vec));
+    vecOfBF.push_back(boolean_function(vec1));
+    vecOfBF.push_back(boolean_function(vec));
     vec1 = {1, 0, 1, 1, 0, 0, 1, 1};
     std::vector<bool> vec2 = {0, 1, 1, 1, 1, 1, 1, 1};
     REQUIRE(boolean_function (vec1)(vecOfBF) == boolean_function(vec2));
