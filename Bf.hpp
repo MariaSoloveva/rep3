@@ -67,7 +67,7 @@ class boolean_function
     // а n = 3
     // тогда АНФ boolean_function будет равна x + y + xy + zx + zy + zyx
     boolean_function(unsigned long long value, size_type n)
-    : bf((unsigned int)(ldexp (1 , n)))
+        : bf((unsigned int)(ldexp (1 , n)))
     {
         for (size_t i = bf.size(); i != 0; --i)
         {
@@ -180,10 +180,7 @@ class boolean_function
     // true если одна функция сравнима и больше или равна rhs
     // false если сравнима и меньше rhs
     // logic_error если фунции не сравнимы
-    bool operator >= (const boolean_function& rhs) const
-    {
-
-    }
+    //  bool operator >= (const boolean_function& rhs) const;
 
     reference operator[](size_type ind)
     {
