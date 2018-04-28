@@ -5,7 +5,7 @@
 
 class boolean_function
 {
-public:
+ public:
     using value_type = bool;
     using size_type = size_t;
     using reference = std::vector<value_type>::reference;
@@ -13,9 +13,9 @@ public:
 
     using iterator = typename std::vector<value_type>::iterator;
     using const_iterator = typename std::vector<value_type>::const_iterator;
-private:
+ private:
     std::vector<value_type> bf;
-public:
+ public:
 
     // возвращает функцию которая равна xn с размерностью dimension
     // пример 1
@@ -27,35 +27,86 @@ public:
     // dimension = 4
     // вернется функция "0011001100110011"
     static boolean_function var(size_t n, size_t dimension)
-        : bf((unsigned int)pow(2, dimension))
     {
-
+        boolean_function v(0, dimension);
+        unsigned int inner = (unsigned int)(ldexp (1 , n));
+        unsigned int k = 0;
+        while (k != v.size())
+        {
+            for (size_t i = 0; i < inner; ++i)
+            {
+                v[k] = 0;
+                ++k;
+            }
+            for (size_t j = 0; j < inner; ++j)
+            {
+                v[k] = 1;
+                ++k;
+            }
+        }
+        return v;
     }
     // тождественный ноль "от dimension переменных"
     static boolean_function zero(size_t dimension)
-            : bf((unsigned int)pow(2, dimension))
     {
-
+        return boolean_function((1 << (1 << dimension)), dimension);
     }
 
     // тождественная единица "от dimension переменных"
-    static boolean_function one(size_t dimension);
+    static boolean_function one(size_t dimension)
+    {
+        return boolean_function((1 << (1 << dimension)) - 1, dimension);
+    }
 
     static boolean_function from_anf(std::vector<value_type> v);
 
     boolean_function() = default;
+    // задает фунцию от n переменных. значение равно value
+    // пример
+    // пусть value = 14, т.е. 0...00001110 в двоичной системе
     // а n = 3
     // тогда АНФ boolean_function будет равна x + y + xy + zx + zy + zyx
-    boolean_function(unsigned long long value, size_type n);
+    boolean_function(unsigned long long value, size_type n)
+        : bf((unsigned int)(ldexp (1 , n)))
+    {
+        for (size_t i = bf.size(); i != 0; --i)
+        {
+            if (value % 2 != 0 && value > 0)
+            {
+                bf[i - 1] = 1;
+                --value;
+            }
+            else
+                bf[i - 1] = 0;
+            value /= 2;
+        }
+    }
 
     // пусть table = "01110000"
     // тогда АНФ boolean_function будет равна x + y + xy + zx + zy + zyx
-    boolean_function(const std::string& table);
+    boolean_function(const std::string& table)
+        : bf(table.size())
+    {
+        for (size_t i = 0; i < table.size(); ++i)
+        {
+            if (table[i] == '0')
+                bf[i] = 0;
+            else
+                bf[i] = 1;
+        }
+    }
 
     // пусть table = {true, false, false, true};
     // тогда АНФ boolean_function будет равна x + y + 1
-    boolean_function(const std::vector<value_type>& table);
-    boolean_function(const std::initializer_list<bool> vars);
+    boolean_function(const std::vector<value_type>& table)
+    {
+        bf = table;
+    }
+    boolean_function(const std::initializer_list<bool> vars)
+    {
+        for (auto v : vars)
+            bf.push_back(v);
+    }
 
     boolean_function(const boolean_function& table)
         : bf(table.size())
@@ -67,8 +118,7 @@ public:
     {
         if (this != &rhs)
         {
-            bf.clear();
-            std::copy(rhs.cbegin(), rhs.cend(), begin());
+            bf = rhs.bf;
         }
         return *this;
     }
@@ -84,7 +134,6 @@ public:
             bf[i] = (bf[i] + rhs[i]) % 2;
         return *this;
     }
-
     // конъюнкция
     // если разное количество переменных - исключение
     boolean_function& operator *= (const boolean_function& rhs)
@@ -118,24 +167,23 @@ public:
         {
             bf[i] = (bf[i] + 1) % 2;
         }
+        return *this;
     }
 
     // true если функции равны
     //  иначе false
     bool operator == (const boolean_function& rhs) const
     {
-        for (size_t i = 0; i < size(); ++i)
-        {
-            if (bf[i] != rhs[i])
-                return false;
-        }
-        return true;
+        return rhs.bf == bf;
     }
 
     // true если одна функция сравнима и больше или равна rhs
     // false если сравнима и меньше rhs
     // logic_error если фунции не сравнимы
-    bool operator >= (const boolean_function& rhs) const;
+    bool operator >= (const boolean_function& rhs) const
+    {
+
+    }
 
     reference operator[](size_type ind)
     {
@@ -195,43 +243,75 @@ public:
     bool operator()(const std::vector<bool>& vars) const
     {
         size_type inner = 0;
-        size_type two = 0;
-        for (auto a : vars)
+        size_type two = 1;
+        for (size_t i = vars.size(); i != 0; --i)
         {
-            inner += i * two;
+            inner += vars[i] * two;
             two *= 2;
         }
         return bf[inner];
     }
-    bool operator()(const std::initializer_list<bool> vars) const;
-
+    bool operator()(const std::initializer_list<bool> vars) const
+    {
+        size_type inner = 0;
+        size_type two = 1;
+        std::initializer_list<bool>::iterator i = vars.end();
+        while(i != vars.begin())
+        {
+            --i;
+            inner += *i * two;
+            two *= 2;
+        }
+        return bf[inner];
+    }
 
     // T(x1, x2, ..., xN) - текущая функция
     // operator вернет новую функцию, которая равна композиции G = T(fs[0], fs[1], ..., fs[N-1])
     boolean_function operator()(const std::vector<boolean_function>& fs) const
     {
+        boolean_function copy = *this;
         std::vector<bool> vars(fs.size());
-        std::vector<> newfunc(fs[0].size());
+        std::vector<bool> newfunc(fs[0].size());
         for (size_t i = 0; i < fs[0].size(); ++i)
         {
             for (size_t j = 0; j < fs.size(); ++j)
             {
-                vars.push_back(fs[j].bf[i]);
+                vars[j] = fs[j].bf[i];
             }
-            newfunc.push_back(bf(vars));
+            newfunc[i] = copy(vars);
             vars.clear();
         }
-        boolean_function boolfunc(newfunc);
-        return boolfunc;
+        return boolean_function(newfunc);
     }
-    boolean_function operator()(const std::initializer_list<boolean_function> vars) const;
+    boolean_function operator()(const std::initializer_list<boolean_function> vars) const
+    {
+        boolean_function copy = *this;
+        std::vector<bool> var(vars.size());
+        std::vector<bool> newfunc((*vars.begin()).size());
+        for (size_t i = 0; i < (*vars.begin()).size(); ++i)
+        {
+            for (size_t j = 0; j < vars.size(); ++j)
+            {
+                var.push_back((*(vars.begin() + j)).bf[i]);
+            }
+            newfunc.push_back(copy(var));
+            var.clear();
+        }
+        return boolean_function(newfunc);
+    }
 
     bool is_monotone() const;
     bool is_symmetric() const;
     bool is_linear() const;
-    bool is_T1() const;
-    bool is_T0() const;
-    bool is_balanced() const //равновесная ли
+    bool is_T1() const
+    {
+        return bf[bf.size() - 1] == 1;
+    }
+    bool is_T0() const
+    {
+        return bf[0] == 0;
+    }
+    bool is_balanced() const //  равновесная ли
     {
         size_t inner1 = 0;
         size_t inner0 = 0;
@@ -249,7 +329,7 @@ public:
         size_t inner = 0;
         for (size_t i = 0; i < bf.size(); ++i)
         {
-            if (bf[i] == 0)
+            if (bf[i] == 1)
                 ++inner;
         }
         return inner;
@@ -293,3 +373,4 @@ bool operator != (const boolean_function& a, const boolean_function& b)
 {
     return !(a == b);
 }
+
