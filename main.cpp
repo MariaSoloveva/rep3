@@ -3,7 +3,7 @@
 #include <vector>
 #include <cstring>
 #include "catch.hpp"
-#include "bf.hpp"
+#include "Bf.hpp"
 
 TEST_CASE("test of constructors", "[file]")
 {
