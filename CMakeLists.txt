@@ -11,8 +11,7 @@ set(CMAKE_CXX_FLAGS
 
 # enum your files
 add_executable(executable
-    main1.cpp
-    findpath.cpp
+    main.cpp
 )
 
 target_link_libraries(executable -fsanitize=address)
