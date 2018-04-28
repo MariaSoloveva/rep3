@@ -67,7 +67,7 @@ class boolean_function
     // а n = 3
     // тогда АНФ boolean_function будет равна x + y + xy + zx + zy + zyx
     boolean_function(unsigned long long value, size_type n)
-        : bf((unsigned int)(ldexp (1 , n)))
+        : bf ((unsigned int)(ldexp (1 , n)))
     {
         for (size_t i = bf.size(); i != 0; --i)
         {
@@ -85,7 +85,7 @@ class boolean_function
     // пусть table = "01110000"
     // тогда АНФ boolean_function будет равна x + y + xy + zx + zy + zyx
     boolean_function(const std::string& table)
-        : bf(table.size())
+        : bf (table.size())
     {
         for (size_t i = 0; i < table.size(); ++i)
         {
