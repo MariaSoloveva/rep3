@@ -100,5 +100,4 @@ TEST_CASE("test of '>='", "[file]")
     REQUIRE(boolean_function(table).one(3) >= boolean_function(table).zero(3));
     table = {0, 1, 0, 0, 0, 0, 0, 0};
     REQUIRE_FALSE(boolean_function(table) >= boolean_function(vec));
-    boolean_function(table).is_monotone();
 }
