@@ -2,8 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <cstring>
-#include "cmake-build-debug/CMakeFiles/catch.hpp"
-#include "cmake-build-debug/boolean-functions.hpp"
+#include "catch.hpp"
+#include "boolean_function.hpp"
 
 TEST_CASE("test of constructors", "[file]")
 {
