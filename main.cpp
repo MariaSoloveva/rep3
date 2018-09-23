@@ -1,5 +1,5 @@
 #include <iostream>
-#include "parser.h"
+#include "parser.hpp"
 #include <string>
 
 int main() {
@@ -9,10 +9,10 @@ int main() {
     "age" : 25,
     "islegal" : false,
     "marks" : [
-    	4,5,5,5,2,3
+     4, 5, 5, 5, 2, 3
     ],
     "address" : {
-    	"city" : "Moscow",
+        "city" : "Moscow",
         "street" : "Vozdvijenka"
     }
 }";
