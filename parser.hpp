@@ -1,5 +1,5 @@
 #include <iostream>
-#include <boost/any.hpp>
+#include <any>
 #include <map>
 #include <exception>
 #include <sstream>
@@ -9,11 +9,11 @@ class Json
 {
     boost::any _data;
  public:
-    Json(const std::map<std::string, boost::any>& map)
+    Json(const std::map<std::string, std::any>& map)
     {
         _data = map;
     }
-    Json(const std::vector<boost::any>& vector)
+    Json(const std::vector<std::any>& vector)
     {
         _data = vector;
     }
@@ -38,10 +38,10 @@ class Json
     bool is_array() const
     {
         try {
-            boost::any_cast<std::vector<boost::any>>(_data);
+            std::any_cast<std::vector<std::any>>(_data);
             return true;
         }
-        catch(const boost::bad_any_cast& e) {
+        catch(const std::bad_any_cast& e) {
             return false;
         }
     }
@@ -50,10 +50,10 @@ class Json
     bool is_object() const
     {
         try {
-            boost::any_cast<std::map<std::string, boost::any>>(_data);
+            std::any_cast<std::map<std::string, std::any>>(_data);
             return true;
         }
-        catch(const boost::bad_any_cast& e) {
+        catch(const std::bad_any_cast& e) {
             return false;
         }
     }
@@ -71,8 +71,8 @@ class Json
     {
         if (is_object())
         {
-            std::map<std::string, boost::any> map;
-            map =  boost::any_cast<std::map<std::string, boost::any>>(_data);
+            std::map<std::string, std::any> map;
+            map =  std::any_cast<std::map<std::string, std::any>>(_data);
             return map[key];
         }
         else
@@ -88,8 +88,8 @@ class Json
     {
         if (is_array())
         {
-            std::vector<boost::any> vector;
-            vector =  boost::any_cast<std::vector<boost::any>>(_data);
+            std::vector<std::any> vector;
+            vector =  std::any_cast<std::vector<std::any>>(_data);
             return vector[index];
         }
         else
@@ -105,8 +105,8 @@ class Json
     {
         if (is_object())
         {
-            std::map<std::string, boost::any> map;
-            map =  boost::any_cast<std::map<std::string, boost::any>>(_data);
+            std::map<std::string, std::any> map;
+            map =  std::any_cast<std::map<std::string, std::any>>(_data);
             return map[key];
         }
         else
@@ -122,8 +122,8 @@ class Json
     {
         if (is_array())
         {
-            std::vector<boost::any> vector;
-            vector =  boost::any_cast<std::vector<boost::any>>(_data);
+            std::vector<std::any> vector;
+            vector =  std::any_cast<std::vector<std::any>>(_data);
             return vector[index];
         }
         else
@@ -131,8 +131,8 @@ class Json
             throw std::logic_error("Error");
         }
     }
-    std::map<std::string, boost::any> parse_object(const std::string& s, size_t& position);
-    std::vector<boost::any> parse_array(const std::string& s, size_t& position);
+    std::map<std::string, std::any> parse_object(const std::string& s, size_t& position);
+    std::vector<std::any> parse_array(const std::string& s, size_t& position);
     friend std::string parse_string(std::string& s, size_t& position);
     friend float parse_number(std::string& s, size_t& position);
     friend bool parse_bool(std::string& s, size_t& position);
@@ -204,10 +204,10 @@ bool parse_bool(const std::string& s, size_t& position)
         throw std::invalid_argument("Error");
     }
 }
-std::map<std::string, boost::any> parse_object(const std::string& s, size_t& position);
-std::vector<boost::any> Json::parse_array(const std::string& s, size_t& position)
+std::map<std::string, std::any> parse_object(const std::string& s, size_t& position);
+std::vector<std::any> Json::parse_array(const std::string& s, size_t& position)
 {
-    std::vector<boost::any> result;
+    std::vector<std::any> result;
     ++position;
     size_t commaPosition = position;
     State state = find_value;
@@ -279,12 +279,12 @@ std::vector<boost::any> Json::parse_array(const std::string& s, size_t& position
         }
     }
 }
-std::map<std::string, boost::any> Json::parse_object(const std::string& s, size_t& position)
+std::map<std::string, std::any> Json::parse_object(const std::string& s, size_t& position)
 {
-    std::map<std::string, boost::any> result;
+    std::map<std::string, std::any> result;
     State state = find_key_or_end;
     std::string key;
-    boost::any value;
+    std::any value;
     for (size_t inner = position; inner < s.size(); ++inner)
     {
         if (s[inner] == '\"')
