@@ -40,7 +40,7 @@ public:
             std::any_cast<std::vector<std::any>>(_data);
             return true;
         }
-        catch(const boost::bad_any_cast& e) {
+        catch(const std::bad_any_cast& e) {
             return false;
         }
     }
