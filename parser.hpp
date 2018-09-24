@@ -4,6 +4,7 @@
 #include <exception>
 #include <sstream>
 #include <fstream>
+#include <vector>
 
 class Json
 {
@@ -65,7 +66,7 @@ public:
     // Метод возвращает значение по ключу key, если экземпляр является JSON-объектом.
     // Значение может иметь один из следующих типов: Json, std::string, double, bool или быть пустым.
     // Если экземпляр является JSON-массивом, генерируется исключение.
-    boost::any& operator[](const std::string& key)
+    std::any& operator[](const std::string& key)
     {
         if (is_object())
         {
@@ -82,7 +83,7 @@ public:
     // Метод возвращает значение по индексу index, если экземпляр является JSON-массивом.
     // Значение может иметь один из следующих типов: Json, std::string, double, bool или быть пустым.
     // Если экземпляр является JSON-объектом, генерируется исключение.
-    boost::any& operator[](int index)
+    std::any& operator[](int index)
     {
         if (is_array())
         {
