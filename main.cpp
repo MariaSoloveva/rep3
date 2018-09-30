@@ -12,7 +12,6 @@ int main()
     std::cout << !ptr << std::endl;
     std::cout << bool(ptr) << std::endl;
     std::cout << ptr2.get() << std::endl;
-    std::cout << get_pointer(ptr2) << std::endl;
     std::cout << (ptr != nullptr) << std::endl;
     std::cout << (nullptr != ptr) << std::endl;
     std::cout << (nullptr == ptr2) << std::endl;
