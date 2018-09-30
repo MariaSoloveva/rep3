@@ -17,14 +17,6 @@ public:
     }
     SharedPtr& operator=(const SharedPtr& ptr)
     {
-        if (inner - 1 == 0)
-        {
-            if (object != nullptr)
-            {
-                delete ptr;
-            }
-            --inner;
-        }
         object = ptr.object;
         inner = ptr.inner;
         ++inner;
@@ -37,8 +29,7 @@ public:
     }
     void reset(T* obj)
     {
-        object = obj;
-        --inner;                         // Точно так?
+        object = obj;                        // Точно так?
     }
     void swap(SharedPtr& ptr)
     {
