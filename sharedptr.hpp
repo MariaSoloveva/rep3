@@ -5,7 +5,7 @@ template <typename T>
 class SharedPtr
 {
     T* object;
-    std::atomic_uint inner;
+    size_t inner;
 public:
     SharedPtr() = default;
     ~SharedPtr() = default;
