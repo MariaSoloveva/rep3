@@ -12,9 +12,5 @@ int main()
     std::cout << !ptr << std::endl;
     std::cout << bool(ptr) << std::endl;
     std::cout << ptr2.get() << std::endl;
-    std::cout << (ptr != nullptr_t) << std::endl;
-    std::cout << (nullptr_t != ptr) << std::endl;
-    std::cout << (nullptr_t == ptr2) << std::endl;
-    std::cout << (ptr2 == nullptr_t) << std::endl;
     return 0;
 }
