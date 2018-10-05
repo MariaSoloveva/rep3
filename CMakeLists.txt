@@ -11,6 +11,7 @@ set(CMAKE_CXX_FLAGS
 
 # enum your files
 add_executable(executable
+    json.cpp
     main.cpp
 )
 
