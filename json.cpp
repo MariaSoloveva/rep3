@@ -17,7 +17,7 @@ Json::Json(const std::vector<std::any>& vector)
 // Конструктор из строки, содержащей Json-данные.
 Json::Json(const std::string& s)
 {
-    for(size_t inner = 0; inner < s.size(); ++inner)
+    for (size_t inner = 0; inner < s.size(); ++inner)
     {
         if (s[inner] == '{')
         {
@@ -185,7 +185,6 @@ float parse_number(const std::string& s, size_t& position)
 }
 bool parse_bool(const std::string& s, size_t& position)
 {
-
     std::string str;
     for (size_t inner = position; inner < s.size(); ++inner)
     {
@@ -335,7 +334,6 @@ std::map<std::string, std::any> Json::parse_object(const std::string& s, size_t&
                 result[key] = Json(parse_object(s, inner));
                 state = find_key_or_end;
             }
-
         }
         else if (s[inner] == '}')
         {
@@ -355,7 +353,6 @@ std::map<std::string, std::any> Json::parse_object(const std::string& s, size_t&
                 result[key] = Json(parse_array(s, inner));
                 state = find_key_or_end;
             }
-
         }
         else if (s[inner] == ']')
         {
