@@ -55,6 +55,7 @@ SOFTWARE.
 #include <memory> // allocator
 #include <string> // string
 #include <vector> // vector
+#include <ctdint>
 
 /*!
 @brief namespace for Niels Lohmann
