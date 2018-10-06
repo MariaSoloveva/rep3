@@ -1,39 +1,41 @@
 #include <iostream>
+#include <vector>
 #include <exception>
-#include <iomanip>
-
-#include "json.hpp"
-using json =  nlohmann::json;
+#include <string>
+#include <SFML/Graphics.hpp>
 
 
-kson redistributionOfJson(json& input)
+int main()
 {
-    json array = json::array();
-    json obj = json::object();
-    for (size_t inner = 0; inner < input.size(); ++inner)
-    {
-        size_t i = 0;
-        obj["ticker"] = input[i][inner];
-        ++i;
-        obj["id"] = input[i][inner];
-        ++i;
-        obj["description"] = input[i][inner];
-        array.push_back(obj);
+    sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
+    sf::Text text;
+    sf::Font font;
+    text.setFont(font);
+    font.loadFromFile("/home/mariasolovyova/CLionProjects/untitled1/Arial.ttf");
+    if (!font.loadFromFile("/home/mariasolovyova/CLionProjects/untitled1/Arial.ttf")){
+        throw std::logic_error("");
     }
-    return array;
-}
+    text.setString("Hello world");
+    text.setCharacterSize(24);
+    text.setColor(sf::Color::White);
+    text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+// inside the main loop, between window.clear() and window.display()
+    window.draw(text);
+    //  sf::CircleShape shape(100.f);
+    //  shape.setFillColor(sf::Color::Green);
 
-int main() {
-    const char * const json_data = R"(
-[
-["Si-9.15", "RTS-9.15", "GAZP-9.15"],
-[100024, 100027, 100050],
-["Futures contract for USD/RUB", "Futures contract for index RTS", "Futures contract for Gazprom shares"]
-]
-)";
-    json input;
-    input = json::parse(json_data);
-    json output  = redistributionOfJson(input);
-    std::cout << output.size();
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        window.clear();
+        window.draw(text);
+        window.display();
+    }
+
     return 0;
 }
