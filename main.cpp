@@ -1,53 +1,39 @@
 #include <iostream>
-#include "set.hpp"
+#include <exception>
+#include <iomanip>
+
+#include "json.hpp"
+using json =  nlohmann::json;
 
 
-int main()
+kson redistributionOfJson(json& input)
 {
-    set<int> s1;
-    s1.insert(10);
-    s1.insert(5);
-    s1.insert(3);
-    s1.insert(2);
-    s1.insert(8);
-    s1.insert(0);
-    s1.insert(15);
-    s1.insert(20);
-    s1.insert(11);
-    s1.insert(22);
-    s1.insert(19);
-    std::cout<< s1.size() <<std::endl;
-    std::cout<< s1.empty() <<std::endl;
-    s1.find(9);
-    std::cout<< s1.has(9) <<std::endl;
-    s1.erase(s1.find(19));
+    json array = json::array();
+    json obj = json::object();
+    for (size_t inner = 0; inner < input.size(); ++inner)
+    {
+        size_t i = 0;
+        obj["ticker"] = input[i][inner];
+        ++i;
+        obj["id"] = input[i][inner];
+        ++i;
+        obj["description"] = input[i][inner];
+        array.push_back(obj);
+    }
+    return array;
+}
+
+int main() {
+    const char * const json_data = R"(
+[
+["Si-9.15", "RTS-9.15", "GAZP-9.15"],
+[100024, 100027, 100050],
+["Futures contract for USD/RUB", "Futures contract for index RTS", "Futures contract for Gazprom shares"]
+]
+)";
+    json input;
+    input = json::parse(json_data);
+    json output  = redistributionOfJson(input);
+    std::cout << output.size();
     return 0;
 }
-/*
-#include <iostream>
-#include"bst.hpp"
-
-
-int main()
-{
-    BinarySearchTree<int> tree;
-    BinarySearchTree<int>::Node* x;
-    tree.Add(20);
-    tree.Add(15);
-    tree.Add(10);
-    tree.Add(11);
-    tree.Add(16);
-    tree.Add(25);
-    tree.Add(30);
-    tree.Add(24);
-    tree.Add(35);
-    tree.Add(31);
-    x = tree.Find(11);
-    tree.Remove(x);
-    x = tree.Find(6);
-    tree.Remove(x);
-    x = tree.Find(4);
-    std::cout << tree.isBST(x) << std::endl;
-    return 0;
-}
-*/
