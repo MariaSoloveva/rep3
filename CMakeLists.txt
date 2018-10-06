@@ -1,17 +1,22 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required(VERSION 3.9)
 
-include(gtest.cmake)
 include_directories(SYSTEM
     ./
 )
 
-# if(CMAKE_COMPILER_IS_GNUCXX)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -fsanitize=address -O1 -Wall -Wextra -Wno-unused-command-line-argument -Wshadow -Wnon-virtual-dtor -pedantic")
-# endif(CMAKE_COMPILER_IS_GNUCXX)
+ADD_DEFINITIONS(
+    -std=c++11
+)
 
 # enum your files
 add_executable(executable
-  main.cpp
+    main.cpp
 )
-find_package (Threads)
-target_link_libraries(executable -fsanitize=address gtest ${CMAKE_THREAD_LIBS_INIT})
+set(SFML_DIR "SFML/cmake")
+set(CMAKE_MODULE_PATH "SFML/cmake" ${CMAKE_MODULE_PATH})
+find_package(SFML REQUIRED system window graphics network audio)
+
+if(SFML_FOUND)
+    include_directories(${SFML_INCLUDE_DIR})
+endif()
+target_link_libraries(executable ${SFML_LIBRARIES})
